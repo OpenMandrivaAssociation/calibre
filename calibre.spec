@@ -1,6 +1,6 @@
 Name:		calibre
 Version:	0.6.47
-Release:	%mkrel 1
+Release:	%mkrel 2
 Summary:	E-book converter and library management
 Group:		Text tools 
 License:	GPL
@@ -21,7 +21,7 @@ BuildRequires:	qt4-devel
 BuildRequires:	python-qt4-devel
 BuildRequires:	python-qt4-scripttools
 BuildRequires:	libpoppler-qt4-devel >= 0.12
-#BuildRequires:	podofo-devel
+BuildRequires:	podofo-devel
 BuildRequires:	desktop-file-utils
 BuildRequires:	python-mechanize
 BuildRequires:	python-lxml
