@@ -40,7 +40,8 @@ Requires:	pyPdf
 Requires:	python-cherrypy
 Requires:	python-cssutils
 Requires:	ImageMagick
-Requires:	odfpy
+#Requires:	odfpy
+# not present in mdv...yet?
 Requires:	django-tagging
 Requires:	python-lxml
 Requires:	python-imaging
