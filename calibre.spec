@@ -1,6 +1,6 @@
 Name:		calibre
-Version:	0.6.47
-Release:	%mkrel 3
+Version:	0.6.48
+Release:	%mkrel 1
 Summary:	E-book converter and library management
 Group:		Text tools 
 License:	GPL
@@ -40,15 +40,14 @@ Requires:	pyPdf
 Requires:	python-cherrypy
 Requires:	python-cssutils
 Requires:	ImageMagick
-#Requires:	odfpy
-# not present in mdv...yet?
-Requires:	django-tagging
+Requires:	python-odf
+Requires:	python-django-tagging
 Requires:	python-lxml
 Requires:	python-imaging
 Requires:	python-mechanize
 Requires:	python-dateutil
 Requires:	python-genshi
-Requires:	python-BeautifulSoup
+Requires:	python-beautifulsoup
 
 %description
 Calibre is meant to be a complete e-library solution. It includes library
