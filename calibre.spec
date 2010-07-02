@@ -119,7 +119,7 @@ LIBPATH="%{_libdir}" \
 python setup.py install --root=%{buildroot}%{_prefix} \
 			--prefix=%{_prefix} \
 			--libdir=%{_libdir} \
-			--staging-libdir=%{buildroot}%{_libdir} \
+			--staging-libdir=%{buildroot}%{_libdir}
 
 %{__sed} -i -e '/^#!\//, 1d' %{buildroot}%{python_sitelib}/init_calibre.py
 # icons
@@ -211,29 +211,12 @@ rm -f %{buildroot}%{_prefix}/lib/udev/rules.d/*
 %clean
 %{__rm} -rf %{buildroot}
 
-%post
-update-desktop-database &> /dev/null ||:
-update-mime-database %{_datadir}/mime &> /dev/null || :
-touch --no-create %{_datadir}/icons/hicolor || :
-if [ -x %{_bindir}/gtk-update-icon-cache ] ; then
-%{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
-fi
-
-%postun
-update-desktop-database &> /dev/null ||:
-update-mime-database %{_datadir}/mime &> /dev/null || :
-touch --no-create %{_datadir}/icons/hicolor || :
-if [ -x %{_bindir}/gtk-update-icon-cache ] ; then
-%{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
-fi
-
-
 %files -f %{name}.lang
 
 %defattr(-,root,root,-)
 %doc COPYRIGHT LICENSE Changelog.yaml
 %{_bindir}/*
-%config(noreplace) %{_sysconfdir}/bash_completion.d/
+%config(noreplace) %{_sysconfdir}/bash_completion.d/%{name}
 %{_libdir}/%{name}
 %{_datadir}/%{name}
 %{_datadir}/locale/*/*/*.qm
