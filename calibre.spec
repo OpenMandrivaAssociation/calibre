@@ -1,15 +1,13 @@
 Name:		calibre
 Version:	0.7.10
-Release:	%mkrel 1
+Release:	%mkrel 2
 Summary:	E-book converter and library management
 Group:		Text tools 
 License:	GPL
 URL:		http://calibre-ebook.com/
 Source0:	http://calibre-ebook.googlecode.com/files/%{name}-%{version}.tar.gz
-Source1:	profiles.py
 Patch0:		%{name}-manpages.patch
 Patch1:		%{name}-no-update.patch
-Patch2:		%{name}-cssprofiles.patch
 Patch3:		%{name}-0.6.47-python-fix.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}
 
@@ -25,7 +23,7 @@ BuildRequires:	podofo-devel
 BuildRequires:	desktop-file-utils
 BuildRequires:	python-mechanize
 BuildRequires:	python-lxml
-BuildRequires:	python-cssutils
+BuildRequires:	python-cssutils >= 0.9.6
 BuildRequires:	python-dateutil
 BuildRequires:	python-imaging
 BuildRequires:	python-sqlite2
@@ -69,10 +67,9 @@ TXT, PDF, CHM and LRS.
 # remove redundant / non-free fonts
 rm -rf resources/fonts/*
 
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
+%patch0 -p1 -b .manpages
+%patch1 -p1 -b .no-update
+%patch3 -p1 -b .python-fix
 
 # dos2unix newline conversion
 %{__sed} -i 's/\r//' src/calibre/web/feeds/recipes/*
@@ -92,15 +89,10 @@ rm -rf resources/fonts/*
 
 
 %build
-
-python setup.py build
+OVERRIDE_CFLAGS="%{optflags}" python setup.py build
 
 %install
 rm -rf %{buildroot}
-
-# this is the only file we need from the provided cssutils package
-# we have to provide it this way until MDV bumps cssutils ver to >=0.6
-cp -p %{SOURCE1} src/calibre/css_profiles.py
 
 mkdir -p %{buildroot}%{_datadir}
 
@@ -133,7 +125,7 @@ cp -p resources/images/viewer.svg \
 find %{buildroot}%{_datadir}/mime -maxdepth 1 -type f|xargs rm -f 
 
 # packages aren't allowed to register mimetypes like this
-rm -f %{buildroot}%{_datadir}/applications/defaults.list
+rm -f %{buildroot}%{_datadir}/applications/{defaults.list,mimeinfo.cache}
 
 desktop-file-validate \
 %{buildroot}%{_datadir}/applications/calibre-ebook-viewer.desktop
@@ -227,4 +219,3 @@ rm -f %{buildroot}%{_prefix}/lib/udev/rules.d/*
 %{_datadir}/icons/hicolor/scalable/apps/*
 %{_mandir}/man1/*
 %{python_sitelib}/init_calibre.py*
-
