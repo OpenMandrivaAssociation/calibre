@@ -1,6 +1,6 @@
 Name:		calibre
-Version:	0.7.14
-Release:	%mkrel 2
+Version:	0.7.15
+Release:	%mkrel 1
 Summary:	E-book converter and library management
 Group:		Text tools 
 License:	GPL
