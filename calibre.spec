@@ -1,5 +1,5 @@
 Name:		calibre
-Version:	0.7.19
+Version:	0.7.20
 Release:	%mkrel 1
 Summary:	E-book converter and library management
 Group:		Text tools 
