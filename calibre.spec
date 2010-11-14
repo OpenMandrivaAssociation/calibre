@@ -8,8 +8,7 @@ URL:		http://calibre-ebook.com/
 Source0:	http://calibre-ebook.googlecode.com/files/%{name}-%{version}.tar.gz
 Patch0:		%{name}-manpages.patch
 Patch1:		%{name}-no-update.patch
-Patch3:		%{name}-0.6.47-python-fix.patch
-Patch4:		%{name}-0.7.26-python-fix.patch
+Patch3:		%{name}-0.7.27-python-fix.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}
 
 BuildRequires:	python >= 2.6
@@ -70,12 +69,7 @@ rm -rf resources/fonts/*
 
 %patch0 -p1 -b .manpages
 %patch1 -p1 -b .no-update
-# for distros >= 2011.0 python version is 2.7; for older it's 2.6
-%if %mdkversion < 201100
 %patch3 -p1 -b .python-fix
-%else
-%patch4 -p1 -b .python-fix
-%endif
 
 # dos2unix newline conversion
 %{__sed} -i 's/\r//' src/calibre/web/feeds/recipes/*
