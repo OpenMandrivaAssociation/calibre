@@ -31,6 +31,7 @@ BuildRequires:	python-beautifulsoup
 BuildRequires:	unzip
 BuildRequires:	libwmf-devel
 BuildRequires:	chmlib-devel
+BuildRequires:	icu-devel
 
 Requires:	PyQt4
 Requires:	pyPdf
@@ -78,13 +79,13 @@ rm -rf resources/fonts/*
 %{__sed} -i -e '/^#!\//, 1d' src/calibre/*/*/*.py
 %{__sed} -i -e '/^#![ ]*\//, 1d' src/calibre/*/*.py
 %{__sed} -i -e '/^#!\//, 1d' src/calibre/*.py
-%{__sed} -i -e '/^#!\//, 1d' resources/recipes/*
+%{__sed} -i -e '/^#!\//, 1d' recipes/*.recipe
 
 %{__chmod} -x src/calibre/*/*/*/*.py
 %{__chmod} -x src/calibre/*/*/*.py
 %{__chmod} -x src/calibre/*/*.py
 %{__chmod} -x src/calibre/*.py
-%{__chmod} -x resources/recipes/*
+%{__chmod} -x recipes/*.recipe
 
 
 %build
