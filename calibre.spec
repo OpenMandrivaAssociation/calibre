@@ -1,6 +1,6 @@
 Name:		calibre
-Version:	0.7.32
-Release:	%mkrel 3
+Version:	0.7.52
+Release:	%mkrel 1
 Summary:	E-book converter and library management
 Group:		Text tools 
 License:	GPL
@@ -11,8 +11,7 @@ Patch1:		%{name}-no-update.patch
 Patch3:		%{name}-0.7.27-python-fix.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}
 
-BuildRequires:	python >= 2.6
-BuildRequires:	python-devel >= 2.6
+BuildRequires:	python-devel >= 2.7
 BuildRequires:	ImageMagick-devel
 BuildRequires:	python-setuptools
 BuildRequires:	qt4-devel 
