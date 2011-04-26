@@ -11,7 +11,7 @@ Patch1:		%{name}-no-update.patch
 Patch3:		%{name}-0.7.27-python-fix.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}
 
-BuildRequires:	python-devel >= 2.7
+BuildRequires:	python-devel >= 2.6
 BuildRequires:	ImageMagick-devel
 BuildRequires:	python-setuptools
 BuildRequires:	qt4-devel 
