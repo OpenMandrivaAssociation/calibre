@@ -15,7 +15,7 @@ BuildRequires:	python-devel >= 2.6
 BuildRequires:	ImageMagick-devel
 BuildRequires:	python-setuptools
 BuildRequires:	qt4-devel 
-BuildRequires:	python-qt4-devel
+BuildRequires:	python-qt4-devel >= 4.8.2
 BuildRequires:	python-qt4-scripttools
 BuildRequires:	libpoppler-qt4-devel >= 0.12
 BuildRequires:	podofo-devel
