@@ -33,7 +33,9 @@ BuildRequires:	libwmf-devel
 BuildRequires:	chmlib-devel
 BuildRequires:	icu-devel
 
-Requires:	PyQt4
+Requires:	python-qt4-gui
+Requires:	python-qt4-svg
+Requires:	python-qt4-webkit
 Requires:	pyPdf
 Requires:	python-cherrypy
 Requires:	python-cssutils
