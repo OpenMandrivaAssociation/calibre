@@ -48,6 +48,11 @@ Requires:	python-mechanize
 Requires:	python-dateutil
 Requires:	python-genshi
 Requires:	python-beautifulsoup
+# Require the packages of the files which are symlinked by calibre
+Requires:	fonts-ttf-liberation
+# E-mail functionality requires this package
+# see https://bugs.launchpad.net/calibre/+bug/739073
+Requires:	python-dnspython
 
 %description
 Calibre is meant to be a complete e-library solution. It includes library
@@ -81,6 +86,8 @@ rm -rf resources/fonts/*
 %{__sed} -i -e '/^#!\//, 1d' src/calibre/*/*/*.py
 %{__sed} -i -e '/^#![ ]*\//, 1d' src/calibre/*/*.py
 %{__sed} -i -e '/^#!\//, 1d' src/calibre/*.py
+%{__sed} -i -e '/^#!\//, 1d' src/templite/*.py
+%{__sed} -i -e '/^#!\//, 1d' resources/default_tweaks.py
 %{__sed} -i -e '/^#!\//, 1d' recipes/*.recipe
 
 %{__chmod} -x src/calibre/*/*/*/*.py
@@ -94,8 +101,6 @@ rm -rf resources/fonts/*
 OVERRIDE_CFLAGS="%{optflags}" python setup.py build
 
 %install
-rm -rf %{buildroot}
-
 mkdir -p %{buildroot}%{_datadir}
 
 # create directories for xdg-utils
@@ -125,6 +130,9 @@ cp -p resources/images/viewer.png \
 
 # every file is empty here
 find %{buildroot}%{_datadir}/mime -maxdepth 1 -type f|xargs rm -f 
+
+# the portable batch (>=0.8.5) is not needed
+rm -f %{buildroot}%{_bindir}/calibre-portable.bat
 
 # packages aren't allowed to register mimetypes like this
 rm -f %{buildroot}%{_datadir}/applications/{defaults.list,mimeinfo.cache}
@@ -172,33 +180,14 @@ ln -s %{_datadir}/fonts/TTF/liberation/LiberationMono-Regular.ttf \
 mv %{buildroot}%{_datadir}/%{name}/man %{buildroot}%{_mandir}
 
 # move locales
-mv %{buildroot}%{_datadir}/%{name}/localization/locales \
-	%{buildroot}%{_datadir}/locale
-for file in %{buildroot}%{_datadir}/locale/*/LC_MESSAGES/messages.mo; do
-	lang=$(echo $file|%{__sed} 's:.*locale/\(.*\)/LC_MESSAGES.*:\1:')
-	mv %{buildroot}%{_datadir}/locale/$lang/LC_MESSAGES/messages.mo \
-	%{buildroot}%{_datadir}/locale/$lang/LC_MESSAGES/%{name}.mo
-done;
-for file in %{buildroot}%{_datadir}/locale/*/LC_MESSAGES/iso639.mo; do
-	lang=$(echo $file|%{__sed} 's:.*locale/\(.*\)/LC_MESSAGES.*:\1:')
-	mv %{buildroot}%{_datadir}/locale/$lang/LC_MESSAGES/iso639.mo \
-	%{buildroot}%{_datadir}/locale/$lang/LC_MESSAGES/%{name}_iso639.mo
-done;
-for file in %{buildroot}%{_datadir}/locale/*/LC_MESSAGES/qt.qm; do
-    lang=$(echo $file|%{__sed} 's:.*locale/\(.*\)/LC_MESSAGES.*:\1:')
-    mv $file %{buildroot}%{_datadir}/locale/$lang/LC_MESSAGES/%{name}_$lang.qm
-done;
-
-# remove udev hack - it's not needed...
-rm -f %{buildroot}%{_prefix}/lib/udev/rules.d/*
+# localization has changed since calibre-0.8.5
+# locale.zip is treated internally at runtime
+# so the traditional locale fixes are moot.
+# locales should still be looked for in the proper place
+# but under the new localization zip-based schema
+%{__sed} -i -e 's:localization/locale.zip:%{_datadir}/%{name}/localization/locales.zip:' %{buildroot}%{_libdir}/%{name}/%{name}/utils/localization.py
 
 %find_lang %{name} --with-kde --all-name
-
-# locales should be looked for in the proper place
-%{__sed} -i -e "s:P('localization/locales:('/usr/share/locale:" \
-	-e "s/messages.mo/calibre.mo/" \
-	-e "s/iso639.mo/calibre_iso639.mo/" \
-	%{buildroot}%{_libdir}/%{name}/%{name}/utils/localization.py
 
 %{__rm} -f %{buildroot}%{_bindir}/%{name}-uninstall   
 
@@ -213,7 +202,6 @@ rm -f %{buildroot}%{_prefix}/lib/udev/rules.d/*
 %config(noreplace) %{_sysconfdir}/bash_completion.d/%{name}
 %{_libdir}/%{name}
 %{_datadir}/%{name}
-%{_datadir}/locale/*/*/*.qm
 %{_datadir}/pixmaps/*
 %{_datadir}/applications/*
 %{_datadir}/mime/packages/*
