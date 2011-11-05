@@ -1,6 +1,6 @@
 Name:		calibre
 Version:	0.8.18
-Release:	1
+Release:	2
 Summary:	E-book converter and library management
 Group:		Text tools 
 License:	GPL
@@ -9,6 +9,7 @@ Source0:	http://calibre-ebook.googlecode.com/files/%{name}-%{version}.tar.gz
 Patch0:		%{name}-manpages.patch
 Patch1:		%{name}-no-update.patch
 Patch3:		%{name}-0.7.27-python-fix.patch
+Patch4:		%{name}-poppler-0.18.1.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}
 
 BuildRequires:	python-devel >= 2.6
@@ -77,6 +78,7 @@ rm -rf resources/fonts/*
 %patch0 -p1 -b .manpages
 %patch1 -p1 -b .no-update
 %patch3 -p1 -b .python-fix
+%patch4 -p1 -b .poppler0.18.1
 
 # dos2unix newline conversion
 %{__sed} -i 's/\r//' src/calibre/web/feeds/recipes/*
