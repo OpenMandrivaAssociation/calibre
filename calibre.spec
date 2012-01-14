@@ -1,16 +1,14 @@
 Name:		calibre
-Version:	0.8.18
-Release:	2
+Version:	0.8.35
+Release:	1
 Summary:	E-book converter and library management
 Group:		Text tools 
 License:	GPL
 URL:		http://calibre-ebook.com/
-Source0:	http://calibre-ebook.googlecode.com/files/%{name}-%{version}.tar.gz
+Source0:	http://calibre-ebook.googlecode.com/files/%{name}-%{version}.tar.xz
 Patch0:		%{name}-manpages.patch
 Patch1:		%{name}-no-update.patch
 Patch3:		%{name}-0.7.27-python-fix.patch
-Patch4:		%{name}-poppler-0.18.1.patch
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}
 
 BuildRequires:	python-devel >= 2.6
 BuildRequires:	ImageMagick-devel
@@ -78,7 +76,6 @@ rm -rf resources/fonts/*
 %patch0 -p1 -b .manpages
 %patch1 -p1 -b .no-update
 %patch3 -p1 -b .python-fix
-%patch4 -p1 -b .poppler0.18.1
 
 # dos2unix newline conversion
 %{__sed} -i 's/\r//' src/calibre/web/feeds/recipes/*
@@ -189,15 +186,9 @@ mv %{buildroot}%{_datadir}/%{name}/man %{buildroot}%{_mandir}
 # but under the new localization zip-based schema
 %{__sed} -i -e 's:localization/locale.zip:%{_datadir}/%{name}/localization/locales.zip:' %{buildroot}%{_libdir}/%{name}/%{name}/utils/localization.py
 
-%find_lang %{name} --with-kde --all-name
-
 %{__rm} -f %{buildroot}%{_bindir}/%{name}-uninstall   
 
-%clean
-%{__rm} -rf %{buildroot}
-
-%files -f %{name}.lang
-
+%files
 %defattr(-,root,root,-)
 %doc COPYRIGHT LICENSE Changelog.yaml
 %{_bindir}/*
