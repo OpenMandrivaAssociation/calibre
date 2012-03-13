@@ -1,5 +1,5 @@
 Name:		calibre
-Version:	0.8.41
+Version:	0.8.42
 Release:	1
 Summary:	E-book converter and library management
 Group:		Text tools 
