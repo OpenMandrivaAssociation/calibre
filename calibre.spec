@@ -1,5 +1,5 @@
 Name:		calibre
-Version:	0.8.53
+Version:	0.8.60
 Release:	1
 Summary:	E-book converter and library management
 Group:		Text tools 
@@ -73,7 +73,7 @@ TXT, PDF, CHM and LRS.
 # remove redundant / non-free fonts
 rm -rf resources/fonts/*
 
-%patch0 -p1 -b .manpages
+#%patch0 -p1 -b .manpages
 %patch1 -p1 -b .no-update
 %patch3 -p1 -b .python-fix
 
@@ -176,7 +176,7 @@ ln -s %{_datadir}/fonts/TTF/liberation/LiberationMono-Regular.ttf \
 	%{buildroot}%{_datadir}/%{name}/fonts/prs500/tt0419m_.ttf
 
 # man pages
-mv %{buildroot}%{_datadir}/%{name}/man %{buildroot}%{_mandir}
+#mv %{buildroot}%{_datadir}/%{name}/man %{buildroot}%{_mandir}
 
 # move locales
 # localization has changed since calibre-0.8.5
@@ -189,7 +189,6 @@ mv %{buildroot}%{_datadir}/%{name}/man %{buildroot}%{_mandir}
 %{__rm} -f %{buildroot}%{_bindir}/%{name}-uninstall   
 
 %files
-%defattr(-,root,root,-)
 %doc COPYRIGHT LICENSE Changelog.yaml
 %{_bindir}/*
 %config(noreplace) %{_sysconfdir}/bash_completion.d/%{name}
@@ -200,5 +199,6 @@ mv %{buildroot}%{_datadir}/%{name}/man %{buildroot}%{_mandir}
 %{_datadir}/mime/packages/*
 %{_datadir}/icons/hicolor/scalable/mimetypes/*
 %{_datadir}/icons/hicolor/scalable/apps/*
-%{_mandir}/man1/*
+%{_datadir}/icons/hicolor/256x256/apps/*.png
+#%{_mandir}/man1/*
 %{python_sitelib}/init_calibre.py*
