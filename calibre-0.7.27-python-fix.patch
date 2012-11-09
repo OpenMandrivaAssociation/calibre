@@ -1,0 +1,12 @@
+diff --git a/setup/extensions.py b/setup/extensions.py
+index ccff4b6..d3a4693 100644
+--- a/setup/extensions.py
++++ b/setup/extensions.py
+@@ -429,6 +429,7 @@ class Build(Command):
+                     makefile=mf, universal=OSX_SDK, qt=1)
+             makefile.extra_lflags = qt_objects
+             makefile.extra_include_dirs = ext.inc_dirs
++            makefile.LIBS.append('-lpython'+sysconfig.get_python_version())
+             makefile.generate()
+ 
+             self.check_call([make, '-f', mf], cwd=src_dir)
