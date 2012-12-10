@@ -1,0 +1,12 @@
+--- calibre/src/calibre/gui2/store/old.web_control.py	2011-06-19 18:49:10.601631964 +0300
++++ calibre/src/calibre/gui2/store/web_control.py	2011-06-19 18:51:14.471813402 +0300
+@@ -9,7 +9,8 @@
+ import os
+ from urlparse import urlparse
+ 
+-from PyQt4.Qt import QNetworkCookieJar, QFileDialog, QNetworkProxy
++from PyQt4.Qt import QFileDialog
++from PyQt4.QtNetwork import QNetworkCookieJar, QNetworkProxy
+ from PyQt4.QtWebKit import QWebView, QWebPage
+ 
+ from calibre import USER_AGENT, get_proxies, get_download_filename
