@@ -1,6 +1,6 @@
 Name:		calibre
-Version:	0.9.8
-Release:	2
+Version:	0.9.10
+Release:	1
 Summary:	E-book converter and library management
 Group:		Office
 License:	GPLv3
