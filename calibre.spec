@@ -1,5 +1,5 @@
 Name:		calibre
-Version:	0.9.10
+Version:	0.9.18
 Release:	1
 Summary:	E-book converter and library management
 Group:		Office
@@ -15,7 +15,8 @@ BuildRequires:	python >= 2.6
 BuildRequires:	pkgconfig(python) >= 2.6
 BuildRequires:	imagemagick-devel
 BuildRequires:	python-setuptools
-BuildRequires:	qt4-devel 
+BuildRequires:	qt4-devel
+BuildRequires:	qt4-devel-private
 BuildRequires:	python-qt4-devel
 BuildRequires:	pkgconfig(poppler-qt4) >= 0.12
 BuildRequires:	pkgconfig(poppler-glib)
@@ -34,20 +35,21 @@ BuildRequires:	pkgconfig(icu-i18n)
 BuildRequires:	unzip
 BuildRequires:	libwmf-devel
 BuildRequires:	libmtp-devel
-Requires:	python-qt4
-Requires:	python-pypdf
-Requires:	python-cherrypy
-Requires:	python-cssutils
 Requires:	imagemagick
-Requires:	python-odf
-Requires:	python-django-tagging
-Requires:	python-lxml
-Requires:	python-imaging
-Requires:	python-mechanize
-Requires:	python-dateutil
-Requires:	python-genshi
 Requires:	python-beautifulsoup
+Requires:	python-cherrypy
+Requires:	python-cssselect
+Requires:	python-cssutils
+Requires:	python-dateutil
+Requires:	python-django-tagging
+Requires:	python-genshi
+Requires:	python-imaging
+Requires:	python-lxml
+Requires:	python-mechanize
 Requires:	python-netifaces
+Requires:	python-odf
+Requires:	python-pypdf
+Requires:	python-qt4
 Requires:	poppler
 # Require the packages of the files which are symlinked by calibre
 Requires:	fonts-ttf-liberation
@@ -247,6 +249,7 @@ sed -i -e 's:localization/locale.zip:%{_datadir}/%{name}/localization/locales.zi
 
 #% find_lang %{name} --with-kde --all-name
 
-rm -f %{buildroot}%{_bindir}/%{name}-uninstall   
+rm -f %{buildroot}%{_bindir}/%{name}-uninstall
 
-cp -a %{SOURCE2} %{buildroot}%{_bindir}/
+install -m 0755 %{SOURCE2} %{buildroot}%{_bindir}/
+
