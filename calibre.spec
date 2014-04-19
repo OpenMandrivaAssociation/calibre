@@ -94,7 +94,6 @@ RTF, TXT, PDF and LRS.
 %{_bindir}/ebook-meta
 %{_bindir}/ebook-polish
 %{_bindir}/ebook-viewer
-%{_bindir}/epub-fix
 %{_bindir}/fetch-ebook-metadata
 %{_bindir}/lrf2lrs
 %{_bindir}/lrfviewer
