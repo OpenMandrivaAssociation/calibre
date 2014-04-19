@@ -1,5 +1,5 @@
 Name:		calibre
-Version:	0.9.18
+Version:	1.33.0
 Release:	1
 Summary:	E-book converter and library management
 Group:		Office
@@ -35,7 +35,11 @@ BuildRequires:	pkgconfig(icu-i18n)
 BuildRequires:	unzip
 BuildRequires:	libwmf-devel
 BuildRequires:	libmtp-devel
+BuildRequires:	python-cssselect
+BuildRequires:	python-apsw
+BuildRequires:	python-six
 Requires:	imagemagick
+Requires:	python-apsw
 Requires:	python-beautifulsoup
 Requires:	python-cherrypy
 Requires:	python-cssselect
@@ -50,6 +54,7 @@ Requires:	python-netifaces
 Requires:	python-odf
 Requires:	python-pypdf
 Requires:	python-qt4
+Requires:	python-qt4-help
 Requires:	poppler
 # Require the packages of the files which are symlinked by calibre
 Requires:	fonts-ttf-liberation
@@ -85,7 +90,9 @@ RTF, TXT, PDF and LRS.
 %{_bindir}/calibredb
 %{_bindir}/ebook-convert
 %{_bindir}/ebook-device
+%{_bindir}/ebook-edit
 %{_bindir}/ebook-meta
+%{_bindir}/ebook-polish
 %{_bindir}/ebook-viewer
 %{_bindir}/epub-fix
 %{_bindir}/fetch-ebook-metadata
@@ -102,6 +109,7 @@ RTF, TXT, PDF and LRS.
 %{_datadir}/mime/packages/*
 %{_datadir}/icons/hicolor/scalable/mimetypes/*
 %{_datadir}/icons/hicolor/*/apps/*
+%{_datadir}/appdata/%{name}-*.appdata.xml
 %{python_sitelib}/init_calibre.py*
 
 #--------------------------------------------------------------------
@@ -176,6 +184,7 @@ mkdir -p %{buildroot}%{python_sitelib}
 XDG_DATA_DIRS="%{buildroot}%{_datadir}" \
 XDG_UTILS_INSTALL_MODE="system" \
 LIBPATH="%{_libdir}" \
+LANG="en_US" \
 python setup.py install --root=%{buildroot}%{_prefix} \
 			--prefix=%{_prefix} \
 			--libdir=%{_libdir} \
