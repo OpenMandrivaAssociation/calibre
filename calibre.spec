@@ -1,5 +1,5 @@
 Name:		calibre
-Version:	1.33.0
+Version:	1.34.0
 Release:	1
 Summary:	E-book converter and library management
 Group:		Office
