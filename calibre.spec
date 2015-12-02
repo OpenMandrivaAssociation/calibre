@@ -1,24 +1,22 @@
 Name:		calibre
-Version:	1.34.0
-Release:	3
+Version:	2.45.0
+Release:	1
 Summary:	E-book converter and library management
 Group:		Office
 License:	GPLv3
 URL:		http://calibre-ebook.com/
-Source0:	http://calibre-ebook.googlecode.com/files/%{name}-%{version}.tar.xz
+Source0:	http://code.calibre-ebook.com/dist/src/%{name}-%{version}.tar.xz
 Source2:	calibre-mount-helper
-Patch1:		%{name}-no-update-0.8.6.patch
-Patch3:		%{name}-0.7.27-python-fix.patch
+Patch1:		%{name}-2.9.0-fdo-no_update.patch
+Patch3:		calibre-2.45-python-fix.patch
 Patch4:		%{name}-python2-env-fix.patch
-Patch5:		%{name}-web-control.patch
 BuildRequires:	python >= 2.6
 BuildRequires:	pkgconfig(python) >= 2.6
 BuildRequires:	imagemagick-devel
 BuildRequires:	python-setuptools
-BuildRequires:	qt4-devel
-BuildRequires:	qt4-devel-private
-BuildRequires:	python-qt4-devel
-BuildRequires:	pkgconfig(poppler-qt4) >= 0.12
+BuildRequires:	qt5-devel
+BuildRequires:	python-qt5
+BuildRequires:	pkgconfig(poppler-qt5) >= 0.12
 BuildRequires:	pkgconfig(poppler-glib)
 BuildRequires:	podofo-devel
 BuildRequires:	desktop-file-utils
@@ -27,7 +25,6 @@ BuildRequires:	python-lxml
 BuildRequires:	python-dateutil
 BuildRequires:	python-imaging
 BuildRequires:	xdg-utils
-BuildRequires:	python-beautifulsoup
 BuildRequires:	chmlib-devel
 BuildRequires:	python-cssutils >= 0.9.9
 BuildRequires:	pkgconfig(sqlite3)
@@ -35,24 +32,16 @@ BuildRequires:	pkgconfig(icu-i18n)
 BuildRequires:	unzip
 BuildRequires:	libwmf-devel
 BuildRequires:	libmtp-devel
-BuildRequires:	python-cssselect
 BuildRequires:	python-apsw
 BuildRequires:	python-six
 Requires:	imagemagick
 Requires:	python-apsw
-Requires:	python-beautifulsoup
-Requires:	python-cherrypy
-Requires:	python-cssselect
 Requires:	python-cssutils
 Requires:	python-dateutil
-Requires:	python-django-tagging
-Requires:	python-genshi
 Requires:	python-imaging
 Requires:	python-lxml
 Requires:	python-mechanize
 Requires:	python-netifaces
-Requires:	python-odf
-Requires:	python-pypdf
 Requires:	python-qt4
 Requires:	python-qt4-help
 Requires:	poppler
@@ -100,13 +89,13 @@ RTF, TXT, PDF and LRS.
 %{_bindir}/lrs2lrf
 %{_bindir}/markdown-calibre
 %{_bindir}/web2disk
-%config(noreplace) %{_sysconfdir}/bash_completion.d/%{name}
+%{_datadir}/bash-completion/completions/calibre
 %{_libdir}/%{name}
 %{_datadir}/%{name}
 %{_datadir}/pixmaps/*
 %{_datadir}/applications/*.desktop
 %{_datadir}/mime/packages/*
-%{_datadir}/icons/hicolor/scalable/mimetypes/*
+%{_datadir}/icons/hicolor/*/mimetypes/*
 %{_datadir}/icons/hicolor/*/apps/*
 %{_datadir}/appdata/%{name}-*.appdata.xml
 %{python_sitelib}/init_calibre.py*
@@ -114,7 +103,7 @@ RTF, TXT, PDF and LRS.
 #--------------------------------------------------------------------
 
 %prep
-%setup -q -n %{name}
+%setup -q
 
 # remove redundant / non-free fonts
 rm -rf resources/fonts/*/
@@ -123,15 +112,11 @@ rm -rf resources/fonts/*/
 # otherwise the plugins are safe to be updated in ~/.config/calibre/plugins/
 %patch1 -F 2 -p1 -b .no-update
 
-# libs
-%patch3 -p1 -b .python-fix
+%patch3 -p1
 
 # there is no python2 symlink to python2.7
 # but just python, as opposed to python3
 %patch4 -p1 -b .python2-env-fix
-
-# import from QtNetwork, not Qt
-%patch5 -p1 -b .python-web-control
 
 # dos2unix newline conversion
 sed -i -e 's/\r//' src/calibre/web/feeds/recipes/*
@@ -227,11 +212,6 @@ cp -p resources/images/mimetypes/lrf.png \
       %{buildroot}%{_datadir}/icons/hicolor/scalable/mimetypes/application-x-sony-bbeb.png
 cp -p resources/images/viewer.png \
       %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/calibre-viewer.png
-
-# don't put bash completions in /usr/etc
-mkdir -p %{buildroot}%{_sysconfdir}/bash_completion.d
-mv %{buildroot}%{_prefix}%{_sysconfdir}/bash_completion.d/%{name} %{buildroot}%{_sysconfdir}/bash_completion.d
-rmdir %{buildroot}%{_prefix}%{_sysconfdir}/bash_completion.d
 
 # these are provided as separate packages
 rm -rf %{buildroot}%{_libdir}/%{name}/{odf,cherrypy,pyPdf,encutils,cssutils}

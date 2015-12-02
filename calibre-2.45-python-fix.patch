@@ -1,0 +1,22 @@
+--- calibre-2.45.0/setup/extensions.py.orig	2015-12-02 18:35:35.124191640 +0000
++++ calibre-2.45.0/setup/extensions.py	2015-12-02 18:36:34.102187869 +0000
+@@ -20,8 +20,7 @@
+ isunix = islinux or isosx or isbsd
+ 
+ make = 'make' if isunix else NMAKE
+-py_lib = os.path.join(sys.prefix, 'libs', 'python%d%d.lib' % sys.version_info[:2])
+-
++py_lib = '-lpython'+sysconfig.get_python_version()
+ class Extension(object):
+ 
+     @classmethod
+@@ -605,8 +604,8 @@
+         SOURCES = {sources}
+         INCLUDEPATH += {sipinc} {pyinc}
+         VERSION = {ver}
++        LIBS += {py_lib}
+         win32 {{
+-            LIBS += {py_lib}
+             TARGET_EXT = .dll
+         }}
+         macx {{
