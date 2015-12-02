@@ -7,6 +7,7 @@ License:	GPLv3
 URL:		http://calibre-ebook.com/
 Source0:	http://code.calibre-ebook.com/dist/src/%{name}-%{version}.tar.xz
 Source2:	calibre-mount-helper
+Source100:	calibre.rpmlintrc
 Patch1:		%{name}-2.9.0-fdo-no_update.patch
 Patch3:		calibre-2.45-python-fix.patch
 Patch4:		%{name}-python2-env-fix.patch
