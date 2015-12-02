@@ -42,8 +42,8 @@ Requires:	python-imaging
 Requires:	python-lxml
 Requires:	python-mechanize
 Requires:	python-netifaces
-Requires:	python-qt4
-Requires:	python-qt4-help
+Requires:	python-qt5
+Requires:	python-qt5-help
 Requires:	poppler
 # Require the packages of the files which are symlinked by calibre
 Requires:	fonts-ttf-liberation
