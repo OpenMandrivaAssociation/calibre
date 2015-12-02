@@ -19,6 +19,7 @@ BuildRequires:	python-qt5
 BuildRequires:	python-sip
 BuildRequires:	pkgconfig(poppler-qt5) >= 0.12
 BuildRequires:	pkgconfig(poppler-glib)
+BuildRequires:	pkgconfig(mtdev)
 BuildRequires:	podofo-devel
 BuildRequires:	desktop-file-utils
 BuildRequires:	python-mechanize
