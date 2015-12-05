@@ -17,6 +17,7 @@ BuildRequires:	imagemagick-devel
 BuildRequires:	python2-setuptools
 BuildRequires:	qt5-devel
 BuildRequires:	python-qt5
+BuildRequires:  python-sip
 BuildRequires:	python2-qt5
 BuildRequires:	python2-sip
 BuildRequires:	pkgconfig(poppler-qt5) >= 0.12
