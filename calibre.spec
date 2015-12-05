@@ -11,49 +11,49 @@ Source100:	calibre.rpmlintrc
 Patch1:		%{name}-2.9.0-fdo-no_update.patch
 Patch3:		calibre-2.45-python-fix.patch
 Patch4:		%{name}-python2-env-fix.patch
-BuildRequires:	python >= 2.6
-BuildRequires:	pkgconfig(python) >= 2.6
+BuildRequires:	python2 >= 2.6
+BuildRequires:	pkgconfig(python2) >= 2.6
 BuildRequires:	imagemagick-devel
-BuildRequires:	python-setuptools
+BuildRequires:	python2-setuptools
 BuildRequires:	qt5-devel
-BuildRequires:	python-sip
-BuildRequires:	python-qt5
-BuildRequires:	python-sip
+BuildRequires:	python2-qt5
+BuildRequires:	python2-sip
 BuildRequires:	pkgconfig(poppler-qt5) >= 0.12
 BuildRequires:	pkgconfig(poppler-glib)
 BuildRequires:	pkgconfig(mtdev)
+BuildRequires:	pkgconfig(libinput)
 BuildRequires:	podofo-devel
 BuildRequires:	desktop-file-utils
-BuildRequires:	python-mechanize
-BuildRequires:	python-lxml
-BuildRequires:	python-dateutil
-BuildRequires:	python-imaging
+BuildRequires:	python2-mechanize
+BuildRequires:	python2-lxml
+BuildRequires:	python2-dateutil
+BuildRequires:	python2-imaging
 BuildRequires:	xdg-utils
 BuildRequires:	chmlib-devel
-BuildRequires:	python-cssutils >= 0.9.9
+BuildRequires:	python2-cssutils >= 0.9.9
 BuildRequires:	pkgconfig(sqlite3)
 BuildRequires:	pkgconfig(icu-i18n)
 BuildRequires:	unzip
 BuildRequires:	libwmf-devel
 BuildRequires:	libmtp-devel
-BuildRequires:	python-apsw
-BuildRequires:	python-six
+BuildRequires:	python2-apsw
+BuildRequires:	python2-six
 Requires:	imagemagick
-Requires:	python-apsw
-Requires:	python-cssutils
-Requires:	python-dateutil
-Requires:	python-imaging
-Requires:	python-lxml
-Requires:	python-mechanize
-Requires:	python-netifaces
-Requires:	python-qt5
-Requires:	python-qt5-help
+Requires:	python2-apsw
+Requires:	python2-cssutils
+Requires:	python2-dateutil
+Requires:	python2-imaging
+Requires:	python2-lxml
+Requires:	python2-mechanize
+Requires:	python2-netifaces
+Requires:	python2-qt5
+Requires:	python2-qt5-help
 Requires:	poppler
 # Require the packages of the files which are symlinked by calibre
 Requires:	fonts-ttf-liberation
 # E-mail functionality requires this package
 # see https://bugs.launchpad.net/calibre/+bug/739073
-Requires:	python-dnspython
+Requires:	python2-dnspython
 
 %description
 Calibre is meant to be a complete e-library solution. It includes library
@@ -102,7 +102,7 @@ RTF, TXT, PDF and LRS.
 %{_datadir}/icons/hicolor/*/mimetypes/*
 %{_datadir}/icons/hicolor/*/apps/*
 %{_datadir}/appdata/%{name}-*.appdata.xml
-%{python_sitelib}/init_calibre.py*
+%{python2_sitelib}/init_calibre.py*
 
 #--------------------------------------------------------------------
 
@@ -151,7 +151,7 @@ chmod -x src/calibre/*.py
 chmod -x recipes/*.recipe
 
 %build
-OVERRIDE_CFLAGS="%{optflags}" python setup.py build 
+OVERRIDE_CFLAGS="%{optflags}" python2 setup.py build 
 
 %install
 mkdir -p %{buildroot}%{_datadir}
@@ -173,13 +173,13 @@ XDG_DATA_DIRS="%{buildroot}%{_datadir}" \
 XDG_UTILS_INSTALL_MODE="system" \
 LIBPATH="%{_libdir}" \
 LANG="en_US" \
-python setup.py install --root=%{buildroot}%{_prefix} \
+python2 setup.py install --root=%{buildroot}%{_prefix} \
 			--prefix=%{_prefix} \
 			--libdir=%{_libdir} \
 			--staging-libdir=%{buildroot}%{_libdir} \
 # remove shebang from init_calibre.py here because
 # it just got spawned by the install script
-sed -i -e '/^#!\//, 1d' %{buildroot}%{python_sitelib}/init_calibre.py
+sed -i -e '/^#!\//, 1d' %{buildroot}%{python2_sitelib}/init_calibre.py
 
 # icons
 mkdir -p %{buildroot}%{_datadir}/pixmaps/
