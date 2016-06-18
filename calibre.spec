@@ -1,5 +1,5 @@
 Name:		calibre
-Version:	2.45.0
+Version:	2.59.0
 Release:	1
 Summary:	E-book converter and library management
 Group:		Office
@@ -10,7 +10,6 @@ Source2:	calibre-mount-helper
 Source100:	calibre.rpmlintrc
 Patch1:		%{name}-2.9.0-fdo-no_update.patch
 Patch3:		calibre-2.45-python-fix.patch
-Patch4:		%{name}-python2-env-fix.patch
 BuildRequires:	python2 >= 2.6
 BuildRequires:	pkgconfig(python2) >= 2.6
 BuildRequires:	imagemagick-devel
@@ -119,10 +118,6 @@ rm -rf resources/fonts/*/
 %patch1 -F 2 -p1 -b .no-update
 
 %patch3 -p1
-
-# there is no python2 symlink to python2.7
-# but just python, as opposed to python3
-%patch4 -p1 -b .python2-env-fix
 
 # dos2unix newline conversion
 sed -i -e 's/\r//' src/calibre/web/feeds/recipes/*
