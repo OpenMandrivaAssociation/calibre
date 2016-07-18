@@ -1,6 +1,6 @@
 Name:		calibre
 Version:	2.59.0
-Release:	1
+Release:	2
 Summary:	E-book converter and library management
 Group:		Office
 License:	GPLv3
@@ -47,6 +47,7 @@ Requires:	python2-imaging
 Requires:	python2-lxml
 Requires:	python2-mechanize
 Requires:	python2-netifaces
+Requires:	python2-sip
 Requires:	python2-qt5
 Requires:	python2-qt5-help
 Requires:	poppler
