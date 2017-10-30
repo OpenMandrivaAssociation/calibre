@@ -1,6 +1,6 @@
 Name:		calibre
 Version:	2.59.0
-Release:	2
+Release:	3
 Summary:	E-book converter and library management
 Group:		Office
 License:	GPLv3
@@ -71,7 +71,7 @@ formats.
 Supported input formats are: MOBI, LIT, PRC, EPUB, CHM, ODT, HTML, CBR, CBZ,
 RTF, TXT, PDF and LRS.
 
-%files 
+%files
 #-f %{name}.lang
 %doc COPYRIGHT LICENSE Changelog.yaml
 %{_bindir}/calibre
@@ -149,7 +149,7 @@ chmod -x src/calibre/*.py
 chmod -x recipes/*.recipe
 
 %build
-OVERRIDE_CFLAGS="%{optflags}" python2 setup.py build 
+OVERRIDE_CFLAGS="%{optflags}" python2 setup.py build
 
 %install
 mkdir -p %{buildroot}%{_datadir}
@@ -187,7 +187,7 @@ cp -p resources/images/viewer.png		  \
    %{buildroot}%{_datadir}/pixmaps/calibre-viewer.png
 
 # every file is empty here
-find %{buildroot}%{_datadir}/mime -maxdepth 1 -type f|xargs rm -f 
+find %{buildroot}%{_datadir}/mime -maxdepth 1 -type f|xargs rm -f
 
 # the portable batch (>=0.8.5) is not needed
 rm -f %{buildroot}%{_bindir}/calibre-portable.bat
@@ -235,7 +235,7 @@ ln -s %{_datadir}/fonts/TTF/liberation/LiberationMono-Regular.ttf \
 # so the traditional locale fixes are moot.
 # locales should still be looked for in the proper place
 # but under the new localization zip-based schema
-sed -i -e 's:localization/locale.zip:%{_datadir}/%{name}/localization/locales.zip:' %{buildroot}%{_libdir}/%{name}/%{name}/utils/localization.py  
+sed -i -e 's:localization/locale.zip:%{_datadir}/%{name}/localization/locales.zip:' %{buildroot}%{_libdir}/%{name}/%{name}/utils/localization.py
 
 #% find_lang %{name} --with-kde --all-name
 
