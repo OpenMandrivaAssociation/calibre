@@ -1,3 +1,5 @@
+%define _disable_ld_no_undefined 1
+
 Name:		calibre
 Version:	3.18.0
 Release:	3
