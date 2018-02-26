@@ -1,5 +1,5 @@
 Name:		calibre
-Version:	2.59.0
+Version:	3.18.0
 Release:	3
 Summary:	E-book converter and library management
 Group:		Office
@@ -39,6 +39,9 @@ BuildRequires:	libwmf-devel
 BuildRequires:	libmtp-devel
 BuildRequires:	python2-apsw
 BuildRequires:	python2-six
+BuildRequires:	python2-html5-parser
+BuildRequires:	python2-regex
+BuildRequires:	python2-msgpack
 Requires:	imagemagick
 Requires:	python2-apsw
 Requires:	python2-cssutils
@@ -50,6 +53,9 @@ Requires:	python2-netifaces
 Requires:	python2-sip
 Requires:	python2-qt5
 Requires:	python2-qt5-help
+Requires:	python2-html5-parser
+Requires:	python2-regex
+Requires:	python2-msgpack
 Requires:	poppler
 # Require the packages of the files which are symlinked by calibre
 Requires:	fonts-ttf-liberation
@@ -103,7 +109,7 @@ RTF, TXT, PDF and LRS.
 %{_datadir}/mime/packages/*
 %{_datadir}/icons/hicolor/*/mimetypes/*
 %{_datadir}/icons/hicolor/*/apps/*
-%{_datadir}/appdata/%{name}-*.appdata.xml
+%{_datadir}/metainfo/%{name}-*.appdata.xml
 %{python2_sitelib}/init_calibre.py*
 
 #--------------------------------------------------------------------
@@ -118,7 +124,7 @@ rm -rf resources/fonts/*/
 # otherwise the plugins are safe to be updated in ~/.config/calibre/plugins/
 %patch1 -F 2 -p1 -b .no-update
 
-%patch3 -p1
+#patch3 -p1
 
 # dos2unix newline conversion
 sed -i -e 's/\r//' src/calibre/web/feeds/recipes/*
