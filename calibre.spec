@@ -11,7 +11,7 @@ Source0:	http://code.calibre-ebook.com/dist/src/%{name}-%{version}.tar.xz
 Source2:	calibre-mount-helper
 Source100:	calibre.rpmlintrc
 Patch1:		%{name}-2.9.0-fdo-no_update.patch
-Patch3:		calibre-2.45-python-fix.patch
+Patch3:		calibre-3.18-python-fix.patch
 BuildRequires:	python2 >= 2.6
 BuildRequires:	pkgconfig(python2) >= 2.6
 BuildRequires:	imagemagick-devel
@@ -130,7 +130,7 @@ rm -rf resources/fonts/*/
 # otherwise the plugins are safe to be updated in ~/.config/calibre/plugins/
 %patch1 -F 2 -p1 -b .no-update
 
-#patch3 -p1
+%patch3 -p1
 
 # dos2unix newline conversion
 sed -i -e 's/\r//' src/calibre/web/feeds/recipes/*
