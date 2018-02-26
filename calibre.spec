@@ -16,6 +16,9 @@ BuildRequires:	imagemagick-devel
 BuildRequires:	python2-setuptools
 BuildRequires:	qt5-devel
 BuildRequires:	%{_lib}qt5themesupport-static-devel
+BuildRequires:	%{_lib}qt5fontdatabasesupport-static-devel
+BuildRequires:	%{_lib}qt5servicesupport-static-devel
+BuildRequires:	%{_lib}qt5eventdispatchersupport-static-devel
 BuildRequires:	python-qt5
 BuildRequires:  python-sip
 BuildRequires:	python2-qt5
