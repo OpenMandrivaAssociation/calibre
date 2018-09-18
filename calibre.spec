@@ -1,8 +1,8 @@
 %define _disable_ld_no_undefined 1
 
 Name:		calibre
-Version:	3.18.0
-Release:	3
+Version:	3.31.0
+Release:	1
 Summary:	E-book converter and library management
 Group:		Office
 License:	GPLv3
