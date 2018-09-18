@@ -48,6 +48,7 @@ BuildRequires:	python2-six
 BuildRequires:	python2-html5-parser
 BuildRequires:	python2-regex
 BuildRequires:	python2-msgpack
+BuildRequires:	python-enum34
 Requires:	imagemagick
 Requires:	python2-apsw
 Requires:	python2-cssutils
@@ -68,6 +69,7 @@ Requires:	fonts-ttf-liberation
 # E-mail functionality requires this package
 # see https://bugs.launchpad.net/calibre/+bug/739073
 Requires:	python2-dnspython
+Requires:	python-enum34
 
 %description
 Calibre is meant to be a complete e-library solution. It includes library
