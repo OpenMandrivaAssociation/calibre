@@ -1,5 +1,2 @@
-removed_sources:
-  calibre-2.59.0.tar.xz: 5fa0bdaa6b631c35f5d890f45cbd1060a24c513e
-  calibre-3.18.0.tar.xz: 0531dacf694db53edd81333d62b7af21631a4fbb
 sources:
-  calibre-3.31.0.tar.xz: caed8dce110aa5ee15f3248fd1a853e79aaae963
+  calibre-3.40.1.tar.xz: 12cea0bed963dde2b58c9cdd4c3c25c735d6d15a

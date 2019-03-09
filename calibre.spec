@@ -1,7 +1,7 @@
 %define _disable_ld_no_undefined 1
 
 Name:		calibre
-Version:	3.31.0
+Version:	3.40.1
 Release:	1
 Summary:	E-book converter and library management
 Group:		Office
@@ -13,7 +13,7 @@ Source100:	calibre.rpmlintrc
 Patch1:		%{name}-2.9.0-fdo-no_update.patch
 Patch3:		calibre-3.18-python-fix.patch
 BuildRequires:	python2 >= 2.6
-BuildRequires:	pkgconfig(python2) >= 2.6
+BuildRequires:	pkgconfig(python2) >= 2.7
 BuildRequires:	imagemagick-devel
 BuildRequires:	python2-setuptools
 BuildRequires:	qt5-devel
@@ -54,6 +54,7 @@ Requires:	imagemagick
 Requires:	python2-apsw
 Requires:	python2-cssutils
 Requires:	python2-dateutil
+Requires:	python2-dbus
 Requires:	python2-imaging
 Requires:	python2-lxml
 Requires:	python2-mechanize
@@ -110,15 +111,12 @@ RTF, TXT, PDF and LRS.
 %{_bindir}/lrs2lrf
 %{_bindir}/markdown-calibre
 %{_bindir}/web2disk
-%{_datadir}/bash-completion/completions/calibre
 %{_libdir}/%{name}
 %{_datadir}/%{name}
 %{_datadir}/pixmaps/*
 %{_datadir}/applications/*.desktop
-%{_datadir}/mime/packages/*
 %{_datadir}/icons/hicolor/*/mimetypes/*
 %{_datadir}/icons/hicolor/*/apps/*
-%{_datadir}/metainfo/%{name}-*.appdata.xml
 %{python2_sitelib}/init_calibre.py*
 
 #--------------------------------------------------------------------
@@ -212,6 +210,47 @@ rm -f %{buildroot}%{_datadir}/applications/defaults.list
 rm -f %{buildroot}%{_datadir}/applications/mimeinfo.cache
 rm -f %{buildroot}%{_datadir}/mime/application/*.xml
 rm -f %{buildroot}%{_datadir}/mime/text/*.xml
+
+# Add desktop files
+cat >%{buildroot}%{_datadir}/applications/calibre-ebook-viewer.desktop <<'EOF'
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=E-book Viewer
+GenericName=Viewer for E-books
+Comment=Viewer for E-books in all the major formats
+TryExec=ebook-viewer
+Exec=ebook-viewer --detach %f
+Icon=calibre-viewer
+Categories=Graphics;Viewer;
+MimeType=text/plain;application/x-mobipocket-subscription;application/vnd.openxmlformats-officedocument.wordprocessingml.document;text/html;application/x-cbc;application/ereader;application/oebps-package+xml;image/vnd.djvu;application/x-sony-bbeb;application/vnd.ms-word.document.macroenabled.12;text/rtf;text/x-markdown;application/pdf;application/x-cbz;application/x-cbr;application/x-mobi8-ebook;text/fb2+xml;application/vnd.oasis.opendocument.text;application/epub+zip;application/x-mobipocket-ebook;application/xhtml+xml;
+EOF
+cat >%{buildroot}%{_datadir}/applications/calibre-gui.desktop <<'EOF'
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=calibre
+GenericName=E-book library management
+Comment=E-book library management: Convert, view, share, catalogue all your e-books
+TryExec=calibre
+Exec=calibre --detach %F
+Icon=calibre-gui
+Categories=Office;
+MimeType=text/plain;application/x-mobipocket-subscription;application/vnd.openxmlformats-officedocument.wordprocessingml.document;text/html;application/x-cbc;application/ereader;application/oebps-package+xml;image/vnd.djvu;application/x-sony-bbeb;application/vnd.ms-word.document.macroenabled.12;text/rtf;text/x-markdown;application/pdf;application/x-cbz;application/x-cbr;application/x-mobi8-ebook;text/fb2+xml;application/vnd.oasis.opendocument.text;application/epub+zip;application/x-mobipocket-ebook;application/xhtml+xml;
+EOF
+cat >%{buildroot}%{_datadir}/applications/calibre-lrfviewer.desktop <<'EOF'
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=LRF Viewer
+GenericName=Viewer for LRF files
+Comment=Viewer for LRF files (SONY ebook format files)
+TryExec=lrfviewer
+Exec=lrfviewer %f
+Icon=calibre-viewer
+MimeType=application/x-sony-bbeb;
+Categories=Graphics;Viewer;
+EOF
 
 desktop-file-validate \
 %{buildroot}%{_datadir}/applications/calibre-ebook-viewer.desktop
