@@ -16,6 +16,7 @@ BuildRequires:	python2 >= 2.6
 BuildRequires:	pkgconfig(python2) >= 2.7
 BuildRequires:	imagemagick-devel
 BuildRequires:	python2-setuptools
+BuildRequires:	qmake5
 BuildRequires:	qt5-devel
 BuildRequires:	%{_lib}qt5themesupport-static-devel
 BuildRequires:	%{_lib}qt5fontdatabasesupport-static-devel
