@@ -150,7 +150,7 @@ RTF, TXT, PDF and LRS.
 %{_datadir}/applications/*.desktop
 %{_datadir}/icons/hicolor/*/mimetypes/*
 %{_datadir}/icons/hicolor/*/apps/*
-%{python2_sitelib}/init_calibre.py*
+%{python_sitelib}/init_calibre.py*
 
 #--------------------------------------------------------------------
 
