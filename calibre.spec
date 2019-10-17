@@ -25,9 +25,16 @@ BuildRequires:	%{_lib}qt5fontdatabasesupport-static-devel
 BuildRequires:	%{_lib}qt5servicesupport-static-devel
 BuildRequires:	%{_lib}qt5eventdispatchersupport-static-devel
 BuildRequires:	python-qt5
+BuildRequires:	python-qt5-devel
 BuildRequires:	python-sip
 BuildRequires:  python-sip-qt5
 BuildRequires:	python-qt5-webkit
+BuildRequires:  pkgconfig(Qt5Core)
+BuildRequires:  pkgconfig(Qt5DBus)
+BuildRequires:  pkgconfig(Qt5Gui)
+BuildRequires:  pkgconfig(Qt5Network)
+BuildRequires:  pkgconfig(Qt5Widgets)
+BuildRequires:  pkgconfig(Qt5WebKit)
 BuildRequires:	pkgconfig(poppler-qt5) >= 0.12
 BuildRequires:	pkgconfig(poppler-glib)
 BuildRequires:	pkgconfig(mtdev)
@@ -50,6 +57,7 @@ BuildRequires:  python3dist(msgpack)
 BuildRequires:  python3dist(regex)
 BuildRequires:  python3dist(html5-parser) >= 0.4.8
 BuildRequires:  python-html2text
+BuildRequires:  bash-completion
 #BuildRequires:  python3dist(zeroconf)
 BuildRequires:  python3dist(markdown) 
 BuildRequires:	xdg-utils
