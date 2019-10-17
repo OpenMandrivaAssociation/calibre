@@ -12,7 +12,9 @@ Source2:	calibre-mount-helper
 Source100:	calibre.rpmlintrc
 Patch1:		%{name}-2.9.0-fdo-no_update.patch
 Patch3:		calibre-3.18-python-fix.patch
-BuildRequires:	python2 >= 2.6
+Patch4:		python3-sip.patch
+
+BuildRequires:	python
 BuildRequires:	pkgconfig(python3)
 BuildRequires:	imagemagick-devel
 BuildRequires:  python3dist(setuptools)
@@ -59,6 +61,7 @@ BuildRequires:	libwmf-devel
 BuildRequires:	libmtp-devel
 BuildRequires:  python3dist(apsw)
 BuildRequires:	python-enum34
+
 Requires:	imagemagick
 Requires:       python3-qt5-webkit
 Requires:       python3dist(css-parser)
@@ -152,6 +155,8 @@ rm -rf resources/fonts/*/
 %patch1 -F 2 -p1 -b .no-update
 
 %patch3 -p1
+
+%patch4 -p1
 
 # dos2unix newline conversion
 sed -i -e 's/\r//' src/calibre/web/feeds/recipes/*
