@@ -25,6 +25,7 @@ BuildRequires:	%{_lib}qt5fontdatabasesupport-static-devel
 BuildRequires:	%{_lib}qt5servicesupport-static-devel
 BuildRequires:	%{_lib}qt5eventdispatchersupport-static-devel
 BuildRequires:	python-qt5
+BuildRequires:	python-sip
 BuildRequires:  python-sip-qt5
 BuildRequires:	python-qt5-webkit
 BuildRequires:	pkgconfig(poppler-qt5) >= 0.12
