@@ -46,7 +46,7 @@ BuildRequires:  python3dist(soupsieve)
 BuildRequires:  python3dist(msgpack)
 BuildRequires:  python3dist(regex)
 BuildRequires:  python3dist(html5-parser) >= 0.4.8
-BuildRequires:  python3dist(html2text)
+BuildRequires:  python-html2text
 #BuildRequires:  python3dist(zeroconf)
 BuildRequires:  python3dist(markdown) 
 BuildRequires:	xdg-utils
