@@ -70,6 +70,7 @@ BuildRequires:	libwmf-devel
 BuildRequires:	libmtp-devel
 BuildRequires:  python3dist(apsw)
 BuildRequires:	python-enum34
+BuildRequires:  pkgconfig(hunspell)
 
 Requires:	imagemagick
 Requires:       python3-qt5-webkit
