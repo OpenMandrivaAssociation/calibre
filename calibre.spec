@@ -73,9 +73,9 @@ BuildRequires:	python-enum34
 BuildRequires:  pkgconfig(hunspell)
 
 Requires:	imagemagick
-Requires:       python3-qt5-webkit
+Requires:       python-qt5-webkit
 Requires:       python3dist(css-parser)
-Requires:       python3dist(odfpy)
+#Requires:       python3dist(odfpy)
 Requires:       python3dist(pillow)
 Requires:	python-dbus
 Requires:       python3dist(lxml)
@@ -89,7 +89,7 @@ Requires:       python3dist(psutil)
 Requires:       python3dist(pygments)
 Requires:       python3dist(msgpack)
 Requires:       python3dist(regex)
-Requires:       python3dist(enum34)
+#Requires:       python3dist(enum34)
 Requires:       python3dist(six)
 Requires:       python3dist(markdown)
 Requires:       python3dist(feedparser)
