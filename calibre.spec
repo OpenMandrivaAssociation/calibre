@@ -13,7 +13,7 @@ Source100:	calibre.rpmlintrc
 Patch1:		%{name}-2.9.0-fdo-no_update.patch
 Patch3:		calibre-3.18-python-fix.patch
 BuildRequires:	python2 >= 2.6
-BuildRequires:	pkgconfig(python2) >= 2.7
+BuildRequires:	pkgconfig(python3)
 BuildRequires:	imagemagick-devel
 BuildRequires:	python2-setuptools
 BuildRequires:	qmake5
