@@ -2,7 +2,7 @@
 
 Name:		calibre
 Version:	4.2.0
-Release:	2
+Release:	3
 Summary:	E-book converter and library management
 Group:		Office
 License:	GPLv3
@@ -98,6 +98,7 @@ Requires:	python-sip
 Requires:	python-qt5
 Requires:	python-qt5-help
 Requires:	python-qt5-webengine
+Requires:	python-qt5-webengine-widgets
 Requires:	python-html5-parser
 Requires:	poppler
 # Require the packages of the files which are symlinked by calibre
