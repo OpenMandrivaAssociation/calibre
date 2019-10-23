@@ -12,7 +12,7 @@ Source2:	calibre-mount-helper
 Source100:	calibre.rpmlintrc
 Patch1:		%{name}-2.9.0-fdo-no_update.patch
 Patch3:		calibre-3.18-python-fix.patch
-#Patch4:		python3-sip.patch
+Patch4:		python3-sip.patch
 
 BuildRequires:	python
 BuildRequires:	pkgconfig(python3)
@@ -169,7 +169,7 @@ rm -rf resources/fonts/*/
 
 %patch3 -p1
 
-#patch4 -p1
+%patch4 -p1
 
 # dos2unix newline conversion
 sed -i -e 's/\r//' src/calibre/web/feeds/recipes/*
