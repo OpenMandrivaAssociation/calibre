@@ -6,7 +6,7 @@ diff -Nrup a/setup/build_environment.py b/setup/build_environment.py
  qmakespec = readvar('QMAKE_SPEC') if iswindows else None
  
 -pyqt['sip_bin'] = os.environ.get('SIP_BIN', 'sip')
-+pyqt['sip_bin'] = os.environ.get('SIP_BIN', 'python-sip')
++pyqt['sip_bin'] = os.environ.get('SIP_BIN', 'python3-sip')
  
  from PyQt5.QtCore import PYQT_CONFIGURATION
  pyqt['sip_flags'] = PYQT_CONFIGURATION['sip_flags']
@@ -15,7 +15,7 @@ diff -Nrup a/setup/build_environment.py b/setup/build_environment.py
          q = os.path.join(sys.prefix, 'share', 'py-sip')
      else:
 -        q = os.path.join(sys.prefix, 'share', 'sip')
-+        q = os.path.join(sys.prefix, 'share', 'python-sip')
++        q = os.path.join(sys.prefix, 'share', 'python3-sip')
      q = os.environ.get('SIP_DIR', q)
      for x in ('', 'Py2-PyQt5', 'PyQt5', 'sip/PyQt5'):
          base = os.path.join(q, x)
