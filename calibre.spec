@@ -75,7 +75,7 @@ BuildRequires:  pkgconfig(hunspell)
 Requires:	imagemagick
 Requires:       python-qt5-webkit
 Requires:       python3dist(css-parser)
-#Requires:       python3dist(odfpy)
+Requires:       python3dist(odfpy)
 Requires:       python3dist(pillow)
 Requires:	python-dbus
 Requires:       python3dist(lxml)
