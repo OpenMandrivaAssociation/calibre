@@ -1,7 +1,7 @@
 %define _disable_ld_no_undefined 1
 
 Name:		calibre
-Version:	3.40.1
+Version:	4.3.0
 Release:	1
 Summary:	E-book converter and library management
 Group:		Office
@@ -11,11 +11,10 @@ Source0:	http://code.calibre-ebook.com/dist/src/%{name}-%{version}.tar.xz
 Source2:	calibre-mount-helper
 Source100:	calibre.rpmlintrc
 Patch1:		%{name}-2.9.0-fdo-no_update.patch
-Patch3:		calibre-3.18-python-fix.patch
-BuildRequires:	python2 >= 2.6
-BuildRequires:	pkgconfig(python2) >= 2.7
+BuildRequires:	python
+BuildRequires:	pkgconfig(python3)
 BuildRequires:	imagemagick-devel
-BuildRequires:	python2-setuptools
+BuildRequires:	python-setuptools
 BuildRequires:	qt5-devel
 BuildRequires:	%{_lib}qt5themesupport-static-devel
 BuildRequires:	%{_lib}qt5fontdatabasesupport-static-devel
@@ -23,8 +22,6 @@ BuildRequires:	%{_lib}qt5servicesupport-static-devel
 BuildRequires:	%{_lib}qt5eventdispatchersupport-static-devel
 BuildRequires:	python-qt5
 BuildRequires:  python-sip
-BuildRequires:	python2-qt5
-BuildRequires:	python2-sip
 BuildRequires:	pkgconfig(poppler-qt5) >= 0.12
 BuildRequires:	pkgconfig(poppler-glib)
 BuildRequires:	pkgconfig(mtdev)
@@ -32,46 +29,44 @@ BuildRequires:	pkgconfig(libinput)
 BuildRequires:	pkgconfig(openssl)
 BuildRequires:	podofo-devel
 BuildRequires:	desktop-file-utils
-BuildRequires:	python2-mechanize
-BuildRequires:	python2-lxml
-BuildRequires:	python2-dateutil
-BuildRequires:	python2-imaging
+BuildRequires:	python-mechanize
+BuildRequires:	python-lxml
+BuildRequires:	python-dateutil
+BuildRequires:	python-imaging
 BuildRequires:	xdg-utils
 BuildRequires:	chmlib-devel
-BuildRequires:	python2-cssutils >= 0.9.9
+BuildRequires:	python-cssutils >= 0.9.9
 BuildRequires:	pkgconfig(sqlite3)
 BuildRequires:	pkgconfig(icu-i18n)
 BuildRequires:	unzip
 BuildRequires:	libwmf-devel
 BuildRequires:	libmtp-devel
-BuildRequires:	python2-apsw
-BuildRequires:	python2-six
-BuildRequires:	python2-html5-parser
-BuildRequires:	python2-regex
-BuildRequires:	python2-msgpack
-BuildRequires:	python-enum34
+BuildRequires:	python-apsw
+BuildRequires:	python-six
+BuildRequires:	python-html5-parser
+BuildRequires:	python-regex
+BuildRequires:	python-msgpack
 Requires:	imagemagick
-Requires:	python2-apsw
-Requires:	python2-cssutils
-Requires:	python2-dateutil
-Requires:	python2-dbus
-Requires:	python2-imaging
-Requires:	python2-lxml
-Requires:	python2-mechanize
-Requires:	python2-netifaces
-Requires:	python2-sip
-Requires:	python2-qt5
-Requires:	python2-qt5-help
-Requires:	python2-html5-parser
-Requires:	python2-regex
-Requires:	python2-msgpack
+Requires:	python-apsw
+Requires:	python-cssutils
+Requires:	python-dateutil
+Requires:	python-dbus
+Requires:	python-imaging
+Requires:	python-lxml
+Requires:	python-mechanize
+Requires:	python-netifaces
+Requires:	python-sip
+Requires:	python-qt5
+Requires:	python-qt5-help
+Requires:	python-html5-parser
+Requires:	python-regex
+Requires:	python-msgpack
 Requires:	poppler
 # Require the packages of the files which are symlinked by calibre
 Requires:	fonts-ttf-liberation
 # E-mail functionality requires this package
 # see https://bugs.launchpad.net/calibre/+bug/739073
-Requires:	python2-dnspython
-Requires:	python-enum34
+Requires:	python-dnspython
 
 %description
 Calibre is meant to be a complete e-library solution. It includes library
@@ -88,7 +83,6 @@ Supported input formats are: MOBI, LIT, PRC, EPUB, CHM, ODT, HTML, CBR, CBZ,
 RTF, TXT, PDF and LRS.
 
 %files
-#-f %{name}.lang
 %doc COPYRIGHT LICENSE Changelog.yaml
 %{_bindir}/calibre
 %{_bindir}/calibre-complete
@@ -117,7 +111,7 @@ RTF, TXT, PDF and LRS.
 %{_datadir}/applications/*.desktop
 %{_datadir}/icons/hicolor/*/mimetypes/*
 %{_datadir}/icons/hicolor/*/apps/*
-%{python2_sitelib}/init_calibre.py*
+%{python_sitelib}/init_calibre.py*
 
 #--------------------------------------------------------------------
 
@@ -130,8 +124,6 @@ rm -rf resources/fonts/*/
 # don't check for new upstream version (that's what packagers do)
 # otherwise the plugins are safe to be updated in ~/.config/calibre/plugins/
 %patch1 -F 2 -p1 -b .no-update
-
-%patch3 -p1
 
 # dos2unix newline conversion
 sed -i -e 's/\r//' src/calibre/web/feeds/recipes/*
@@ -162,7 +154,9 @@ chmod -x src/calibre/*.py
 chmod -x recipes/*.recipe
 
 %build
-OVERRIDE_CFLAGS="%{optflags}" python2 setup.py build
+OVERRIDE_CFLAGS="%{optflags}" \
+CALIBRE_PY3_PORT=1 \
+python setup.py build
 
 %install
 mkdir -p %{buildroot}%{_datadir}
@@ -184,13 +178,14 @@ XDG_DATA_DIRS="%{buildroot}%{_datadir}" \
 XDG_UTILS_INSTALL_MODE="system" \
 LIBPATH="%{_libdir}" \
 LANG="en_US" \
-python2 setup.py install --root=%{buildroot}%{_prefix} \
+CALIBRE_PY3_PORT=1 \
+python setup.py install --root=%{buildroot}%{_prefix} \
 			--prefix=%{_prefix} \
 			--libdir=%{_libdir} \
 			--staging-libdir=%{buildroot}%{_libdir} \
 # remove shebang from init_calibre.py here because
 # it just got spawned by the install script
-sed -i -e '/^#!\//, 1d' %{buildroot}%{python2_sitelib}/init_calibre.py
+sed -i -e '/^#!\//, 1d' %{buildroot}%{python_sitelib}/init_calibre.py
 
 # icons
 mkdir -p %{buildroot}%{_datadir}/pixmaps/
