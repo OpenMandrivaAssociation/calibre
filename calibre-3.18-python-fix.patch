@@ -1,7 +1,7 @@
 --- calibre-3.18.0/setup/build.py.orig	2018-02-26 19:57:30.172763764 +0000
 +++ calibre-3.18.0/setup/build.py	2018-02-26 20:01:03.381770411 +0000
-@@ -12,8 +12,8 @@
- from setup import Command, islinux, isbsd, isfreebsd, isosx, ishaiku, SRC, iswindows, __version__
+@@ -13,8 +13,8 @@ from collections import namedtuple
+ from setup import Command, islinux, isbsd, isfreebsd, isosx, ishaiku, SRC, iswindows, __version__, ispy3
  isunix = islinux or isosx or isbsd or ishaiku
  
 -py_lib = os.path.join(sys.prefix, 'libs', 'python%d%d.lib' % sys.version_info[:2])
@@ -9,8 +9,8 @@
 +from distutils import sysconfig
 +py_lib = '-lpython'+sysconfig.get_python_version()
  
- def absolutize(paths):
-     return list(set([x if os.path.isabs(x) else os.path.join(SRC, x.replace('/', os.sep)) for x in paths]))
+ def init_symbol_name(name):
+     prefix = 'PyInit_' if ispy3 else 'init'
 @@ -459,8 +459,8 @@
          SOURCES = {sources}
          INCLUDEPATH += {sipinc} {pyinc}

@@ -11,17 +11,30 @@ Source0:	http://code.calibre-ebook.com/dist/src/%{name}-%{version}.tar.xz
 Source2:	calibre-mount-helper
 Source100:	calibre.rpmlintrc
 Patch1:		%{name}-2.9.0-fdo-no_update.patch
+Patch3:		calibre-3.18-python-fix.patch
+#Patch4:		python3-sip.patch
+
 BuildRequires:	python
 BuildRequires:	pkgconfig(python3)
 BuildRequires:	imagemagick-devel
-BuildRequires:	python-setuptools
+BuildRequires:  python3dist(setuptools)
+BuildRequires:	qmake5
 BuildRequires:	qt5-devel
 BuildRequires:	%{_lib}qt5themesupport-static-devel
 BuildRequires:	%{_lib}qt5fontdatabasesupport-static-devel
 BuildRequires:	%{_lib}qt5servicesupport-static-devel
 BuildRequires:	%{_lib}qt5eventdispatchersupport-static-devel
 BuildRequires:	python-qt5
-BuildRequires:  python-sip
+BuildRequires:	python-qt5-devel
+BuildRequires:	python-sip
+BuildRequires:  python-sip-qt5
+BuildRequires:	python-qt5-webkit
+BuildRequires:  pkgconfig(Qt5Core)
+BuildRequires:  pkgconfig(Qt5DBus)
+BuildRequires:  pkgconfig(Qt5Gui)
+BuildRequires:  pkgconfig(Qt5Network)
+BuildRequires:  pkgconfig(Qt5Widgets)
+BuildRequires:  pkgconfig(Qt5WebKit)
 BuildRequires:	pkgconfig(poppler-qt5) >= 0.12
 BuildRequires:	pkgconfig(poppler-glib)
 BuildRequires:	pkgconfig(mtdev)
@@ -29,44 +42,73 @@ BuildRequires:	pkgconfig(libinput)
 BuildRequires:	pkgconfig(openssl)
 BuildRequires:	podofo-devel
 BuildRequires:	desktop-file-utils
-BuildRequires:	python-mechanize
-BuildRequires:	python-lxml
-BuildRequires:	python-dateutil
-BuildRequires:	python-imaging
+BuildRequires:  python3dist(mechanize)
+BuildRequires:  python3dist(lxml)
+BuildRequires:  python3dist(python-dateutil)
+BuildRequires:  python3dist(pillow)
+BuildRequires:  python3dist(css-parser)
+BuildRequires:  python3dist(feedparser)
+BuildRequires:  python3dist(netifaces)
+BuildRequires:  python3dist(beautifulsoup4)
+BuildRequires:  python3dist(psutil)
+BuildRequires:  python3dist(pygments)
+BuildRequires:  python3dist(soupsieve)
+BuildRequires:  python3dist(msgpack)
+BuildRequires:  python3dist(regex)
+BuildRequires:  python3dist(html5-parser) >= 0.4.8
+BuildRequires:  python-html2text
+BuildRequires:  bash-completion
+#BuildRequires:  python3dist(zeroconf)
+BuildRequires:  python3dist(markdown) 
 BuildRequires:	xdg-utils
 BuildRequires:	chmlib-devel
-BuildRequires:	python-cssutils >= 0.9.9
+BuildRequires:	python-cssutils
 BuildRequires:	pkgconfig(sqlite3)
 BuildRequires:	pkgconfig(icu-i18n)
 BuildRequires:	unzip
 BuildRequires:	libwmf-devel
 BuildRequires:	libmtp-devel
-BuildRequires:	python-apsw
-BuildRequires:	python-six
-BuildRequires:	python-html5-parser
-BuildRequires:	python-regex
-BuildRequires:	python-msgpack
+BuildRequires:  python3dist(apsw)
+BuildRequires:	python-enum34
+BuildRequires:  pkgconfig(hunspell)
+
 Requires:	imagemagick
-Requires:	python-apsw
-Requires:	python-cssutils
-Requires:	python-dateutil
+Requires:       python-qt5-webkit
+Requires:       python3dist(css-parser)
+Requires:       python3dist(odfpy)
+Requires:       python3dist(pillow)
 Requires:	python-dbus
-Requires:	python-imaging
-Requires:	python-lxml
-Requires:	python-mechanize
-Requires:	python-netifaces
+Requires:       python3dist(lxml)
+Requires:       python3dist(mechanize)
+Requires:	python3dist(python-dateutil)
+Requires:       python3dist(beautifulsoup4)
+Requires:       python3dist(netifaces)
+Requires:       python3dist(dnspython)
+Requires:       python3dist(apsw)
+Requires:       python3dist(psutil)
+Requires:       python3dist(pygments)
+Requires:       python3dist(msgpack)
+Requires:       python3dist(regex)
+#Requires:       python3dist(enum34)
+Requires:       python3dist(six)
+Requires:       python3dist(markdown)
+Requires:       python3dist(feedparser)
+Requires:       python3dist(soupsieve)
 Requires:	python-sip
 Requires:	python-qt5
 Requires:	python-qt5-help
+Requires:	python-qt5-webengine
+Requires:	python-qt5-webengine-widgets
 Requires:	python-html5-parser
-Requires:	python-regex
-Requires:	python-msgpack
+Requires:       python3dist(html5-parser)
+Requires:	optipng
 Requires:	poppler
 # Require the packages of the files which are symlinked by calibre
 Requires:	fonts-ttf-liberation
 # E-mail functionality requires this package
 # see https://bugs.launchpad.net/calibre/+bug/739073
 Requires:	python-dnspython
+Requires:	python-enum34
 
 %description
 Calibre is meant to be a complete e-library solution. It includes library
@@ -112,6 +154,7 @@ RTF, TXT, PDF and LRS.
 %{_datadir}/icons/hicolor/*/mimetypes/*
 %{_datadir}/icons/hicolor/*/apps/*
 %{python_sitelib}/init_calibre.py*
+%{python_sitelib}/__pycache__/init_calibre.*.py*
 
 #--------------------------------------------------------------------
 
@@ -124,6 +167,10 @@ rm -rf resources/fonts/*/
 # don't check for new upstream version (that's what packagers do)
 # otherwise the plugins are safe to be updated in ~/.config/calibre/plugins/
 %patch1 -F 2 -p1 -b .no-update
+
+%patch3 -p1
+
+#patch4 -p1
 
 # dos2unix newline conversion
 sed -i -e 's/\r//' src/calibre/web/feeds/recipes/*
@@ -154,9 +201,10 @@ chmod -x src/calibre/*.py
 chmod -x recipes/*.recipe
 
 %build
-OVERRIDE_CFLAGS="%{optflags}" \
+#OVERRIDE_CFLAGS="%{optflags}" python2 setup.py build
+export OVERRIDE_CFLAGS="%{optflags}"
 CALIBRE_PY3_PORT=1 \
-python setup.py build
+%__python3 setup.py build
 
 %install
 mkdir -p %{buildroot}%{_datadir}
@@ -179,7 +227,7 @@ XDG_UTILS_INSTALL_MODE="system" \
 LIBPATH="%{_libdir}" \
 LANG="en_US" \
 CALIBRE_PY3_PORT=1 \
-python setup.py install --root=%{buildroot}%{_prefix} \
+%__python3 setup.py install --root=%{buildroot}%{_prefix} \
 			--prefix=%{_prefix} \
 			--libdir=%{_libdir} \
 			--staging-libdir=%{buildroot}%{_libdir} \

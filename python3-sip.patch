@@ -1,0 +1,21 @@
+diff -Nrup a/setup/build_environment.py b/setup/build_environment.py
+--- a/setup/build_environment.py	2019-09-02 04:54:47.000000000 +0200
++++ b/setup/build_environment.py	2019-09-02 15:49:28.227201671 +0200
+@@ -87,7 +87,7 @@ pyqt = {x:readvar(y) for x, y in (
+ qt = {x:readvar(y) for x, y in {'libs':'QT_INSTALL_LIBS', 'plugins':'QT_INSTALL_PLUGINS'}.items()}
+ qmakespec = readvar('QMAKE_SPEC') if iswindows else None
+ 
+-pyqt['sip_bin'] = os.environ.get('SIP_BIN', 'sip')
++pyqt['sip_bin'] = os.environ.get('SIP_BIN', 'python3-sip')
+ 
+ from PyQt5.QtCore import PYQT_CONFIGURATION
+ pyqt['sip_flags'] = PYQT_CONFIGURATION['sip_flags']
+@@ -99,7 +99,7 @@ def get_sip_dir():
+     elif isfreebsd:
+         q = os.path.join(sys.prefix, 'share', 'py-sip')
+     else:
+-        q = os.path.join(sys.prefix, 'share', 'sip')
++        q = os.path.join(sys.prefix, 'share', 'python3-sip')
+     q = os.environ.get('SIP_DIR', q)
+     for x in ('', 'Py2-PyQt5', 'PyQt5', 'sip/PyQt5'):
+         base = os.path.join(q, x)
