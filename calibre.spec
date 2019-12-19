@@ -20,6 +20,7 @@ BuildRequires:	imagemagick-devel
 BuildRequires:  python3dist(setuptools)
 BuildRequires:	qmake5
 BuildRequires:	qt5-devel
+BuildRequires:  hyphen-devel
 BuildRequires:	%{_lib}qt5themesupport-static-devel
 BuildRequires:	%{_lib}qt5fontdatabasesupport-static-devel
 BuildRequires:	%{_lib}qt5servicesupport-static-devel
