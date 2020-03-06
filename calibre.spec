@@ -1,7 +1,7 @@
 %define _disable_ld_no_undefined 1
 
 Name:		calibre
-Version:	4.11.2
+Version:	4.12.0
 Release:	1
 Summary:	E-book converter and library management
 Group:		Office
