@@ -70,7 +70,6 @@ BuildRequires:	unzip
 BuildRequires:	libwmf-devel
 BuildRequires:	libmtp-devel
 BuildRequires:  python3dist(apsw)
-BuildRequires:	python-enum34
 BuildRequires:  pkgconfig(hunspell)
 
 Requires:	imagemagick
@@ -91,7 +90,6 @@ Requires:       python3dist(psutil)
 Requires:       python3dist(pygments)
 Requires:       python3dist(msgpack)
 Requires:       python3dist(regex)
-#Requires:       python3dist(enum34)
 Requires:       python3dist(six)
 Requires:       python3dist(markdown)
 Requires:       python3dist(feedparser)
@@ -110,7 +108,6 @@ Requires:	fonts-ttf-liberation
 # E-mail functionality requires this package
 # see https://bugs.launchpad.net/calibre/+bug/739073
 Requires:	python-dnspython
-Requires:	python-enum34
 
 %description
 Calibre is meant to be a complete e-library solution. It includes library
