@@ -152,6 +152,9 @@ RTF, TXT, PDF and LRS.
 %{_datadir}/applications/*.desktop
 %{_datadir}/icons/hicolor/*/mimetypes/*
 %{_datadir}/icons/hicolor/*/apps/*
+%{_datadir}/metainfo/calibre-*.appdata.xml
+%{_datadir}/mime/packages/calibre-mimetypes.xml
+
 %{python_sitelib}/init_calibre.py*
 %{python_sitelib}/__pycache__/init_calibre.*.py*
 
