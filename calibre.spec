@@ -1,7 +1,8 @@
 %define _disable_ld_no_undefined 1
+%define _disable_lto 1
 
 Name:		calibre
-Version:	4.10.1
+Version:	4.21.0
 Release:	1
 Summary:	E-book converter and library management
 Group:		Office
@@ -12,7 +13,7 @@ Source2:	calibre-mount-helper
 Source100:	calibre.rpmlintrc
 Patch1:		%{name}-2.9.0-fdo-no_update.patch
 Patch3:		calibre-3.18-python-fix.patch
-#Patch4:		python3-sip.patch
+Patch4:		calibre-4.21.0-nousrlib.patch
 
 BuildRequires:	python
 BuildRequires:	pkgconfig(python3)
@@ -27,7 +28,7 @@ BuildRequires:	%{_lib}qt5servicesupport-static-devel
 BuildRequires:	%{_lib}qt5eventdispatchersupport-static-devel
 BuildRequires:	python-qt5
 BuildRequires:	python-qt5-devel
-BuildRequires:	python-sip
+BuildRequires:	python-sip4
 BuildRequires:  python-sip-qt5
 BuildRequires:	python-qt5-webkit
 BuildRequires:  pkgconfig(Qt5Core)
@@ -63,7 +64,6 @@ BuildRequires:  bash-completion
 BuildRequires:  python3dist(markdown) 
 BuildRequires:	xdg-utils
 BuildRequires:	chmlib-devel
-BuildRequires:	python-cssutils
 BuildRequires:	pkgconfig(sqlite3)
 BuildRequires:	pkgconfig(icu-i18n)
 BuildRequires:	unzip
@@ -169,7 +169,7 @@ rm -rf resources/fonts/*/
 
 %patch3 -p1
 
-#patch4 -p1
+%patch4 -p1
 
 # dos2unix newline conversion
 sed -i -e 's/\r//' src/calibre/web/feeds/recipes/*
@@ -203,6 +203,9 @@ chmod -x recipes/*.recipe
 #OVERRIDE_CFLAGS="%{optflags}" python2 setup.py build
 export OVERRIDE_CFLAGS="%{optflags}"
 CALIBRE_PY3_PORT=1 \
+PODOFO_LIB_DIR=%{_libdir} \
+CXX=clang++ \
+CC=clang \
 %__python3 setup.py build
 
 %install

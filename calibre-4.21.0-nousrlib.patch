@@ -1,0 +1,15 @@
+--- calibre-4.21.0/setup/build_environment.py.orig	2020-07-25 18:01:21.176597226 +0100
++++ calibre-4.21.0/setup/build_environment.py	2020-07-25 18:01:34.536531319 +0100
+@@ -177,10 +177,10 @@
+ else:
+     ft_inc_dirs = pkgconfig_include_dirs('freetype2', 'FT_INC_DIR',
+             '/usr/include/freetype2')
+-    ft_lib_dirs = pkgconfig_lib_dirs('freetype2', 'FT_LIB_DIR', '/usr/lib')
++    ft_lib_dirs = pkgconfig_lib_dirs('freetype2', 'FT_LIB_DIR', None)
+     ft_libs = pkgconfig_libs('freetype2', '', '')
+     hunspell_inc_dirs = pkgconfig_include_dirs('hunspell', 'HUNSPELL_INC_DIR', '/usr/include/hunspell')
+-    hunspell_lib_dirs = pkgconfig_lib_dirs('hunspell', 'HUNSPELL_LIB_DIR', '/usr/lib')
++    hunspell_lib_dirs = pkgconfig_lib_dirs('hunspell', 'HUNSPELL_LIB_DIR', None)
+     sw = os.environ.get('SW', os.path.expanduser('~/sw'))
+     podofo_inc = '/usr/include/podofo'
+     podofo_lib = '/usr/lib'
