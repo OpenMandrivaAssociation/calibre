@@ -110,6 +110,8 @@ Requires:	python-qt5-webengine
 Requires:	python-qt5-webengine-widgets
 Requires:	python-html5-parser
 Requires:       python3dist(html5-parser)
+# FIXME why is this not autodetected?
+Requires:	python-zeroconf
 Requires:	optipng
 Requires:	poppler
 # Require the packages of the files which are symlinked by calibre
