@@ -2,16 +2,18 @@
 %define _disable_lto 1
 
 Name:		calibre
-Version:	4.21.0
+Version:	5.9.0
 Release:	1
 Summary:	E-book converter and library management
 Group:		Office
 License:	GPLv3
 URL:		http://calibre-ebook.com/
 Source0:	http://code.calibre-ebook.com/dist/src/%{name}-%{version}.tar.xz
-Source2:	calibre-mount-helper
+Source1:	https://github.com/LibreOffice/dictionaries/archive/master/hyphenation-dictionaries.tar.gz
+Source4:	calibre-mount-helper
 Source100:	calibre.rpmlintrc
 Patch1:		%{name}-2.9.0-fdo-no_update.patch
+Patch2:		calibre-5.9.0-compile.patch
 Patch3:		calibre-3.18-python-fix.patch
 Patch4:		calibre-4.21.0-nousrlib.patch
 
@@ -28,9 +30,11 @@ BuildRequires:	%{_lib}qt5servicesupport-static-devel
 BuildRequires:	%{_lib}qt5eventdispatchersupport-static-devel
 BuildRequires:	python-qt5
 BuildRequires:	python-qt5-devel
+BuildRequires:	python-qt5-webengine-devel
 BuildRequires:	python-sip4
 BuildRequires:  python-sip-qt5
 BuildRequires:	python-qt5-webkit
+BuildRequires:	python-qt-builder >= 1.7.0
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5DBus)
 BuildRequires:  pkgconfig(Qt5Gui)
@@ -58,6 +62,7 @@ BuildRequires:  python3dist(soupsieve)
 BuildRequires:  python3dist(msgpack)
 BuildRequires:  python3dist(regex)
 BuildRequires:  python3dist(html5-parser) >= 0.4.8
+BuildRequires:	python3dist(zeroconf)
 BuildRequires:  python-html2text
 BuildRequires:  bash-completion
 #BuildRequires:  python3dist(zeroconf)
@@ -124,7 +129,7 @@ Supported input formats are: MOBI, LIT, PRC, EPUB, CHM, ODT, HTML, CBR, CBZ,
 RTF, TXT, PDF and LRS.
 
 %files
-%doc COPYRIGHT LICENSE Changelog.yaml
+%doc COPYRIGHT LICENSE
 %{_bindir}/calibre
 %{_bindir}/calibre-complete
 %{_bindir}/calibre-customize
@@ -152,8 +157,12 @@ RTF, TXT, PDF and LRS.
 %{_datadir}/applications/*.desktop
 %{_datadir}/icons/hicolor/*/mimetypes/*
 %{_datadir}/icons/hicolor/*/apps/*
-%{_datadir}/metainfo/calibre-*.appdata.xml
 %{_datadir}/mime/packages/calibre-mimetypes.xml
+
+%{_datadir}/bash-completion/completions/*
+%{_datadir}/metainfo/calibre-ebook-edit.metainfo.xml
+%{_datadir}/metainfo/calibre-ebook-viewer.metainfo.xml
+%{_datadir}/metainfo/calibre-gui.metainfo.xml
 
 %{python_sitelib}/init_calibre.py*
 %{python_sitelib}/__pycache__/init_calibre.*.py*
@@ -161,18 +170,10 @@ RTF, TXT, PDF and LRS.
 #--------------------------------------------------------------------
 
 %prep
-%setup -q
+%autosetup -p1
 
 # remove redundant / non-free fonts
 rm -rf resources/fonts/*/
-
-# don't check for new upstream version (that's what packagers do)
-# otherwise the plugins are safe to be updated in ~/.config/calibre/plugins/
-%patch1 -F 2 -p1 -b .no-update
-
-%patch3 -p1
-
-%patch4 -p1
 
 # dos2unix newline conversion
 sed -i -e 's/\r//' src/calibre/web/feeds/recipes/*
@@ -196,6 +197,9 @@ sed -i -e '/^#!\//, 1d' src/templite/*.py
 sed -i -e '/^#!\//, 1d' resources/default_tweaks.py
 sed -i -e '/^#!\//, 1d' recipes/*.recipe
 
+# Remove superfluous bits
+rm -rf bypy
+
 chmod -x src/calibre/*/*/*/*.py
 chmod -x src/calibre/*/*/*.py
 chmod -x src/calibre/*/*.py
@@ -203,13 +207,18 @@ chmod -x src/calibre/*.py
 chmod -x recipes/*.recipe
 
 %build
-#OVERRIDE_CFLAGS="%{optflags}" python2 setup.py build
+tar xf %{S:1}
 export OVERRIDE_CFLAGS="%{optflags}"
-CALIBRE_PY3_PORT=1 \
-PODOFO_LIB_DIR=%{_libdir} \
-CXX=clang++ \
-CC=clang \
-%__python3 setup.py build
+PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py build
+PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py iso639
+PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py iso3166
+PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py translations
+PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py gui
+PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py resources \
+	--path-to-liberation_fonts %{_datadir}/fonts/TTF/liberation \
+	--system-liberation_fonts \
+	--path-to-hyphenation `pwd`/dictionaries-master
+PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py man_pages
 
 %install
 mkdir -p %{buildroot}%{_datadir}
@@ -230,9 +239,8 @@ mkdir -p %{buildroot}%{python_sitelib}
 XDG_DATA_DIRS="%{buildroot}%{_datadir}" \
 XDG_UTILS_INSTALL_MODE="system" \
 LIBPATH="%{_libdir}" \
-LANG="en_US" \
-CALIBRE_PY3_PORT=1 \
-%__python3 setup.py install --root=%{buildroot}%{_prefix} \
+LANG="en_US.UTF-8" \
+python setup.py install --root=%{buildroot}%{_prefix} \
 			--prefix=%{_prefix} \
 			--libdir=%{_libdir} \
 			--staging-libdir=%{buildroot}%{_libdir} \
@@ -343,5 +351,4 @@ sed -i -e 's:localization/locale.zip:%{_datadir}/%{name}/localization/locales.zi
 
 rm -f %{buildroot}%{_bindir}/%{name}-uninstall
 
-install -m 0755 %{SOURCE2} %{buildroot}%{_bindir}/
-
+install -m 0755 %{SOURCE4} %{buildroot}%{_bindir}/

@@ -1,0 +1,31 @@
+diff -up calibre-5.9.0/setup/build.py.omv~ calibre-5.9.0/setup/build.py
+--- calibre-5.9.0/setup/build.py.omv~	2021-01-13 20:01:02.539960809 +0100
++++ calibre-5.9.0/setup/build.py	2021-01-13 21:56:07.503103657 +0100
+@@ -489,6 +489,7 @@ project-factory = "pyqtbuild:PyQtProject
+ 
+ [tool.sip.project]
+ sip-files-dir = "."
++sip-include-dirs = ["/usr/share/sip/PyQt5"]
+ 
+ [tool.sip.bindings.pictureflow]
+ headers = {ext.headers}
+@@ -497,6 +498,7 @@ exceptions = {needs_exceptions}
+ include-dirs = {ext.inc_dirs}
+ qmake-QT = ["widgets"]
+ sip-file = "{os.path.basename(sipf)}"
++tags = ["WS_X11"]
+ ''')
+         shutil.copy2(sipf, src_dir)
+ 
+diff -up calibre-5.9.0/setup/extensions.json.omv~ calibre-5.9.0/setup/extensions.json
+--- calibre-5.9.0/setup/extensions.json.omv~	2021-01-13 23:11:37.316195287 +0100
++++ calibre-5.9.0/setup/extensions.json	2021-01-13 23:11:52.607414260 +0100
+@@ -133,7 +133,7 @@
+         "sources": "calibre/utils/imageops/imageops.cpp calibre/utils/imageops/quantize.cpp calibre/utils/imageops/ordered_dither.cpp",
+         "headers": "calibre/utils/imageops/imageops.h",
+         "sip_files": "calibre/utils/imageops/imageops.sip",
+-		"needs_exceptions": true,
++        "needs_exceptions": true,
+         "inc_dirs": "calibre/utils/imageops"
+     },
+     {

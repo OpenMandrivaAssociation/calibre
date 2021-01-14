@@ -1,23 +1,21 @@
---- calibre-3.18.0/setup/build.py.orig	2018-02-26 19:57:30.172763764 +0000
-+++ calibre-3.18.0/setup/build.py	2018-02-26 20:01:03.381770411 +0000
-@@ -13,8 +13,8 @@ from collections import namedtuple
- from setup import Command, islinux, isbsd, isfreebsd, isosx, ishaiku, SRC, iswindows, __version__, ispy3
- isunix = islinux or isosx or isbsd or ishaiku
+diff -up calibre-5.9.0/setup/build.py.orig calibre-5.9.0/setup/build.py
+--- calibre-5.9.0/setup/build.py.orig	2021-01-13 18:58:40.282712987 +0100
++++ calibre-5.9.0/setup/build.py	2021-01-13 19:00:59.506486686 +0100
+@@ -11,7 +11,8 @@ from collections import namedtuple
+ from setup import Command, islinux, isbsd, isfreebsd, ismacos, ishaiku, SRC, iswindows
+ isunix = islinux or ismacos or isbsd or ishaiku
  
 -py_lib = os.path.join(sys.prefix, 'libs', 'python%d%d.lib' % sys.version_info[:2])
--
 +from distutils import sysconfig
 +py_lib = '-lpython'+sysconfig.get_python_version()
+ CompileCommand = namedtuple('CompileCommand', 'cmd src dest')
+ LinkCommand = namedtuple('LinkCommand', 'cmd objects dest')
  
- def init_symbol_name(name):
-     prefix = 'PyInit_' if ispy3 else 'init'
-@@ -459,8 +459,8 @@
-         SOURCES = {sources}
-         INCLUDEPATH += {sipinc} {pyinc}
-         VERSION = {ver}
-+        LIBS += {py_lib}
-         win32 {{
--            LIBS += {py_lib}
-             TARGET_EXT = .dll
-         }}
-         macx {{
+@@ -448,6 +449,7 @@ class Build(Command):
+             OTHER_FILES = {others}
+             INCLUDEPATH += {freetype}
+             DESTDIR = {destdir}
++            LIBS = '-lpython3.9'
+             CONFIG -= create_cmake  # Prevent qmake from generating a cmake build file which it puts in the calibre src directory
+             ''').format(
+                 headers=' '.join(headers), sources=' '.join(sources), others=' '.join(others), destdir=self.d(
