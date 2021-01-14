@@ -35,6 +35,7 @@ BuildRequires:	python-sip
 BuildRequires:  python-sip-qt5
 BuildRequires:	python-qt5-webkit
 BuildRequires:	python-qt-builder >= 1.7.0
+BuildRequires:	fonts-ttf-liberation
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5DBus)
 BuildRequires:  pkgconfig(Qt5Gui)
@@ -77,6 +78,7 @@ BuildRequires:	libmtp-devel
 BuildRequires:  python3dist(apsw)
 BuildRequires:  pkgconfig(hunspell)
 
+Requires:	fonts-ttf-liberation
 Requires:	imagemagick
 Requires:       python-qt5-webkit
 Requires:       python3dist(css-parser)
