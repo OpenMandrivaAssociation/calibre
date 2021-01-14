@@ -33,6 +33,7 @@ BuildRequires:	python-qt5-devel
 BuildRequires:	python-qt5-webengine-devel
 BuildRequires:	python-qt5-webengine-widgets
 BuildRequires:	python-sip
+BuildRequires:	python-sphinx
 BuildRequires:  python-sip-qt5
 BuildRequires:	python-qt5-webkit
 BuildRequires:	python-qt-builder >= 1.7.0
