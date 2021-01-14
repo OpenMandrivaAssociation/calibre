@@ -31,6 +31,7 @@ BuildRequires:	%{_lib}qt5eventdispatchersupport-static-devel
 BuildRequires:	python-qt5
 BuildRequires:	python-qt5-devel
 BuildRequires:	python-qt5-webengine-devel
+BuildRequires:	python-qt5-webengine-widgets
 BuildRequires:	python-sip
 BuildRequires:  python-sip-qt5
 BuildRequires:	python-qt5-webkit
