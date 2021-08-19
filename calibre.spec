@@ -79,6 +79,7 @@ BuildRequires:	libwmf-devel
 BuildRequires:	libmtp-devel
 BuildRequires:  python3dist(apsw)
 BuildRequires:  pkgconfig(hunspell)
+BuildRequires:  libstemmer-devel
 
 Requires:	fonts-ttf-liberation
 Requires:	imagemagick
