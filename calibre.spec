@@ -2,8 +2,8 @@
 %define _disable_lto 1
 
 Name:		calibre
-Version:	5.25.0
-Release:	4
+Version:	5.34.0
+Release:	1
 Summary:	E-book converter and library management
 Group:		Office
 License:	GPLv3
@@ -16,6 +16,7 @@ Patch1:		%{name}-2.9.0-fdo-no_update.patch
 Patch2:		calibre-5.9.0-compile.patch
 Patch3:		calibre-3.18-python-fix.patch
 Patch4:		calibre-4.21.0-nousrlib.patch
+Patch5:		calibre-5.34.0-compile.patch
 
 BuildRequires:	python
 BuildRequires:	pkgconfig(python3)
@@ -251,6 +252,7 @@ python setup.py install --root=%{buildroot}%{_prefix} \
 			--prefix=%{_prefix} \
 			--libdir=%{_libdir} \
 			--staging-libdir=%{buildroot}%{_libdir} \
+
 # remove shebang from init_calibre.py here because
 # it just got spawned by the install script
 sed -i -e '/^#!\//, 1d' %{buildroot}%{python_sitelib}/init_calibre.py
