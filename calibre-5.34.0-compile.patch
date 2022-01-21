@@ -1,7 +1,7 @@
-diff -up calibre-5.34.0/setup/build.py.5~ calibre-5.34.0/setup/build.py
---- calibre-5.34.0/setup/build.py.5~	2021-12-29 01:35:03.824367029 +0100
-+++ calibre-5.34.0/setup/build.py	2021-12-29 01:35:03.826367031 +0100
-@@ -11,7 +11,7 @@ from collections import namedtuple
+diff -up calibre-5.35.0/setup/build.py.5~ calibre-5.35.0/setup/build.py
+--- calibre-5.35.0/setup/build.py.5~	2022-01-21 19:30:03.508488817 +0100
++++ calibre-5.35.0/setup/build.py	2022-01-21 19:30:03.513488821 +0100
+@@ -10,7 +10,7 @@ from collections import namedtuple
  from setup import Command, islinux, isbsd, isfreebsd, ismacos, ishaiku, SRC, iswindows
  isunix = islinux or ismacos or isbsd or ishaiku
  
@@ -10,15 +10,16 @@ diff -up calibre-5.34.0/setup/build.py.5~ calibre-5.34.0/setup/build.py
  py_lib = '-lpython'+sysconfig.get_python_version()
  CompileCommand = namedtuple('CompileCommand', 'cmd src dest')
  LinkCommand = namedtuple('LinkCommand', 'cmd objects dest')
-diff -up calibre-5.34.0/setup/install.py.5~ calibre-5.34.0/setup/install.py
---- calibre-5.34.0/setup/install.py.5~	2021-12-17 01:40:19.000000000 +0100
-+++ calibre-5.34.0/setup/install.py	2021-12-29 01:52:06.150702521 +0100
-@@ -157,8 +157,8 @@ class Develop(Command):
+diff -up calibre-5.35.0/setup/install.py.5~ calibre-5.35.0/setup/install.py
+--- calibre-5.35.0/setup/install.py.5~	2022-01-21 19:30:03.513488821 +0100
++++ calibre-5.35.0/setup/install.py	2022-01-21 19:31:17.852557698 +0100
+@@ -156,9 +156,8 @@ class Develop(Command):
      def install_env_module(self):
          import sysconfig
          libdir = os.path.join(
 -            self.opts.staging_root, sysconfig.get_config_var('PLATLIBDIR') or 'lib',
--            sysconfig.get_python_version(), 'site-packages')
+-            os.path.basename(sysconfig.get_config_var('DESTLIB') or sysconfig.get_config_var('LIBDEST') or f'python{sysconfig.get_python_version()}'),
+-            'site-packages')
 +            self.opts.staging_root, 'lib',
 +            'python' + sysconfig.get_python_version(), 'site-packages')
          try:
