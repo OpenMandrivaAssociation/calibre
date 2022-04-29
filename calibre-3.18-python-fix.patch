@@ -15,7 +15,7 @@ diff -up calibre-5.9.0/setup/build.py.orig calibre-5.9.0/setup/build.py
              OTHER_FILES = {others}
              INCLUDEPATH += {freetype}
              DESTDIR = {destdir}
-+            LIBS = '-lpython3.9'
++            LIBS = '-lpython3.11'
              CONFIG -= create_cmake  # Prevent qmake from generating a cmake build file which it puts in the calibre src directory
              ''').format(
                  headers=' '.join(headers), sources=' '.join(sources), others=' '.join(others), destdir=self.d(
