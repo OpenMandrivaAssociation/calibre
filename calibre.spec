@@ -21,10 +21,10 @@ Patch5:		calibre-5.34.0-compile.patch
 BuildRequires:	python
 BuildRequires:	pkgconfig(python3)
 BuildRequires:	imagemagick-devel
-BuildRequires:  python3dist(setuptools)
+BuildRequires:	python3dist(setuptools)
 BuildRequires:	qmake5
 BuildRequires:	qt5-devel
-BuildRequires:  hyphen-devel
+BuildRequires:	hyphen-devel
 BuildRequires:	%{_lib}qt5themesupport-static-devel
 BuildRequires:	%{_lib}qt5fontdatabasesupport-static-devel
 BuildRequires:	%{_lib}qt5servicesupport-static-devel
@@ -35,16 +35,16 @@ BuildRequires:	python-qt5-webengine-devel
 BuildRequires:	python-qt5-webengine-widgets
 BuildRequires:	python-sip
 BuildRequires:	python-sphinx
-BuildRequires:  python-sip-qt5
+BuildRequires:	python-sip-qt5
 BuildRequires:	python-qt5-webkit
 BuildRequires:	python-qt-builder >= 1.7.0
 BuildRequires:	fonts-ttf-liberation
-BuildRequires:  pkgconfig(Qt5Core)
-BuildRequires:  pkgconfig(Qt5DBus)
-BuildRequires:  pkgconfig(Qt5Gui)
-BuildRequires:  pkgconfig(Qt5Network)
-BuildRequires:  pkgconfig(Qt5Widgets)
-BuildRequires:  pkgconfig(Qt5WebKit)
+BuildRequires:	pkgconfig(Qt5Core)
+BuildRequires:	pkgconfig(Qt5DBus)
+BuildRequires:	pkgconfig(Qt5Gui)
+BuildRequires:	pkgconfig(Qt5Network)
+BuildRequires:	pkgconfig(Qt5Widgets)
+BuildRequires:	pkgconfig(Qt5WebKit)
 BuildRequires:	pkgconfig(poppler-qt5) >= 0.12
 BuildRequires:	pkgconfig(poppler-glib)
 BuildRequires:	pkgconfig(mtdev)
@@ -52,25 +52,25 @@ BuildRequires:	pkgconfig(libinput)
 BuildRequires:	pkgconfig(openssl)
 BuildRequires:	podofo-devel
 BuildRequires:	desktop-file-utils
-BuildRequires:  python3dist(mechanize)
-BuildRequires:  python3dist(lxml)
-BuildRequires:  python3dist(python-dateutil)
-BuildRequires:  python3dist(pillow)
-BuildRequires:  python3dist(css-parser)
-BuildRequires:  python3dist(feedparser)
-BuildRequires:  python3dist(netifaces)
-BuildRequires:  python3dist(beautifulsoup4)
-BuildRequires:  python3dist(psutil)
-BuildRequires:  python3dist(pygments)
-BuildRequires:  python3dist(soupsieve)
-BuildRequires:  python3dist(msgpack)
-BuildRequires:  python3dist(regex)
-BuildRequires:  python3dist(html5-parser) >= 0.4.8
+BuildRequires:	python3dist(mechanize)
+BuildRequires:	python3dist(lxml)
+BuildRequires:	python3dist(python-dateutil)
+BuildRequires:	python3dist(pillow)
+BuildRequires:	python3dist(css-parser)
+BuildRequires:	python3dist(feedparser)
+BuildRequires:	python3dist(netifaces)
+BuildRequires:	python3dist(beautifulsoup4)
+BuildRequires:	python3dist(psutil)
+BuildRequires:	python3dist(pygments)
+BuildRequires:	python3dist(soupsieve)
+BuildRequires:	python3dist(msgpack)
+BuildRequires:	python3dist(regex)
+BuildRequires:	python3dist(html5-parser) >= 0.4.8
 BuildRequires:	python3dist(zeroconf)
-BuildRequires:  python-html2text
-BuildRequires:  bash-completion
-#BuildRequires:  python3dist(zeroconf)
-BuildRequires:  python3dist(markdown) 
+BuildRequires:	python-html2text
+BuildRequires:	bash-completion
+#BuildRequires:	python3dist(zeroconf)
+BuildRequires:	python3dist(markdown) 
 BuildRequires:	xdg-utils
 BuildRequires:	chmlib-devel
 BuildRequires:	pkgconfig(sqlite3)
@@ -78,40 +78,40 @@ BuildRequires:	pkgconfig(icu-i18n)
 BuildRequires:	unzip
 BuildRequires:	libwmf-devel
 BuildRequires:	libmtp-devel
-BuildRequires:  python3dist(apsw)
-BuildRequires:  pkgconfig(hunspell)
-BuildRequires:  libstemmer-devel
+BuildRequires:	python3dist(apsw)
+BuildRequires:	pkgconfig(hunspell)
+BuildRequires:	libstemmer-devel
 
 Requires:	fonts-ttf-liberation
 Requires:	imagemagick
-Requires:       python-qt5-webkit
-Requires:       python3dist(css-parser)
-Requires:       python3dist(odfpy)
-Requires:       python3dist(pillow)
+Requires:	python-qt5-webkit
+Requires:	python3dist(css-parser)
+Requires:	python3dist(odfpy)
+Requires:	python3dist(pillow)
 Requires:	python-dbus
 Requires:	python3dist(apsw)
-Requires:       python3dist(lxml)
-Requires:       python3dist(mechanize)
+Requires:	python3dist(lxml)
+Requires:	python3dist(mechanize)
 Requires:	python3dist(python-dateutil)
-Requires:       python3dist(beautifulsoup4)
-Requires:       python3dist(netifaces)
-Requires:       python3dist(dnspython)
-Requires:       python3dist(apsw)
-Requires:       python3dist(psutil)
-Requires:       python3dist(pygments)
-Requires:       python3dist(msgpack)
-Requires:       python3dist(regex)
-Requires:       python3dist(six)
-Requires:       python3dist(markdown)
-Requires:       python3dist(feedparser)
-Requires:       python3dist(soupsieve)
+Requires:	python3dist(beautifulsoup4)
+Requires:	python3dist(netifaces)
+Requires:	python3dist(dnspython)
+Requires:	python3dist(apsw)
+Requires:	python3dist(psutil)
+Requires:	python3dist(pygments)
+Requires:	python3dist(msgpack)
+Requires:	python3dist(regex)
+Requires:	python3dist(six)
+Requires:	python3dist(markdown)
+Requires:	python3dist(feedparser)
+Requires:	python3dist(soupsieve)
 Requires:	python-sip
 Requires:	python-qt5
 Requires:	python-qt5-help
 Requires:	python-qt5-webengine
 Requires:	python-qt5-webengine-widgets
 Requires:	python-html5-parser
-Requires:       python3dist(html5-parser)
+Requires:	python3dist(html5-parser)
 # FIXME why is this not autodetected?
 Requires:	python-zeroconf
 Requires:	optipng
@@ -173,7 +173,7 @@ RTF, TXT, PDF and LRS.
 %{_datadir}/metainfo/calibre-gui.metainfo.xml
 
 %{python_sitelib}/init_calibre.py*
-%{python_sitelib}/__pycache__/init_calibre.*.py*
+#{python_sitelib}/__pycache__/init_calibre.*.py*
 
 #--------------------------------------------------------------------
 
@@ -188,13 +188,13 @@ sed -i -e 's/\r//' src/calibre/web/feeds/recipes/*
 
 # fix the location of liberation default font
 # sed -i -e "s:P('fonts/liberation/LiberationSerif:('%{_datadir}/fonts/TTF/liberation/LiberationSerif:" \
-#  src/calibre/library/catalog.py
+#	src/calibre/library/catalog.py
 sed -i -e "s:P('fonts/liberation/LiberationSerif:('%{_datadir}/fonts/TTF/liberation/LiberationSerif:" \
-  src/calibre/utils/magick/draw.py
+	src/calibre/utils/magick/draw.py
 sed -i -e "s:P('fonts/liberation/LiberationSerif:('%{_datadir}/fonts/TTF/liberation/LiberationSerif:" \
-  src/calibre/web/feeds/news.py
+	src/calibre/web/feeds/news.py
 sed -i -e "s:P('fonts/liberation/LiberationSerif:('%{_datadir}/fonts/TTF/liberation/LiberationSerif:" \
-  recipes/*_ke.recipe
+	recipes/*_ke.recipe
 
 # remove shebangs
 sed -i -e '/^#!\//, 1d' src/calibre/*/*/*/*.py
@@ -259,10 +259,10 @@ sed -i -e '/^#!\//, 1d' %{buildroot}%{python_sitelib}/init_calibre.py
 
 # icons
 mkdir -p %{buildroot}%{_datadir}/pixmaps/
-cp -p resources/images/library.png		  \
-   %{buildroot}%{_datadir}/pixmaps/%{name}-gui.png
-cp -p resources/images/viewer.png		  \
-   %{buildroot}%{_datadir}/pixmaps/calibre-viewer.png
+cp -p resources/images/library.png		\
+	%{buildroot}%{_datadir}/pixmaps/%{name}-gui.png
+cp -p resources/images/viewer.png		\
+	%{buildroot}%{_datadir}/pixmaps/calibre-viewer.png
 
 # every file is empty here
 find %{buildroot}%{_datadir}/mime -maxdepth 1 -type f|xargs rm -f
@@ -330,9 +330,9 @@ mkdir -p %{buildroot}%{_datadir}/icons/hicolor/scalable
 mkdir -p %{buildroot}%{_datadir}/icons/hicolor/scalable/mimetypes
 mkdir -p %{buildroot}%{_datadir}/icons/hicolor/scalable/apps
 cp -p resources/images/mimetypes/lrf.png \
-      %{buildroot}%{_datadir}/icons/hicolor/scalable/mimetypes/application-x-sony-bbeb.png
+	%{buildroot}%{_datadir}/icons/hicolor/scalable/mimetypes/application-x-sony-bbeb.png
 cp -p resources/images/viewer.png \
-      %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/calibre-viewer.png
+	%{buildroot}%{_datadir}/icons/hicolor/scalable/apps/calibre-viewer.png
 
 # these are provided as separate packages
 rm -rf %{buildroot}%{_libdir}/%{name}/{odf,cherrypy,pyPdf,encutils,cssutils}
@@ -343,11 +343,11 @@ rm -rf %{buildroot}%{_libdir}/%{name}/cal/trac
 # http://oldbugs.calibre-ebook.com/ticket/3832
 mkdir -p %{buildroot}%{_datadir}/%{name}/fonts/prs500
 ln -s %{_datadir}/fonts/TTF/liberation/LiberationSans-Regular.ttf \
-      %{buildroot}%{_datadir}/%{name}/fonts/prs500/tt0003m_.ttf
+	%{buildroot}%{_datadir}/%{name}/fonts/prs500/tt0003m_.ttf
 ln -s %{_datadir}/fonts/TTF/liberation/LiberationSerif-Regular.ttf \
-      %{buildroot}%{_datadir}/%{name}/fonts/prs500/tt0011m_.ttf
+	%{buildroot}%{_datadir}/%{name}/fonts/prs500/tt0011m_.ttf
 ln -s %{_datadir}/fonts/TTF/liberation/LiberationMono-Regular.ttf \
-      %{buildroot}%{_datadir}/%{name}/fonts/prs500/tt0419m_.ttf
+	%{buildroot}%{_datadir}/%{name}/fonts/prs500/tt0419m_.ttf
 
 # localization has changed since calibre-0.8.5
 # locale.zip is treated internally at runtime
