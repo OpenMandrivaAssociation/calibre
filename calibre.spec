@@ -2,7 +2,7 @@
 %define _disable_lto 1
 
 Name:		calibre
-Version:	5.41.0
+Version:	5.44.0
 Release:	1
 Summary:	E-book converter and library management
 Group:		Office
