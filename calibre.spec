@@ -2,8 +2,8 @@
 %define _disable_lto 1
 
 Name:		calibre
-Version:	5.41.0
-Release:	4
+Version:	6.5.0
+Release:	1
 Summary:	E-book converter and library management
 Group:		Office
 License:	GPLv3
@@ -22,34 +22,28 @@ BuildRequires:	python
 BuildRequires:	pkgconfig(python3)
 BuildRequires:	imagemagick-devel
 BuildRequires:	python3dist(setuptools)
-BuildRequires:	qmake5
-BuildRequires:	qt5-devel
+BuildRequires:	qmake-qt6
 BuildRequires:	hyphen-devel
-BuildRequires:	%{_lib}qt5themesupport-static-devel
-BuildRequires:	%{_lib}qt5fontdatabasesupport-static-devel
-BuildRequires:	%{_lib}qt5servicesupport-static-devel
-BuildRequires:	%{_lib}qt5eventdispatchersupport-static-devel
-BuildRequires:	python-qt5
-BuildRequires:	python-qt5-devel
-BuildRequires:	python-qt5-webengine-devel
-BuildRequires:	python-qt5-webengine-widgets
+BuildRequires:	python-qt6
+BuildRequires:	python-qt6-devel
 BuildRequires:	python-sip
 BuildRequires:	python-sphinx
-BuildRequires:	python-sip-qt5
-BuildRequires:	python-qt5-webkit
+BuildRequires:	python-sip-qt6
+BuildRequires:	python-qt6-webengine
 BuildRequires:	python-qt-builder >= 1.7.0
 BuildRequires:	fonts-ttf-liberation
-BuildRequires:	pkgconfig(Qt5Core)
-BuildRequires:	pkgconfig(Qt5DBus)
-BuildRequires:	pkgconfig(Qt5Gui)
-BuildRequires:	pkgconfig(Qt5Network)
-BuildRequires:	pkgconfig(Qt5Widgets)
-BuildRequires:	pkgconfig(Qt5WebKit)
-BuildRequires:	pkgconfig(poppler-qt5) >= 0.12
+BuildRequires:	cmake(Qt6Core)
+BuildRequires:	cmake(Qt6DBus)
+BuildRequires:	cmake(Qt6Gui)
+BuildRequires:	cmake(Qt6Network)
+BuildRequires:	cmake(Qt6Widgets)
+BuildRequires:	cmake(Qt6WebEngineWidgets)
+BuildRequires:	pkgconfig(poppler-qt6) >= 0.12
 BuildRequires:	pkgconfig(poppler-glib)
 BuildRequires:	pkgconfig(mtdev)
 BuildRequires:	pkgconfig(libinput)
 BuildRequires:	pkgconfig(openssl)
+BuildRequires:	pkgconfig(uchardet)
 BuildRequires:	podofo-devel
 BuildRequires:	desktop-file-utils
 BuildRequires:	python3dist(mechanize)
@@ -84,7 +78,6 @@ BuildRequires:	libstemmer-devel
 
 Requires:	fonts-ttf-liberation
 Requires:	imagemagick
-Requires:	python-qt5-webkit
 Requires:	python3dist(css-parser)
 Requires:	python3dist(odfpy)
 Requires:	python3dist(pillow)
@@ -106,10 +99,8 @@ Requires:	python3dist(markdown)
 Requires:	python3dist(feedparser)
 Requires:	python3dist(soupsieve)
 Requires:	python-sip
-Requires:	python-qt5
-Requires:	python-qt5-help
-Requires:	python-qt5-webengine
-Requires:	python-qt5-webengine-widgets
+Requires:	python-qt6
+Requires:	python-qt6-webengine
 Requires:	python-html5-parser
 Requires:	python3dist(html5-parser)
 # FIXME why is this not autodetected?

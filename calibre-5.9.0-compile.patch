@@ -1,26 +1,26 @@
-diff -up calibre-5.25.0/setup/build.py.2~ calibre-5.25.0/setup/build.py
---- calibre-5.25.0/setup/build.py.2~	2021-08-13 07:05:30.000000000 +0200
-+++ calibre-5.25.0/setup/build.py	2021-08-15 23:05:38.027186868 +0200
-@@ -524,6 +524,7 @@ project-factory = "pyqtbuild:PyQtProject
+diff -up calibre-6.5.0/setup/build.py.2~ calibre-6.5.0/setup/build.py
+--- calibre-6.5.0/setup/build.py.2~	2022-09-18 17:10:19.529045152 +0200
++++ calibre-6.5.0/setup/build.py	2022-09-18 17:11:31.042764167 +0200
+@@ -523,6 +523,7 @@ project-factory = "pyqtbuild:PyQtProject
  
  [tool.sip.project]
  sip-files-dir = "."
-+sip-include-dirs = ["/usr/share/sip/PyQt5"]
++sip-include-dirs = ["/usr/share/sip/PyQt6"]
  {abi_version}
  
- [tool.sip.bindings.pictureflow]
-@@ -533,6 +534,7 @@ exceptions = {needs_exceptions}
+ [tool.sip.bindings.{ext.name}]
+@@ -532,6 +533,7 @@ exceptions = {needs_exceptions}
  include-dirs = {ext.inc_dirs}
- qmake-QT = ["widgets"]
+ qmake-QT = {ext.qt_modules}
  sip-file = "{os.path.basename(sipf)}"
 +tags = ["WS_X11"]
  ''')
          shutil.copy2(sipf, src_dir)
  
-diff -up calibre-5.25.0/setup/extensions.json.2~ calibre-5.25.0/setup/extensions.json
---- calibre-5.25.0/setup/extensions.json.2~	2021-08-13 07:05:30.000000000 +0200
-+++ calibre-5.25.0/setup/extensions.json	2021-08-15 22:23:53.389505448 +0200
-@@ -150,7 +150,7 @@
+diff -up calibre-6.5.0/setup/extensions.json.2~ calibre-6.5.0/setup/extensions.json
+--- calibre-6.5.0/setup/extensions.json.2~	2022-09-16 03:49:04.000000000 +0200
++++ calibre-6.5.0/setup/extensions.json	2022-09-18 17:10:19.529045152 +0200
+@@ -165,7 +165,7 @@
          "sources": "calibre/utils/imageops/imageops.cpp calibre/utils/imageops/quantize.cpp calibre/utils/imageops/ordered_dither.cpp",
          "headers": "calibre/utils/imageops/imageops.h",
          "sip_files": "calibre/utils/imageops/imageops.sip",

@@ -1,7 +1,7 @@
-diff -up calibre-5.9.0/setup/build.py.orig calibre-5.9.0/setup/build.py
---- calibre-5.9.0/setup/build.py.orig	2021-01-13 18:58:40.282712987 +0100
-+++ calibre-5.9.0/setup/build.py	2021-01-13 19:00:59.506486686 +0100
-@@ -11,7 +11,8 @@ from collections import namedtuple
+diff -up calibre-6.5.0/setup/build.py.3~ calibre-6.5.0/setup/build.py
+--- calibre-6.5.0/setup/build.py.3~	2022-09-18 17:11:58.452909480 +0200
++++ calibre-6.5.0/setup/build.py	2022-09-18 17:11:58.469576235 +0200
+@@ -10,7 +10,8 @@ from collections import namedtuple
  from setup import Command, islinux, isbsd, isfreebsd, ismacos, ishaiku, SRC, iswindows
  isunix = islinux or ismacos or isbsd or ishaiku
  
@@ -11,11 +11,3 @@ diff -up calibre-5.9.0/setup/build.py.orig calibre-5.9.0/setup/build.py
  CompileCommand = namedtuple('CompileCommand', 'cmd src dest')
  LinkCommand = namedtuple('LinkCommand', 'cmd objects dest')
  
-@@ -448,6 +449,7 @@ class Build(Command):
-             OTHER_FILES = {others}
-             INCLUDEPATH += {freetype}
-             DESTDIR = {destdir}
-+            LIBS = '-lpython3.11'
-             CONFIG -= create_cmake  # Prevent qmake from generating a cmake build file which it puts in the calibre src directory
-             ''').format(
-                 headers=' '.join(headers), sources=' '.join(sources), others=' '.join(others), destdir=self.d(
