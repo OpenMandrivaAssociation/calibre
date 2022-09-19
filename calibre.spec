@@ -23,6 +23,7 @@ BuildRequires:	pkgconfig(python3)
 BuildRequires:	imagemagick-devel
 BuildRequires:	python3dist(setuptools)
 BuildRequires:	qmake-qt6
+BuildRequires:	qt6-cmake
 BuildRequires:	hyphen-devel
 BuildRequires:	python-qt6
 BuildRequires:	python-qt6-devel
