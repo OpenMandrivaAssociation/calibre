@@ -76,6 +76,8 @@ BuildRequires:	libmtp-devel
 BuildRequires:	python3dist(apsw)
 BuildRequires:	pkgconfig(hunspell)
 BuildRequires:	libstemmer-devel
+BuildRequires:	cmake(XKB)
+BuildRequires:	pkgconfig(xkbcommon)
 
 Requires:	fonts-ttf-liberation
 Requires:	imagemagick
