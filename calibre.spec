@@ -2,7 +2,7 @@
 %define _disable_lto 1
 
 Name:		calibre
-Version:	6.7.1
+Version:	6.8.0
 Release:	1
 Summary:	E-book converter and library management
 Group:		Office
@@ -18,7 +18,6 @@ Patch3:		calibre-3.18-python-fix.patch
 Patch4:		calibre-4.21.0-nousrlib.patch
 Patch5:		calibre-5.34.0-compile.patch
 
-BuildRequires:	python
 BuildRequires:	pkgconfig(python3)
 BuildRequires:	imagemagick-devel
 BuildRequires:	python3dist(setuptools)
