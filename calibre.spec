@@ -2,13 +2,13 @@
 %define _disable_lto 1
 
 Name:		calibre
-Version:	6.11.0
+Version:	6.12.0
 Release:	1
 Summary:	E-book converter and library management
 Group:		Office
 License:	GPLv3
 URL:		https://calibre-ebook.com/
-Source0:	https://code.calibre-ebook.com/dist/src/%{name}-%{version}.tar.xz
+Source0:	http://code.calibre-ebook.com/dist/src/%{name}-%{version}.tar.xz
 Source1:	https://github.com/LibreOffice/dictionaries/archive/master/hyphenation-dictionaries.tar.gz
 Source4:	calibre-mount-helper
 Source100:	calibre.rpmlintrc
