@@ -21,7 +21,7 @@ Patch5:		calibre-6.12.0-compile.patch
 BuildRequires:	pkgconfig(python3)
 BuildRequires:	imagemagick-devel
 BuildRequires:	python3dist(setuptools)
-BuildRequires:	mathajax
+BuildRequires:	mathjax
 BuildRequires:	qmake-qt6
 BuildRequires:	qt6-cmake
 BuildRequires:	hyphen-devel
