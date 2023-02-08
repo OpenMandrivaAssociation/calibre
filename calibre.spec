@@ -12,7 +12,7 @@ Source0:	http://code.calibre-ebook.com/dist/src/%{name}-%{version}.tar.xz
 Source1:	https://github.com/LibreOffice/dictionaries/archive/master/hyphenation-dictionaries.tar.gz
 Source4:	calibre-mount-helper
 Source100:	calibre.rpmlintrc
-Patch1:		%{name}-2.9.0-fdo-no_update.patch
+Patch1:		calibre-2.9.0-fdo-no_update.patch
 Patch2:		calibre-5.9.0-compile.patch
 Patch3:		calibre-6.12.0-python-fix.patch
 Patch4:		calibre-6.12.0-nousrlib.patch
@@ -21,6 +21,7 @@ Patch5:		calibre-6.12.0-compile.patch
 BuildRequires:	pkgconfig(python3)
 BuildRequires:	imagemagick-devel
 BuildRequires:	python3dist(setuptools)
+BuildRequires:	mathajax
 BuildRequires:	qmake-qt6
 BuildRequires:	qt6-cmake
 BuildRequires:	hyphen-devel
