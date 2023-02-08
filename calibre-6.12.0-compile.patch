@@ -1,18 +1,16 @@
-diff -up calibre-5.35.0/setup/build.py.5~ calibre-5.35.0/setup/build.py
---- calibre-5.35.0/setup/build.py.5~	2022-01-21 19:30:03.508488817 +0100
-+++ calibre-5.35.0/setup/build.py	2022-01-21 19:30:03.513488821 +0100
+--- a/setup/build.py
++++ b/setup/build.py
 @@ -10,7 +10,7 @@ from collections import namedtuple
- from setup import Command, islinux, isbsd, isfreebsd, ismacos, ishaiku, SRC, iswindows
+ 
  isunix = islinux or ismacos or isbsd or ishaiku
  
 -from distutils import sysconfig
 +import distutils.sysconfig
  py_lib = '-lpython'+sysconfig.get_python_version()
- CompileCommand = namedtuple('CompileCommand', 'cmd src dest')
- LinkCommand = namedtuple('LinkCommand', 'cmd objects dest')
-diff -up calibre-5.35.0/setup/install.py.5~ calibre-5.35.0/setup/install.py
---- calibre-5.35.0/setup/install.py.5~	2022-01-21 19:30:03.513488821 +0100
-+++ calibre-5.35.0/setup/install.py	2022-01-21 19:31:17.852557698 +0100
+ 
+ class CompileCommand(NamedTuple):
+--- a/setup/install.py
++++ b/setup/install.py
 @@ -156,9 +156,8 @@ class Develop(Command):
      def install_env_module(self):
          import sysconfig

@@ -1,0 +1,13 @@
+--- a/setup/build.py
++++ b/setup/build.py
+@@ -10,7 +10,8 @@ from collections import namedtuple
+ 
+ isunix = islinux or ismacos or isbsd or ishaiku
+ 
+-py_lib = os.path.join(sys.prefix, 'libs', 'python%d%d.lib' % sys.version_info[:2])
++from distutils import sysconfig
++py_lib = '-lpython'+sysconfig.get_python_version()
+ 
+ class CompileCommand(NamedTuple):
+     cmd: List[str]
+

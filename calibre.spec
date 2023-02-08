@@ -14,9 +14,9 @@ Source4:	calibre-mount-helper
 Source100:	calibre.rpmlintrc
 Patch1:		%{name}-2.9.0-fdo-no_update.patch
 Patch2:		calibre-5.9.0-compile.patch
-Patch3:		calibre-3.18-python-fix.patch
-Patch4:		calibre-4.21.0-nousrlib.patch
-Patch5:		calibre-5.34.0-compile.patch
+Patch3:		calibre-6.12.0-python-fix.patch
+Patch4:		calibre-6.12.0-nousrlib.patch
+Patch5:		calibre-6.12.0-compile.patch
 
 BuildRequires:	pkgconfig(python3)
 BuildRequires:	imagemagick-devel
