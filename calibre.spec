@@ -9,7 +9,7 @@ Group:		Office
 License:	GPLv3
 URL:		https://calibre-ebook.com/
 Source0:	http://code.calibre-ebook.com/dist/src/%{name}-%{version}.tar.xz
-#Source1:	https://github.com/LibreOffice/dictionaries/archive/master/hyphenation-dictionaries.tar.gz
+Source1:	https://github.com/LibreOffice/dictionaries/archive/master/hyphenation-dictionaries.tar.gz
 # (mandian) FIXME: use this until version 3.x is packaged
 Source2:	https://github.com/mathjax/MathJax/archive/3.1.4/MathJax-3.1.4.tar.gz
 Source4:	calibre-mount-helper
