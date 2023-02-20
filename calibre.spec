@@ -81,6 +81,7 @@ BuildRequires:	pkgconfig(xkbcommon)
 
 Requires:	fonts-ttf-liberation
 Requires:	imagemagick
+Requires:	mathjax
 Requires:	python3dist(css-parser)
 Requires:	python3dist(odfpy)
 Requires:	python3dist(pillow)
@@ -219,7 +220,9 @@ PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py gui
 PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py resources \
 	--path-to-liberation_fonts %{_datadir}/fonts/TTF/liberation \
 	--system-liberation_fonts \
-	--path-to-hyphenation `pwd`/dictionaries-master
+	--path-to-hyphenation `pwd`/dictionaries-master \
+	--system-mathjax \
+	--path-to-mathjax %{_libdir}/javascript/mathjax
 PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py man_pages
 
 %install
