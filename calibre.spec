@@ -9,7 +9,9 @@ Group:		Office
 License:	GPLv3
 URL:		https://calibre-ebook.com/
 Source0:	http://code.calibre-ebook.com/dist/src/%{name}-%{version}.tar.xz
-Source1:	https://github.com/LibreOffice/dictionaries/archive/master/hyphenation-dictionaries.tar.gz
+#Source1:	https://github.com/LibreOffice/dictionaries/archive/master/hyphenation-dictionaries.tar.gz
+# (mandian) FIXME: use this until version 3.x is packaged
+Source2:	https://github.com/mathjax/MathJax/archive/3.1.4/MathJax-3.1.4.tar.gz
 Source4:	calibre-mount-helper
 Source100:	calibre.rpmlintrc
 Patch1:		calibre-2.9.0-fdo-no_update.patch
@@ -211,6 +213,7 @@ chmod -x recipes/*.recipe
 
 %build
 tar xf %{S:1}
+tar xf %{S:2}
 export OVERRIDE_CFLAGS="%{optflags}"
 PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py build
 PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py iso639
@@ -221,8 +224,9 @@ PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py resources \
 	--path-to-liberation_fonts %{_datadir}/fonts/TTF/liberation \
 	--system-liberation_fonts \
 	--path-to-hyphenation `pwd`/dictionaries-master \
-	--system-mathjax \
-	--path-to-mathjax %{_libdir}/javascript/mathjax
+	--path-to-mathjax `pwd`/MathJax-3.1.4
+#	--system-mathjax \
+#	--path-to-mathjax %{_libdir}/javascript/mathjax
 PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py man_pages
 
 %install
