@@ -3,7 +3,7 @@
 
 Name:		calibre
 Version:	6.13.0
-Release:	1
+Release:	2
 Summary:	E-book converter and library management
 Group:		Office
 License:	GPLv3
@@ -13,6 +13,8 @@ Source1:	https://github.com/LibreOffice/dictionaries/archive/master/hyphenation-
 # (mandian) FIXME: use this until version 3.x is packaged
 Source2:	https://github.com/mathjax/MathJax/archive/3.1.4/MathJax-3.1.4.tar.gz
 Source4:	calibre-mount-helper
+# (tpg) looks like this is missing
+Source5:	user-agent-data.json
 Source100:	calibre.rpmlintrc
 Patch1:		calibre-2.9.0-fdo-no_update.patch
 Patch2:		calibre-5.9.0-compile.patch
@@ -210,6 +212,8 @@ chmod -x src/calibre/*/*/*.py
 chmod -x src/calibre/*/*.py
 chmod -x src/calibre/*.py
 chmod -x recipes/*.recipe
+
+cp %{SOURCE5} resources/
 
 %build
 tar xf %{S:1}
