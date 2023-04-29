@@ -1,4 +1,4 @@
 sources:
-  MathJax-3.1.4.tar.gz: 404ca907dab3608c023e5b05d50bce2cda59ec01
   hyphenation-dictionaries.tar.gz: 26092ce2ac14470bf1f71f0f4c76687aa1058918
-  calibre-6.14.0.tar.xz: 4f0e3115dbb73f7593528b5a488f4fb275b701d2
+  calibre-6.17.0.tar.xz: 2185ef57190ecfc7a5b2841808e869d9d9ef4c70
+  MathJax-3.2.2.tar.gz: 4ed8e9faaefccdb1648394501a341a2309afcb65
