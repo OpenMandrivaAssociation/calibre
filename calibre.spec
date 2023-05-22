@@ -3,7 +3,7 @@
 
 Name:		calibre
 Version:	6.17.0
-Release:	1
+Release:	2
 Summary:	E-book converter and library management
 Group:		Office
 License:	GPLv3
@@ -91,13 +91,13 @@ Requires:	python3dist(odfpy)
 Requires:	python3dist(pillow)
 Requires:	python-dbus
 Requires:	python3dist(apsw)
+Requires:	python3dist(jeepney)
 Requires:	python3dist(lxml)
 Requires:	python3dist(mechanize)
 Requires:	python3dist(python-dateutil)
 Requires:	python3dist(beautifulsoup4)
 Requires:	python3dist(netifaces)
 Requires:	python3dist(dnspython)
-Requires:	python3dist(apsw)
 Requires:	python3dist(psutil)
 Requires:	python3dist(pygments)
 Requires:	python3dist(msgpack)
