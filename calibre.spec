@@ -3,7 +3,7 @@
 
 Name:		calibre
 Version:	6.24.0
-Release:	1
+Release:	2
 Summary:	E-book converter and library management
 Group:		Office
 License:	GPLv3
