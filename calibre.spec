@@ -25,6 +25,7 @@ Patch5:		calibre-6.12.0-compile.patch
 BuildRequires:	pkgconfig(python3)
 BuildRequires:	imagemagick-devel
 BuildRequires:	python3dist(setuptools)
+BuildRequires:	curl
 BuildRequires:	mathjax
 BuildRequires:	qmake-qt6
 BuildRequires:	qt6-cmake
@@ -46,6 +47,7 @@ BuildRequires:	cmake(Qt6WebEngineWidgets)
 BuildRequires:	pkgconfig(poppler-qt6) >= 0.12
 BuildRequires:	pkgconfig(poppler-glib)
 BuildRequires:	pkgconfig(mtdev)
+BuildRequires:	pkgconfig(libcurl)
 BuildRequires:	pkgconfig(libinput)
 BuildRequires:	pkgconfig(openssl)
 BuildRequires:	pkgconfig(uchardet)
