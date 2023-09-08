@@ -1,0 +1,21 @@
+diff -up calibre-6.26.0/setup/iso_codes.py.omv~ calibre-6.26.0/setup/iso_codes.py
+--- calibre-6.26.0/setup/iso_codes.py.omv~	2023-09-08 15:51:41.519817940 +0200
++++ calibre-6.26.0/setup/iso_codes.py	2023-09-08 15:53:52.830243438 +0200
+@@ -11,7 +11,7 @@ from setup import download_securely
+ 
+ 
+ class ISOData:
+-    URL = 'https://salsa.debian.org/iso-codes-team/iso-codes/-/archive/main/iso-codes-main.zip'
++    URL = '/tmp/iso-codes-main.zip'
+ 
+     def __init__(self):
+         self._zip_data = None
+@@ -19,7 +19,7 @@ class ISOData:
+     @property
+     def zip_data(self):
+         if self._zip_data is None:
+-            self._zip_data = BytesIO(download_securely(self.URL))
++            self._zip_data = open(self.URL, "rb")
+         return self._zip_data
+ 
+     def db_data(self, name: str) -> bytes:

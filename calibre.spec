@@ -3,6 +3,7 @@
 
 Name:		calibre
 Version:	6.26.0
+%define MathJax_version 3.2.2
 Release:	1
 Summary:	E-book converter and library management
 Group:		Office
@@ -11,7 +12,8 @@ URL:		https://calibre-ebook.com/
 Source0:	http://code.calibre-ebook.com/dist/src/%{name}-%{version}.tar.xz
 Source1:	https://github.com/LibreOffice/dictionaries/archive/master/hyphenation-dictionaries.tar.gz
 # (mandian) FIXME: use this until version 3.x is packaged
-Source2:	https://github.com/mathjax/MathJax/archive/3.2.2/MathJax-3.2.2.tar.gz
+Source2:	https://github.com/mathjax/MathJax/archive/%{MathJax_version}/MathJax-%{MathJax_version}.tar.gz
+Source3:	https://salsa.debian.org/iso-codes-team/iso-codes/-/archive/main/iso-codes-main.zip
 Source4:	calibre-mount-helper
 # (tpg) looks like this is missing
 Source5:	user-agent-data.json
@@ -21,6 +23,7 @@ Patch2:		calibre-5.9.0-compile.patch
 Patch3:		calibre-6.12.0-python-fix.patch
 Patch4:		calibre-6.12.0-nousrlib.patch
 Patch5:		calibre-6.12.0-compile.patch
+Patch6:		calibre-6.26.0-dont-download-stuff-at-build-time.patch
 
 BuildRequires:	pkgconfig(python3)
 BuildRequires:	imagemagick-devel
@@ -179,6 +182,8 @@ RTF, TXT, PDF and LRS.
 %prep
 %autosetup -p1
 
+cp %{S:3} /tmp
+
 # remove redundant / non-free fonts
 rm -rf resources/fonts/*/
 
@@ -228,7 +233,7 @@ PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py resources \
 	--path-to-liberation_fonts %{_datadir}/fonts/TTF/liberation \
 	--system-liberation_fonts \
 	--path-to-hyphenation `pwd`/dictionaries-master \
-	--path-to-mathjax `pwd`/MathJax-3.1.4
+	--path-to-mathjax `pwd`/MathJax-%{MathJax_version}
 #	--system-mathjax \
 #	--path-to-mathjax %{_libdir}/javascript/mathjax
 PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py man_pages
@@ -366,3 +371,5 @@ sed -i -e 's:localization/locale.zip:%{_datadir}/%{name}/localization/locales.zi
 rm -f %{buildroot}%{_bindir}/%{name}-uninstall
 
 install -m 0755 %{SOURCE4} %{buildroot}%{_bindir}/
+
+rm /tmp/$(basename %{S:3})
