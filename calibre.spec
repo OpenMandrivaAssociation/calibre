@@ -2,7 +2,7 @@
 %define _disable_lto 1
 
 Name:		calibre
-Version:	6.29.0
+Version:	7.0.0
 %define MathJax_version 3.2.2
 Release:	1
 Summary:	E-book converter and library management
@@ -27,7 +27,7 @@ Patch6:		calibre-6.26.0-dont-download-stuff-at-build-time.patch
 
 BuildRequires:	pkgconfig(python3)
 BuildRequires:	imagemagick-devel
-BuildRequires:	python3dist(setuptools)
+BuildRequires:	python%{pyver}dist(setuptools)
 BuildRequires:	mathjax
 BuildRequires:	qmake-qt6
 BuildRequires:	qt6-cmake
@@ -54,25 +54,26 @@ BuildRequires:	pkgconfig(openssl)
 BuildRequires:	pkgconfig(uchardet)
 BuildRequires:	podofo-devel
 BuildRequires:	desktop-file-utils
-BuildRequires:	python3dist(mechanize)
-BuildRequires:	python3dist(lxml)
-BuildRequires:	python3dist(python-dateutil)
-BuildRequires:	python3dist(pillow)
-BuildRequires:	python3dist(css-parser)
-BuildRequires:	python3dist(feedparser)
-BuildRequires:	python3dist(netifaces)
-BuildRequires:	python3dist(beautifulsoup4)
-BuildRequires:	python3dist(psutil)
-BuildRequires:	python3dist(pygments)
-BuildRequires:	python3dist(soupsieve)
-BuildRequires:	python3dist(msgpack)
-BuildRequires:	python3dist(regex)
-BuildRequires:	python3dist(html5-parser) >= 0.4.8
-BuildRequires:	python3dist(zeroconf)
+BuildRequires:	python%{pyver}dist(mechanize)
+BuildRequires:	python%{pyver}dist(lxml)
+BuildRequires:	python%{pyver}dist(python-dateutil)
+BuildRequires:	python%{pyver}dist(pillow)
+BuildRequires:	python%{pyver}dist(css-parser)
+BuildRequires:	python%{pyver}dist(feedparser)
+BuildRequires:	python%{pyver}dist(netifaces)
+BuildRequires:	python%{pyver}dist(beautifulsoup4)
+BuildRequires:	python%{pyver}dist(psutil)
+BuildRequires:	python%{pyver}dist(pygments)
+BuildRequires:	python%{pyver}dist(soupsieve)
+BuildRequires:	python%{pyver}dist(msgpack)
+BuildRequires:	python%{pyver}dist(regex)
+BuildRequires:	python%{pyver}dist(html5-parser) >= 0.4.8
+BuildRequires:	python%{pyver}dist(xxhash)
+BuildRequires:	python%{pyver}dist(zeroconf)
 BuildRequires:	python-html2text
 BuildRequires:	bash-completion
-#BuildRequires:	python3dist(zeroconf)
-BuildRequires:	python3dist(markdown) 
+#BuildRequires:	python%{pyver}dist(zeroconf)
+BuildRequires:	python%{pyver}dist(markdown) 
 BuildRequires:	xdg-utils
 BuildRequires:	chmlib-devel
 BuildRequires:	pkgconfig(sqlite3)
@@ -80,7 +81,7 @@ BuildRequires:	pkgconfig(icu-i18n)
 BuildRequires:	unzip
 BuildRequires:	libwmf-devel
 BuildRequires:	libmtp-devel
-BuildRequires:	python3dist(apsw)
+BuildRequires:	python%{pyver}dist(apsw)
 BuildRequires:	pkgconfig(hunspell)
 BuildRequires:	libstemmer-devel
 BuildRequires:	cmake(XKB)
@@ -89,31 +90,31 @@ BuildRequires:	pkgconfig(xkbcommon)
 Requires:	fonts-ttf-liberation
 Requires:	imagemagick
 Requires:	mathjax
-Requires:	python3dist(css-parser)
-Requires:	python3dist(odfpy)
-Requires:	python3dist(pillow)
+Requires:	python%{pyver}dist(css-parser)
+Requires:	python%{pyver}dist(odfpy)
+Requires:	python%{pyver}dist(pillow)
 Requires:	python-dbus
-Requires:	python3dist(apsw)
-Requires:	python3dist(jeepney)
-Requires:	python3dist(lxml)
-Requires:	python3dist(mechanize)
-Requires:	python3dist(python-dateutil)
-Requires:	python3dist(beautifulsoup4)
-Requires:	python3dist(netifaces)
-Requires:	python3dist(dnspython)
-Requires:	python3dist(psutil)
-Requires:	python3dist(pygments)
-Requires:	python3dist(msgpack)
-Requires:	python3dist(regex)
-Requires:	python3dist(six)
-Requires:	python3dist(markdown)
-Requires:	python3dist(feedparser)
-Requires:	python3dist(soupsieve)
+Requires:	python%{pyver}dist(apsw)
+Requires:	python%{pyver}dist(jeepney)
+Requires:	python%{pyver}dist(lxml)
+Requires:	python%{pyver}dist(mechanize)
+Requires:	python%{pyver}dist(python-dateutil)
+Requires:	python%{pyver}dist(beautifulsoup4)
+Requires:	python%{pyver}dist(netifaces)
+Requires:	python%{pyver}dist(dnspython)
+Requires:	python%{pyver}dist(psutil)
+Requires:	python%{pyver}dist(pygments)
+Requires:	python%{pyver}dist(msgpack)
+Requires:	python%{pyver}dist(regex)
+Requires:	python%{pyver}dist(six)
+Requires:	python%{pyver}dist(markdown)
+Requires:	python%{pyver}dist(feedparser)
+Requires:	python%{pyver}dist(soupsieve)
 Requires:	python-sip
 Requires:	python-qt6
 Requires:	python-qt6-webengine
 Requires:	python-html5-parser
-Requires:	python3dist(html5-parser)
+Requires:	python%{pyver}dist(html5-parser)
 # FIXME why is this not autodetected?
 Requires:	python-zeroconf
 Requires:	optipng
