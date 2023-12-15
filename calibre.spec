@@ -2,7 +2,7 @@
 %define _disable_lto 1
 
 Name:		calibre
-Version:	7.0.0
+Version:	7.2.0
 %define MathJax_version 3.2.2
 Release:	1
 Summary:	E-book converter and library management
@@ -113,6 +113,7 @@ Requires:	python%{pyver}dist(soupsieve)
 Requires:	python-sip
 Requires:	python-qt6
 Requires:	python-qt6-webengine
+Requires:	qt6-qtwebengine
 Requires:	python-html5-parser
 Requires:	python%{pyver}dist(html5-parser)
 # FIXME why is this not autodetected?
