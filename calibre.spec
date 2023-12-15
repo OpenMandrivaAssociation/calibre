@@ -4,7 +4,7 @@
 Name:		calibre
 Version:	7.2.0
 %define MathJax_version 3.2.2
-Release:	1
+Release:	2
 Summary:	E-book converter and library management
 Group:		Office
 License:	GPLv3
@@ -110,6 +110,7 @@ Requires:	python%{pyver}dist(six)
 Requires:	python%{pyver}dist(markdown)
 Requires:	python%{pyver}dist(feedparser)
 Requires:	python%{pyver}dist(soupsieve)
+Requires:	python%{pyver}dist(xxhash)
 Requires:	python-sip
 Requires:	python-qt6
 Requires:	python-qt6-webengine
