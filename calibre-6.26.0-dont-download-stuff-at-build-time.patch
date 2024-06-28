@@ -1,21 +1,30 @@
-diff -up calibre-6.26.0/setup/iso_codes.py.omv~ calibre-6.26.0/setup/iso_codes.py
---- calibre-6.26.0/setup/iso_codes.py.omv~	2023-09-08 15:51:41.519817940 +0200
-+++ calibre-6.26.0/setup/iso_codes.py	2023-09-08 15:53:52.830243438 +0200
-@@ -11,7 +11,7 @@ from setup import download_securely
+diff -up calibre-7.13.0/setup/iso_codes.py.6~ calibre-7.13.0/setup/iso_codes.py
+--- calibre-7.13.0/setup/iso_codes.py.6~	2024-06-28 05:34:16.000000000 +0200
++++ calibre-7.13.0/setup/iso_codes.py	2024-06-28 14:56:53.520829142 +0200
+@@ -15,7 +15,7 @@ from setup import Command, download_secu
  
- 
- class ISOData:
+ class ISOData(Command):
+     description = 'Get ISO codes name localization data'
 -    URL = 'https://salsa.debian.org/iso-codes-team/iso-codes/-/archive/main/iso-codes-main.zip'
 +    URL = '/tmp/iso-codes-main.zip'
  
+     def add_options(self, parser):
+         with suppress(optparse.OptionConflictError):  # ignore if option already added
+@@ -31,7 +31,7 @@ class ISOData(Command):
+                 assert len(top) == 1
+                 self.top_level = top.pop()
+             else:
+-                self._zip_data = BytesIO(download_securely(self.URL))
++                self._zip_data = open(self.URL, "rb")
+ 
      def __init__(self):
-         self._zip_data = None
-@@ -19,7 +19,7 @@ class ISOData:
-     @property
-     def zip_data(self):
-         if self._zip_data is None:
+         super().__init__()
+@@ -51,7 +51,7 @@ class ISOData(Command):
+         name = name.split('.', 1)[0]
+         pat = f'{self.top_level}/{name}/*.po'
+         if self.zip_data is None:
 -            self._zip_data = BytesIO(download_securely(self.URL))
 +            self._zip_data = open(self.URL, "rb")
-         return self._zip_data
- 
-     def db_data(self, name: str) -> bytes:
+         with zipfile.ZipFile(self.zip_data) as zf:
+             for name in fnmatch.filter(zf.namelist(), pat):
+                 dest = os.path.join(output_dir, name.split('/')[-1])
