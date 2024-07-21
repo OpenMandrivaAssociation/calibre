@@ -1,0 +1,12 @@
+diff -uraN calibre-7.15.0/setup/iso_codes.py omv-calibre-7.15.0/setup/iso_codes.py
+--- calibre-7.15.0/setup/iso_codes.py	2024-07-19 05:13:30.000000000 +0200
++++ omv-calibre-7.15.0/setup/iso_codes.py	2024-07-21 14:46:23.707785953 +0200
+@@ -16,7 +16,7 @@
+ 
+ @lru_cache(2)
+ def iso_codes_data():
+-    URL = 'https://salsa.debian.org/iso-codes-team/iso-codes/-/archive/main/iso-codes-main.zip'
++    URL = '/tmp/iso-codes-main.zip'
+     return download_securely(URL)
+ 
+ 
