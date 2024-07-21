@@ -23,7 +23,7 @@ Patch2:		calibre-5.9.0-compile.patch
 Patch3:		calibre-6.12.0-python-fix.patch
 Patch4:		calibre-6.12.0-nousrlib.patch
 Patch5:		calibre-6.12.0-compile.patch
-Patch6:		calibre-6.26.0-dont-download-stuff-at-build-time.patch
+Patch6:		calibre-7.15.0-dont-download-stuff-at-build-time.patch
 
 BuildRequires:	pkgconfig(python3)
 BuildRequires:	imagemagick-devel
