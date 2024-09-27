@@ -17,6 +17,7 @@ Source3:	https://salsa.debian.org/iso-codes-team/iso-codes/-/archive/main/iso-co
 Source4:	calibre-mount-helper
 # (tpg) looks like this is missing
 Source5:	user-agent-data.json
+Source6:	https://github.com/rhasspy/piper/raw/refs/heads/master/VOICES.md
 Source100:	calibre.rpmlintrc
 Patch1:		calibre-2.9.0-fdo-no_update.patch
 Patch2:		calibre-5.9.0-compile.patch
@@ -232,6 +233,7 @@ PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py iso_data iso639 i
 	--path-to-isocodes %{S:3}
 PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py gui
 PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py resources \
+	--path-to-piper_voices %{S:6} \
 	--path-to-liberation_fonts %{_datadir}/fonts/TTF/liberation \
 	--system-liberation_fonts \
 	--path-to-hyphenation `pwd`/dictionaries-master \
