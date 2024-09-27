@@ -1,15 +1,15 @@
-diff -up calibre-7.2.0/setup/build.py.2~ calibre-7.2.0/setup/build.py
---- calibre-7.2.0/setup/build.py.2~	2023-12-15 01:57:56.000000000 +0100
-+++ calibre-7.2.0/setup/build.py	2023-12-15 16:22:26.165053005 +0100
-@@ -684,6 +684,7 @@ project-factory = "pyqtbuild:PyQtProject
+diff -up calibre-7.19.0/setup/build.py.2~ calibre-7.19.0/setup/build.py
+--- calibre-7.19.0/setup/build.py.2~	2024-09-27 05:04:40.000000000 +0200
++++ calibre-7.19.0/setup/build.py	2024-09-27 14:10:11.825419378 +0200
+@@ -679,6 +679,7 @@ project-factory = "pyqtbuild:PyQtProject
  
  [tool.sip.project]
  sip-files-dir = "."
 +sip-include-dirs = ["/usr/share/sip/PyQt6"]
  {abi_version}
  
- [tool.sip.builder]
-@@ -703,6 +704,7 @@ exceptions = {needs_exceptions}
+ [project]
+@@ -701,6 +702,7 @@ exceptions = {needs_exceptions}
  include-dirs = {ext.inc_dirs}
  qmake-QT = {ext.qt_modules}
  sip-file = {os.path.basename(sipf)!r}
@@ -17,10 +17,10 @@ diff -up calibre-7.2.0/setup/build.py.2~ calibre-7.2.0/setup/build.py
  ''')
          shutil.copy2(sipf, src_dir)
  
-diff -up calibre-7.2.0/setup/extensions.json.2~ calibre-7.2.0/setup/extensions.json
---- calibre-7.2.0/setup/extensions.json.2~	2023-12-15 01:57:56.000000000 +0100
-+++ calibre-7.2.0/setup/extensions.json	2023-12-15 16:21:40.249923854 +0100
-@@ -165,7 +165,7 @@
+diff -up calibre-7.19.0/setup/extensions.json.2~ calibre-7.19.0/setup/extensions.json
+--- calibre-7.19.0/setup/extensions.json.2~	2024-09-27 05:04:40.000000000 +0200
++++ calibre-7.19.0/setup/extensions.json	2024-09-27 14:05:48.290086037 +0200
+@@ -170,7 +170,7 @@
          "sources": "calibre/utils/imageops/imageops.cpp calibre/utils/imageops/quantize.cpp calibre/utils/imageops/ordered_dither.cpp",
          "headers": "calibre/utils/imageops/imageops.h",
          "sip_files": "calibre/utils/imageops/imageops.sip",

@@ -2,7 +2,7 @@
 %define _disable_lto 1
 
 Name:		calibre
-Version:	7.15.0
+Version:	7.19.0
 %define MathJax_version 3.2.2
 Release:	1
 Summary:	E-book converter and library management
@@ -23,7 +23,7 @@ Patch2:		calibre-5.9.0-compile.patch
 Patch3:		calibre-6.12.0-python-fix.patch
 Patch4:		calibre-6.12.0-nousrlib.patch
 Patch5:		calibre-6.12.0-compile.patch
-Patch6:		calibre-6.26.0-dont-download-stuff-at-build-time.patch
+Patch6:		calibre-7.19.0-fix-build-with-predownloaded-isocodes.patch
 
 BuildRequires:	pkgconfig(python3)
 BuildRequires:	imagemagick-devel
@@ -228,8 +228,10 @@ tar xf %{S:1}
 tar xf %{S:2}
 export OVERRIDE_CFLAGS="%{optflags}"
 PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py build
-PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py iso639
-PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py iso3166
+PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py iso639 \
+	--path-to-isocodes %{S:3}
+PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py iso3166 \
+	--path-to-isocodes %{S:3}
 PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py translations
 PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py gui
 PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py resources \

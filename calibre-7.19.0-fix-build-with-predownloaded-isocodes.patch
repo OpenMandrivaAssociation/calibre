@@ -1,0 +1,12 @@
+diff -up calibre-7.19.0/setup/iso_codes.py.omv~ calibre-7.19.0/setup/iso_codes.py
+--- calibre-7.19.0/setup/iso_codes.py.omv~	2024-09-27 14:45:57.569874752 +0200
++++ calibre-7.19.0/setup/iso_codes.py	2024-09-27 14:50:10.007017886 +0200
+@@ -34,7 +34,7 @@ class ISOData(Command):
+             with open(opts.path_to_isocodes, 'rb') as f:
+                 self._zip_data = f.read()
+             # get top level directory
+-            top = {item.split('/')[0] for item in zipfile.ZipFile(self.zip_data).namelist()}
++            top = {item.split('/')[0] for item in zipfile.ZipFile(BytesIO(self._zip_data)).namelist()}
+             assert len(top) == 1
+             self.top_level_filename = top.pop()
+ 
