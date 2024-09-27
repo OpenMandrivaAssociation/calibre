@@ -228,6 +228,8 @@ tar xf %{S:1}
 tar xf %{S:2}
 export OVERRIDE_CFLAGS="%{optflags}"
 PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py build
+PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py iso_data \
+	--path-to-isocodes %{S:3}
 PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py iso639 \
 	--path-to-isocodes %{S:3}
 PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py iso3166 \
