@@ -53,6 +53,7 @@ BuildRequires:	pkgconfig(mtdev)
 BuildRequires:	pkgconfig(libinput)
 BuildRequires:	pkgconfig(openssl)
 BuildRequires:	pkgconfig(uchardet)
+BuildRequires:	pkgconfig(libavutil)
 BuildRequires:	podofo-devel
 BuildRequires:	desktop-file-utils
 BuildRequires:	python%{pyver}dist(mechanize)
