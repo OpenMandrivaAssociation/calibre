@@ -2,7 +2,7 @@
 %define _disable_lto 1
 
 Name:		calibre
-Version:	7.19.0
+Version:	7.22.0
 %define MathJax_version 3.2.2
 Release:	1
 Summary:	E-book converter and library management
@@ -229,7 +229,8 @@ tar xf %{S:1}
 tar xf %{S:2}
 export OVERRIDE_CFLAGS="%{optflags}"
 PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py build
-PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py iso_data iso639 iso3166 translations \
+PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py translations
+PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py iso_data iso639 iso3166 \
 	--path-to-isocodes %{S:3}
 PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py gui
 PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py resources \
