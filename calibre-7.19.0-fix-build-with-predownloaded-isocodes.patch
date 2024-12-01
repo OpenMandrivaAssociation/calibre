@@ -1,6 +1,6 @@
-diff -up calibre-7.19.0/setup/iso_codes.py.omv~ calibre-7.19.0/setup/iso_codes.py
---- calibre-7.19.0/setup/iso_codes.py.omv~	2024-09-27 14:45:57.569874752 +0200
-+++ calibre-7.19.0/setup/iso_codes.py	2024-09-27 14:50:10.007017886 +0200
+diff -up calibre-7.22.0/setup/iso_codes.py.6~ calibre-7.22.0/setup/iso_codes.py
+--- calibre-7.22.0/setup/iso_codes.py.6~	2024-11-29 04:53:48.000000000 +0100
++++ calibre-7.22.0/setup/iso_codes.py	2024-12-01 02:46:00.355494910 +0100
 @@ -34,7 +34,7 @@ class ISOData(Command):
              with open(opts.path_to_isocodes, 'rb') as f:
                  self._zip_data = f.read()
@@ -10,3 +10,77 @@ diff -up calibre-7.19.0/setup/iso_codes.py.omv~ calibre-7.19.0/setup/iso_codes.p
              assert len(top) == 1
              self.top_level_filename = top.pop()
  
+diff -up calibre-7.22.0/setup/translations.py.6~ calibre-7.22.0/setup/translations.py
+--- calibre-7.22.0/setup/translations.py.6~	2024-11-29 04:53:48.000000000 +0100
++++ calibre-7.22.0/setup/translations.py	2024-12-01 02:48:43.057413452 +0100
+@@ -9,6 +9,7 @@ import errno
+ import glob
+ import hashlib
+ import json
++import optparse
+ import os
+ import re
+ import shlex
+@@ -21,6 +22,7 @@ import time
+ from collections import defaultdict
+ from functools import partial
+ from locale import normalize as normalize_locale
++from contextlib import suppress
+ 
+ from polyglot.builtins import codepoint_to_chr, iteritems
+ from setup import Command, __appname__, __version__, build_cache_dir, dump_json, edit_file, is_ci, require_git_master
+@@ -251,6 +253,10 @@ class Translations(POT):  # {{{
+     DEST = os.path.join(os.path.dirname(POT.SRC), 'resources', 'localization',
+             'locales')
+ 
++    def add_options(self, parser):
++        with suppress(optparse.OptionConflictError):  # ignore if option already added
++            parser.add_option('--path-to-isocodes', help='Path to previously downloaded iso-codes-main.zip')
++
+     @property
+     def cache_dir(self):
+         ans = self.j(build_cache_dir(), 'translations')
+@@ -300,6 +306,7 @@ class Translations(POT):  # {{{
+         return locale, os.path.join(self.DEST, locale, 'messages.mo')
+ 
+     def run(self, opts):
++        iso_data.run(opts)
+         self.compile_main_translations()
+         self.compile_content_server_translations()
+         self.freeze_locales()
+@@ -767,12 +774,17 @@ class ISO639(Command):  # {{{
+     DEST = os.path.join(os.path.dirname(POT.SRC), 'resources', 'localization',
+             'iso639.calibre_msgpack')
+ 
++    def add_options(self, parser):
++        with suppress(optparse.OptionConflictError):  # ignore if option already added
++            parser.add_option('--path-to-isocodes', help='Path to previously downloaded iso-codes-main.zip')
++
+     def run(self, opts):
+         dest = self.DEST
+         base = self.d(dest)
+         if not os.path.exists(base):
+             os.makedirs(base)
+         self.info('Packing ISO-639 codes to', dest)
++        iso_data.run(opts)
+         root = json.loads(iso_data.db_data('iso_639-3.json'))
+         entries = root['639-3']
+         by_2 = {}
+@@ -828,12 +840,17 @@ class ISO3166(ISO639):  # {{{
+     DEST = os.path.join(os.path.dirname(POT.SRC), 'resources', 'localization',
+             'iso3166.calibre_msgpack')
+ 
++    def add_options(self, parser):
++        with suppress(optparse.OptionConflictError):  # ignore if option already added
++            parser.add_option('--path-to-isocodes', help='Path to previously downloaded iso-codes-main.zip')
++
+     def run(self, opts):
+         dest = self.DEST
+         base = self.d(dest)
+         if not os.path.exists(base):
+             os.makedirs(base)
+         self.info('Packing ISO-3166 codes to', dest)
++        iso_data.run(opts)
+         db = json.loads(iso_data.db_data('iso_3166-1.json'))
+         codes = set()
+         three_map = {}
