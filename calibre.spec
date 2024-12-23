@@ -2,7 +2,7 @@
 %define _disable_lto 1
 
 Name:		calibre
-Version:	7.22.0
+Version:	7.23.0
 %define MathJax_version 3.2.2
 Release:	1
 Summary:	E-book converter and library management
