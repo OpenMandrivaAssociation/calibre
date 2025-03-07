@@ -1,13 +1,14 @@
---- a/setup/build.py
-+++ b/setup/build.py
-@@ -10,7 +10,8 @@ from collections import namedtuple
+diff -up calibre-7.26.0/setup/build.py.3~ calibre-7.26.0/setup/build.py
+--- calibre-7.26.0/setup/build.py.3~	2025-03-07 14:32:47.211359285 +0100
++++ calibre-7.26.0/setup/build.py	2025-03-07 14:34:23.289442328 +0100
+@@ -21,8 +21,8 @@ from setup import SRC, Command, isbsd, i
  
  isunix = islinux or ismacos or isbsd or ishaiku
  
--py_lib = os.path.join(sys.prefix, 'libs', 'python%d%d.lib' % sys.version_info[:2])
+-py_lib = os.path.join(sys.prefix, 'libs', 'python{}{}.lib'.format(*sys.version_info[:2]))
+-
 +from distutils import sysconfig
 +py_lib = '-lpython'+sysconfig.get_python_version()
  
  class CompileCommand(NamedTuple):
-     cmd: List[str]
-
+     cmd: list[str]
