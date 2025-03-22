@@ -1,0 +1,24 @@
+diff -up calibre-8.0.1/src/calibre/headless/headless_integration.cpp.omv~ calibre-8.0.1/src/calibre/headless/headless_integration.cpp
+--- calibre-8.0.1/src/calibre/headless/headless_integration.cpp.omv~	2025-03-22 04:03:04.816397459 +0100
++++ calibre-8.0.1/src/calibre/headless/headless_integration.cpp	2025-03-22 04:04:44.515598606 +0100
+@@ -27,7 +27,7 @@ QT_BEGIN_NAMESPACE
+ 
+ 
+ #ifndef __APPLE__
+-class GenericUnixServices : public QGenericUnixServices {
++class GenericUnixServices : public QDesktopUnixServices {
+     /* We must return desktop environment as UNKNOWN otherwise other parts of
+      * Qt will try to query the nativeInterface() without checking if it exists
+      * leading to a segfault.  For example, defaultHintStyleFromMatch() queries
+diff -up calibre-8.0.1/src/calibre/headless/headless_integration.h.omv~ calibre-8.0.1/src/calibre/headless/headless_integration.h
+--- calibre-8.0.1/src/calibre/headless/headless_integration.h.omv~	2025-03-22 04:02:53.606340360 +0100
++++ calibre-8.0.1/src/calibre/headless/headless_integration.h	2025-03-22 04:03:03.165552438 +0100
+@@ -3,7 +3,7 @@
+ #include <qpa/qplatformintegration.h>
+ #include <qpa/qplatformscreen.h>
+ #include <qpa/qplatformservices.h>
+-#include <QtGui/private/qgenericunixservices_p.h>
++#include <QtGui/private/qdesktopunixservices_p.h>
+ #include <QScopedPointer>
+ 
+ QT_BEGIN_NAMESPACE

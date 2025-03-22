@@ -2,9 +2,9 @@
 %define _disable_lto 1
 
 Name:		calibre
-Version:	7.26.0
+Version:	8.0.1
 %define MathJax_version 3.2.2
-Release:	2
+Release:	1
 Summary:	E-book converter and library management
 Group:		Office
 License:	GPLv3
@@ -19,13 +19,6 @@ Source4:	calibre-mount-helper
 Source5:	user-agent-data.json
 Source6:	https://github.com/rhasspy/piper/raw/refs/heads/master/VOICES.md
 Source100:	calibre.rpmlintrc
-Patch1:		calibre-2.9.0-fdo-no_update.patch
-Patch2:		calibre-5.9.0-compile.patch
-Patch3:		calibre-6.12.0-python-fix.patch
-Patch4:		calibre-6.12.0-nousrlib.patch
-Patch5:		calibre-6.12.0-compile.patch
-Patch6:		calibre-7.19.0-fix-build-with-predownloaded-isocodes.patch
-
 BuildRequires:	pkgconfig(python3)
 BuildRequires:	imagemagick-devel
 BuildRequires:	python%{pyver}dist(setuptools)
@@ -86,7 +79,6 @@ BuildRequires:	libmtp-devel
 BuildRequires:	python%{pyver}dist(apsw)
 BuildRequires:	pkgconfig(hunspell)
 BuildRequires:	libstemmer-devel
-BuildRequires:	cmake(XKB)
 BuildRequires:	pkgconfig(xkbcommon)
 
 Requires:	fonts-ttf-liberation
@@ -128,6 +120,15 @@ Requires:	fonts-ttf-liberation
 # E-mail functionality requires this package
 # see https://bugs.launchpad.net/calibre/+bug/739073
 Requires:	python-dnspython
+
+%patchlist
+calibre-2.9.0-fdo-no_update.patch
+calibre-5.9.0-compile.patch
+calibre-6.12.0-python-fix.patch
+calibre-6.12.0-nousrlib.patch
+calibre-6.12.0-compile.patch
+calibre-7.19.0-fix-build-with-predownloaded-isocodes.patch
+calibre-8.0.1-qt-6.9.patch
 
 %description
 Calibre is meant to be a complete e-library solution. It includes library
