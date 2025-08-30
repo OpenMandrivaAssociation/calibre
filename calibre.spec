@@ -4,7 +4,7 @@
 Name:		calibre
 Version:	8.5.0
 %define MathJax_version 3.2.2
-Release:	2
+Release:	3
 Summary:	E-book converter and library management
 Group:		Office
 License:	GPLv3
