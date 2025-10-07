@@ -1,0 +1,12 @@
+diff -up calibre-8.12.0/src/calibre/headless/main.cpp.omv~ calibre-8.12.0/src/calibre/headless/main.cpp
+--- calibre-8.12.0/src/calibre/headless/main.cpp.omv~	2025-10-06 19:19:34.530045006 +0200
++++ calibre-8.12.0/src/calibre/headless/main.cpp	2025-10-06 19:19:42.146432990 +0200
+@@ -6,7 +6,7 @@ QT_BEGIN_NAMESPACE
+ class HeadlessIntegrationPlugin : public QPlatformIntegrationPlugin
+ {
+     Q_OBJECT
+-    Q_PLUGIN_METADATA(IID QPlatformIntegrationFactoryInterface_iid FILE "headless.json")
++    Q_PLUGIN_METADATA(IID "QPlatformIntegrationFactoryInterface_iid" FILE "headless.json")
+ public:
+     QPlatformIntegration *create(const QString&, const QStringList&);
+ };

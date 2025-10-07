@@ -1,0 +1,13 @@
+diff -up calibre-8.12.0/src/calibre/headless/CMakeLists.txt.omv~ calibre-8.12.0/src/calibre/headless/CMakeLists.txt
+--- calibre-8.12.0/src/calibre/headless/CMakeLists.txt.omv~	2025-10-06 19:38:44.419631769 +0200
++++ calibre-8.12.0/src/calibre/headless/CMakeLists.txt	2025-10-06 19:39:35.343810878 +0200
+@@ -1,7 +1,8 @@
+ cmake_minimum_required(VERSION 3.21)
+ project(headless)
+ set(CMAKE_AUTOMOC ON)
+-find_package(Qt6Gui REQUIRED)
++#find_package(Qt6Gui REQUIRED)
++find_package(Qt6 6.10 REQUIRED COMPONENTS Gui GuiPrivate Core CorePrivate)
+ add_library(headless MODULE main.cpp headless_backingstore.cpp headless_integration.cpp)
+ set_property(TARGET headless PROPERTY QT_PLUGIN_TYPE "platforms")
+ set_property(TARGET headless PROPERTY QT_PLUGIN_CLASS_NAME "HeadlessIntegrationPlugin")

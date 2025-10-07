@@ -2,9 +2,9 @@
 %define _disable_lto 1
 
 Name:		calibre
-Version:	8.5.0
+Version:	8.12.0
 %define MathJax_version 3.2.2
-Release:	3
+Release:	1
 Summary:	E-book converter and library management
 Group:		Office
 License:	GPLv3
@@ -17,7 +17,7 @@ Source3:	https://salsa.debian.org/iso-codes-team/iso-codes/-/archive/main/iso-co
 Source4:	calibre-mount-helper
 # (tpg) looks like this is missing
 Source5:	user-agent-data.json
-Source6:	https://github.com/rhasspy/piper/raw/refs/heads/master/VOICES.md
+Source6:	https://huggingface.co/rhasspy/piper-voices/raw/main/voices.json
 Source100:	calibre.rpmlintrc
 BuildRequires:	pkgconfig(python3)
 BuildRequires:	imagemagick-devel
@@ -65,6 +65,8 @@ BuildRequires:	python%{pyver}dist(regex)
 BuildRequires:	python%{pyver}dist(html5-parser) >= 0.4.8
 BuildRequires:	python%{pyver}dist(xxhash)
 BuildRequires:	python%{pyver}dist(zeroconf)
+BuildRequires:	python%{pyver}dist(onnxruntime)
+BuildRequires:	pkgconfig(espeak-ng)
 BuildRequires:	python-html2text
 BuildRequires:	bash-completion
 #BuildRequires:	python%{pyver}dist(zeroconf)
@@ -80,6 +82,7 @@ BuildRequires:	python%{pyver}dist(apsw)
 BuildRequires:	pkgconfig(hunspell)
 BuildRequires:	libstemmer-devel
 BuildRequires:	pkgconfig(xkbcommon)
+BuildRequires:	pkgconfig(espeak-ng)
 
 Requires:	fonts-ttf-liberation
 Requires:	imagemagick
@@ -128,6 +131,8 @@ calibre-6.12.0-python-fix.patch
 calibre-6.12.0-nousrlib.patch
 calibre-6.12.0-compile.patch
 calibre-7.19.0-fix-build-with-predownloaded-isocodes.patch
+calibre-qt-6.10.patch
+calibre-IID-compile.patch
 
 %description
 Calibre is meant to be a complete e-library solution. It includes library
@@ -229,6 +234,9 @@ cp %{SOURCE5} resources/
 tar xf %{S:1}
 tar xf %{S:2}
 export OVERRIDE_CFLAGS="%{optflags}"
+# calibre's own "headless" platform plugin doesn't seem to work,
+# but fortunately Qt's "offscreen" platform does what we need
+export CALIBRE_HEADLESS_PLATFORM=offscreen
 PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py build
 PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py iso_data iso639 iso3166 translations \
 	--path-to-isocodes %{S:3}
