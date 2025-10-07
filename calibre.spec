@@ -66,6 +66,7 @@ BuildRequires:	python%{pyver}dist(html5-parser) >= 0.4.8
 BuildRequires:	python%{pyver}dist(xxhash)
 BuildRequires:	python%{pyver}dist(zeroconf)
 BuildRequires:	python%{pyver}dist(onnxruntime)
+BuildRequires:	pkgconfig(libonnxruntime)
 BuildRequires:	pkgconfig(espeak-ng)
 BuildRequires:	python-html2text
 BuildRequires:	bash-completion
