@@ -71,6 +71,7 @@ BuildRequires:	pkgconfig(libonnxruntime)
 BuildRequires:	pkgconfig(espeak-ng)
 BuildRequires:	python-html2text
 BuildRequires:	bash-completion
+BuildRequires:	pkgconfig(iso-codes)
 #BuildRequires:	python%{pyver}dist(zeroconf)
 BuildRequires:	python%{pyver}dist(markdown) 
 BuildRequires:	xdg-utils
@@ -235,7 +236,6 @@ cp %{SOURCE5} resources/
 %build
 tar xf %{S:1}
 tar xf %{S:2}
-tar xf %{S:3}
 export OVERRIDE_CFLAGS="%{optflags}"
 # calibre's own "headless" platform plugin doesn't seem to work,
 # but fortunately Qt's "offscreen" platform does what we need
