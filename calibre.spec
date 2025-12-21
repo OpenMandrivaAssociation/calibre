@@ -235,6 +235,7 @@ cp %{SOURCE5} resources/
 %build
 tar xf %{S:1}
 tar xf %{S:2}
+tar xf %{S:3}
 export OVERRIDE_CFLAGS="%{optflags}"
 # calibre's own "headless" platform plugin doesn't seem to work,
 # but fortunately Qt's "offscreen" platform does what we need
