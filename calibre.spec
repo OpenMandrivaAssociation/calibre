@@ -19,6 +19,7 @@ Source4:	calibre-mount-helper
 Source5:	user-agent-data.json
 Source6:	https://huggingface.co/rhasspy/piper-voices/raw/main/voices.json
 Source100:	calibre.rpmlintrc
+BuildRequires:	make
 BuildRequires:	pkgconfig(python3)
 BuildRequires:	imagemagick-devel
 BuildRequires:	python%{pyver}dist(setuptools)
