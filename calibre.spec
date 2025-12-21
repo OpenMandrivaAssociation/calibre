@@ -132,7 +132,7 @@ calibre-5.9.0-compile.patch
 calibre-6.12.0-python-fix.patch
 calibre-6.12.0-nousrlib.patch
 calibre-6.12.0-compile.patch
-calibre-7.19.0-fix-build-with-predownloaded-isocodes.patch
+#calibre-7.19.0-fix-build-with-predownloaded-isocodes.patch
 #calibre-qt-6.10.patch
 calibre-IID-compile.patch
 
