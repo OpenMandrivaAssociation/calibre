@@ -51,6 +51,7 @@ BuildRequires:	pkgconfig(libavutil)
 BuildRequires:	podofo-devel
 BuildRequires:	desktop-file-utils
 BuildRequires:	python%{pyver}dist(mechanize)
+BuildRequires:	python%{pyver}dist(legacy-cgi)
 BuildRequires:	python%{pyver}dist(lxml)
 BuildRequires:	python%{pyver}dist(python-dateutil)
 BuildRequires:	python%{pyver}dist(pillow)
