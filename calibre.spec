@@ -241,9 +241,9 @@ export OVERRIDE_CFLAGS="%{optflags}"
 export CALIBRE_HEADLESS_PLATFORM=offscreen
 PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py build
 PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py iso_data iso639 iso3166 translations \
-	--path-to-isocodes %{S:3}
+#	--path-to-isocodes %{S:3}
 PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py translations \
-	--path-to-isocodes %{S:3}
+#	--path-to-isocodes %{S:3}
 PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py gui
 PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py resources \
 	--path-to-piper_voices %{S:6} \
