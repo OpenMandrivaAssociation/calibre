@@ -2,9 +2,9 @@
 %define _disable_lto 1
 
 Name:		calibre
-Version:	8.14.0
+Version:	8.16.2
 %define MathJax_version 3.2.2
-Release:	3
+Release:	1
 Summary:	E-book converter and library management
 Group:		Office
 License:	GPLv3
@@ -254,7 +254,9 @@ PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py resources \
 	--path-to-mathjax `pwd`/MathJax-%{MathJax_version}
 #	--system-mathjax \
 #	--path-to-mathjax %{_libdir}/javascript/mathjax
-PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py man_pages
+# FIXME man pages currently fail to build, but aren't 100% required,
+# so commenting out the attempt to build them is better than nothing...
+#PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py man_pages
 
 %install
 mkdir -p %{buildroot}%{_datadir}

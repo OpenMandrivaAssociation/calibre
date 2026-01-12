@@ -1,7 +1,6 @@
-diff -up calibre-8.12.0/setup/iso_codes.py.6~ calibre-8.12.0/setup/iso_codes.py
-diff -up calibre-8.12.0/setup/translations.py.6~ calibre-8.12.0/setup/translations.py
---- calibre-8.12.0/setup/translations.py.6~	2025-10-01 17:30:07.000000000 +0200
-+++ calibre-8.12.0/setup/translations.py	2025-10-03 18:59:35.352365840 +0200
+diff -up calibre-8.16.2/setup/translations.py.6~ calibre-8.16.2/setup/translations.py
+--- calibre-8.16.2/setup/translations.py.6~	2025-12-06 04:52:49.000000000 +0100
++++ calibre-8.16.2/setup/translations.py	2026-01-12 18:33:54.616172671 +0100
 @@ -10,6 +10,7 @@ import glob
  import hashlib
  import inspect
@@ -16,9 +15,9 @@ diff -up calibre-8.12.0/setup/translations.py.6~ calibre-8.12.0/setup/translatio
  from locale import normalize as normalize_locale
 +from contextlib import suppress
  
- from polyglot.builtins import codepoint_to_chr, iteritems
  from setup import Command, __appname__, __version__, build_cache_dir, dump_json, edit_file, is_ci, require_git_master
-@@ -285,6 +287,10 @@ class Translations(POT):  # {{{
+ from setup.iso_codes import iso_data
+@@ -284,6 +286,10 @@ class Translations(POT):  # {{{
      DEST = os.path.join(os.path.dirname(POT.SRC), 'resources', 'localization',
              'locales')
  
@@ -29,7 +28,7 @@ diff -up calibre-8.12.0/setup/translations.py.6~ calibre-8.12.0/setup/translatio
      @property
      def cache_dir(self):
          ans = self.j(build_cache_dir(), 'translations')
-@@ -334,6 +340,7 @@ class Translations(POT):  # {{{
+@@ -333,6 +339,7 @@ class Translations(POT):  # {{{
          return locale, os.path.join(self.DEST, locale, 'messages.mo')
  
      def run(self, opts):
@@ -37,7 +36,7 @@ diff -up calibre-8.12.0/setup/translations.py.6~ calibre-8.12.0/setup/translatio
          self.compile_main_translations()
          self.compile_content_server_translations()
          self.freeze_locales()
-@@ -799,12 +806,17 @@ class ISO639(Command):  # {{{
+@@ -798,12 +805,17 @@ class ISO639(Command):  # {{{
      DEST = os.path.join(os.path.dirname(POT.SRC), 'resources', 'localization',
              'iso639.calibre_msgpack')
  
@@ -55,7 +54,7 @@ diff -up calibre-8.12.0/setup/translations.py.6~ calibre-8.12.0/setup/translatio
          root = json.loads(iso_data.db_data('iso_639-3.json'))
          entries = root['639-3']
          by_2 = {}
-@@ -859,12 +871,17 @@ class ISO3166(ISO639):  # {{{
+@@ -857,12 +869,17 @@ class ISO3166(ISO639):  # {{{
      DEST = os.path.join(os.path.dirname(POT.SRC), 'resources', 'localization',
              'iso3166.calibre_msgpack')
  
