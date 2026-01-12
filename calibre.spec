@@ -125,7 +125,7 @@ Requires:	poppler
 Requires:	fonts-ttf-liberation
 # E-mail functionality requires this package
 # see https://bugs.launchpad.net/calibre/+bug/739073
-Requires:	python-dnspython
+Requires:	python%{pyver}dist(dnspython)
 
 %patchlist
 calibre-2.9.0-fdo-no_update.patch
