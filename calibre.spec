@@ -2,9 +2,9 @@
 %define _disable_lto 1
 
 Name:		calibre
-Version:	8.16.2
+Version:	9.2.1
 %define MathJax_version 3.2.2
-Release:	2
+Release:	1
 Summary:	E-book converter and library management
 Group:		Office
 License:	GPLv3
@@ -218,7 +218,6 @@ sed -i -e '/^#!\//, 1d' src/calibre/*/*/*/*.py
 sed -i -e '/^#!\//, 1d' src/calibre/*/*/*.py
 sed -i -e '/^#![ ]*\//, 1d' src/calibre/*/*.py
 sed -i -e '/^#!\//, 1d' src/calibre/*.py
-sed -i -e '/^#!\//, 1d' src/templite/*.py
 sed -i -e '/^#!\//, 1d' resources/default_tweaks.py
 sed -i -e '/^#!\//, 1d' recipes/*.recipe
 
