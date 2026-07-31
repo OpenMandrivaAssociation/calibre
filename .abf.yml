@@ -1,5 +1,6 @@
 sources:
   MathJax-3.2.2.tar.gz: 4ed8e9faaefccdb1648394501a341a2309afcb65
+  calibre-9.12.0.tar.xz: 59d726b65294004cee150112c8838ca4b5498b80
   hyphenation-dictionaries.tar.gz: 54bb549f89cb5ab5c93bf4abe7cf11d2a6a7f94b
   iso-codes-main.zip: 78061be3f77d3f6d7948606496394c334bc19d63
-  calibre-9.5.0.tar.xz: 999559e24e08d83cb8ca6fe4fd822e89e96c318d
+  voices.json: 68edfe9ba3b0f99e7fe1860afece3a95c2cc56ca

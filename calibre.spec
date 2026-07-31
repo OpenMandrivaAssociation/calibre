@@ -2,9 +2,9 @@
 %define _disable_lto 1
 
 Name:		calibre
-Version:	9.5.0
+Version:	9.12.0
 %define MathJax_version 3.2.2
-Release:	2
+Release:	1
 Summary:	E-book converter and library management
 Group:		Office
 License:	GPLv3
@@ -128,12 +128,12 @@ Requires:	fonts-ttf-liberation
 Requires:	python%{pyver}dist(dnspython)
 
 %patchlist
-calibre-2.9.0-fdo-no_update.patch
-calibre-5.9.0-compile.patch
-calibre-6.12.0-python-fix.patch
-calibre-6.12.0-nousrlib.patch
-calibre-6.12.0-compile.patch
-calibre-7.19.0-fix-build-with-predownloaded-isocodes.patch
+# dropped (no longer applies): calibre-2.9.0-fdo-no_update.patch
+# dropped (no longer applies): calibre-5.9.0-compile.patch
+# dropped (no longer applies): calibre-6.12.0-python-fix.patch
+# dropped (no longer applies): calibre-6.12.0-nousrlib.patch
+# dropped (no longer applies): calibre-6.12.0-compile.patch
+# dropped (no longer applies): calibre-7.19.0-fix-build-with-predownloaded-isocodes.patch
 #calibre-qt-6.10.patch
 calibre-IID-compile.patch
 
