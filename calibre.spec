@@ -4,7 +4,7 @@
 Name:		calibre
 Version:	9.12.0
 %define MathJax_version 3.2.2
-Release:	4
+Release:	5
 Summary:	E-book converter and library management
 Group:		Office
 License:	GPLv3
@@ -128,6 +128,7 @@ Requires:	fonts-ttf-liberation
 Requires:	python%{pyver}dist(dnspython)
 
 %patchlist
+calibre-ffmpeg9-sample-fmts.patch
 # dropped (no longer applies): calibre-2.9.0-fdo-no_update.patch
 # dropped (no longer applies): calibre-5.9.0-compile.patch
 # dropped (no longer applies): calibre-6.12.0-python-fix.patch
