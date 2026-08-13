@@ -4,7 +4,7 @@
 Name:		calibre
 Version:	9.13.0
 %define MathJax_version 3.2.2
-Release:	1
+Release:	2
 Summary:	E-book converter and library management
 Group:		Office
 License:	GPLv3
@@ -136,6 +136,7 @@ Requires:	python%{pyver}dist(dnspython)
 # dropped (no longer applies): calibre-7.19.0-fix-build-with-predownloaded-isocodes.patch
 #calibre-qt-6.10.patch
 calibre-IID-compile.patch
+calibre-9.13.0-isocodes-path.patch
 
 %description
 Calibre is meant to be a complete e-library solution. It includes library

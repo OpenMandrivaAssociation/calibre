@@ -1,0 +1,49 @@
+--- a/setup/translations.py
++++ b/setup/translations.py
+@@ -11,6 +11,7 @@ import hashlib
+ import inspect
+ import json
+ import os
++import optparse
+ import re
+ import shlex
+ import shutil
+@@ -22,6 +23,7 @@ import textwrap
+ import time
+ from collections import defaultdict
+ from functools import lru_cache, partial
++from contextlib import suppress
+ from locale import normalize as normalize_locale
+ 
+ from setup import Command, __appname__, __version__, build_cache_dir, dump_json, edit_file, is_ci, require_git_master
+@@ -311,6 +313,10 @@ class Translations(POT):  # {{{
+     description = '''Compile the translations'''
+     DEST = os.path.join(os.path.dirname(POT.SRC), 'resources', 'localization', 'locales')
+ 
++    def add_options(self, parser):
++        with suppress(optparse.OptionConflictError):
++            parser.add_option('--path-to-isocodes', help='Path to previously downloaded iso-codes-main.zip')
++
+     @property
+     def cache_dir(self):
+         ans = self.j(build_cache_dir(), 'translations')
+@@ -361,6 +367,7 @@ class Translations(POT):  # {{{
+         return locale, os.path.join(self.DEST, locale, 'messages.mo')
+ 
+     def run(self, opts):
++        iso_data.run(opts)
+         self.compile_main_translations()
+         self.compile_content_server_translations()
+         self.freeze_locales()
+@@ -863,6 +870,10 @@ class ISO639(Command):  # {{{
+     description = 'Compile language code maps for performance'
+     sub_commands = ['iso_data']
+     DEST = os.path.join(os.path.dirname(POT.SRC), 'resources', 'localization', 'iso639.calibre_msgpack')
+ 
++    def add_options(self, parser):
++        with suppress(optparse.OptionConflictError):
++            parser.add_option('--path-to-isocodes', help='Path to previously downloaded iso-codes-main.zip')
++
+     def run(self, opts):
+         dest = self.DEST
+         base = self.d(dest)
