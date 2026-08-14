@@ -190,8 +190,7 @@ RTF, TXT, PDF and LRS.
 %{_datadir}/metainfo/calibre-ebook-viewer.metainfo.xml
 %{_datadir}/metainfo/calibre-gui.metainfo.xml
 
-%{python_sitelib}/init_calibre.py*
-#{python_sitelib}/__pycache__/init_calibre.*.py*
+%{_libdir}/python%{pyver}/site-packages/init_calibre.py*
 
 #--------------------------------------------------------------------
 
@@ -272,9 +271,8 @@ mkdir -p %{buildroot}%{_datadir}/mime/packages
 mkdir -p %{buildroot}%{_datadir}/applications
 mkdir -p %{buildroot}%{_datadir}/desktop-directories
 
-# create directory for calibre environment module
-# the install script assumes it's there.
-mkdir -p %{buildroot}%{python_sitelib}
+# setup.py --libdir puts the env module in lib64, not %{python_sitelib} (lib)
+mkdir -p %{buildroot}%{_libdir}/python%{pyver}/site-packages
 
 XDG_DATA_DIRS="%{buildroot}%{_datadir}" \
 XDG_UTILS_INSTALL_MODE="system" \
@@ -287,7 +285,7 @@ python setup.py install --root=%{buildroot}%{_prefix} \
 
 # remove shebang from init_calibre.py here because
 # it just got spawned by the install script
-sed -i -e '/^#!\//, 1d' %{buildroot}%{python_sitelib}/init_calibre.py
+sed -i -e '/^#!\//, 1d' %{buildroot}%{_libdir}/python%{pyver}/site-packages/init_calibre.py
 
 # icons
 mkdir -p %{buildroot}%{_datadir}/pixmaps/
