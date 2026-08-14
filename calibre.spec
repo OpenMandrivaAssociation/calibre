@@ -260,6 +260,8 @@ PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py resources \
 #PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py man_pages
 
 %install
+# setup.py install re-links extensions; RPM LDFLAGS (-latomic/--as-needed) become -latomic_asneeded for ld.bfd
+export LDFLAGS="-Wl,-O2"
 mkdir -p %{buildroot}%{_datadir}
 
 # create directories for xdg-utils
