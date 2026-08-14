@@ -4,7 +4,7 @@
 Name:		calibre
 Version:	9.13.0
 %define MathJax_version 3.2.2
-Release:	3
+Release:	4
 Summary:	E-book converter and library management
 Group:		Office
 License:	GPLv3
@@ -20,6 +20,7 @@ Source5:	user-agent-data.json
 Source6:	https://huggingface.co/rhasspy/piper-voices/raw/main/voices.json
 Source100:	calibre.rpmlintrc
 BuildRequires:	make
+BuildRequires:	atomic-devel
 BuildRequires:	pkgconfig(python3)
 BuildRequires:	imagemagick-devel
 BuildRequires:	python%{pyver}dist(setuptools)
