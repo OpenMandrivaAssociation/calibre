@@ -4,7 +4,7 @@
 Name:		calibre
 Version:	9.13.0
 %define MathJax_version 3.2.2
-Release:	2
+Release:	3
 Summary:	E-book converter and library management
 Group:		Office
 License:	GPLv3
@@ -54,6 +54,7 @@ BuildRequires:	python%{pyver}dist(mechanize)
 BuildRequires:	python%{pyver}dist(legacy-cgi)
 BuildRequires:	python%{pyver}dist(lxml)
 BuildRequires:	python%{pyver}dist(python-dateutil)
+BuildRequires:	python%{pyver}dist(tzlocal)
 BuildRequires:	python%{pyver}dist(pillow)
 BuildRequires:	python%{pyver}dist(css-parser)
 BuildRequires:	python%{pyver}dist(feedparser)
