@@ -247,6 +247,11 @@ PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py iso_data iso639 i
 PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py translations \
 	--path-to-isocodes %{S:3}
 PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py gui
+# Official tarball already ships compiled editor.js/viewer.js/index-generated.html.
+# Recompiling them needs Qt WebEngine in the chroot and currently fails with
+# TypeError: (intermediate value) is not iterable in the RapydScript VFS
+# (WebChannel QVariant list from getmtime/read_file).
+sed -i -e "s/, 'rapydscript'//" setup/resources.py
 PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py resources \
 	--path-to-piper_voices %{S:6} \
 	--path-to-liberation_fonts %{_datadir}/fonts/TTF/liberation \
