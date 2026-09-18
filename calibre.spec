@@ -101,6 +101,8 @@ Requires:	python%{pyver}dist(jeepney)
 Requires:	python%{pyver}dist(lxml)
 Requires:	python%{pyver}dist(mechanize)
 Requires:	python%{pyver}dist(python-dateutil)
+# FIXME why is this not autodetected?
+Requires:	python%{pyver}dist(tzlocal)
 Requires:	python%{pyver}dist(beautifulsoup4)
 Requires:	python%{pyver}dist(netifaces)
 Requires:	python%{pyver}dist(dnspython)
