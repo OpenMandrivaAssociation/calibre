@@ -1,0 +1,11 @@
+--- a/src/calibre/utils/podofo/doc.cpp
++++ b/src/calibre/utils/podofo/doc.cpp
+@@ -191,7 +191,7 @@ PDFDoc_uncompress_pdf(PDFDoc *self, PyObject *args) {
+                 try {
+                     stream->Unwrap();
+                 } catch (PdfError &e) {
+-                    if (e.GetCode() != PdfErrorCode::FlateError) throw e;
++                    if (e.GetCode() != PdfErrorCode::Flate) throw e;
+                 }
+             } catch (PdfError &e) {
+                 if (e.GetCode() != PdfErrorCode::UnsupportedFilter) throw e;

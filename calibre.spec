@@ -142,6 +142,7 @@ calibre-9.13.0-isocodes-path.patch
 # 9.15.0 outline.cpp regressed to the pre-PoDoFo-1.0 CreateDestination API
 calibre-9.15.0-podofo-outline.patch
 calibre-9.15.0-podofo-impose-outlines.patch
+calibre-9.15.0-podofo-flate.patch
 
 %description
 Calibre is meant to be a complete e-library solution. It includes library
