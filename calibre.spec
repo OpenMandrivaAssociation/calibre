@@ -250,18 +250,18 @@ export OVERRIDE_CFLAGS="%{optflags}"
 # calibre's own "headless" platform plugin doesn't seem to work,
 # but fortunately Qt's "offscreen" platform does what we need
 export CALIBRE_HEADLESS_PLATFORM=offscreen
-PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py build
-PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py iso_data iso639 iso3166 translations \
+PODOFO_LIB_DIR=%{_libdir} LIBAVIF_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py build
+PODOFO_LIB_DIR=%{_libdir} LIBAVIF_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py iso_data iso639 iso3166 translations \
 	--path-to-isocodes %{S:3}
-PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py translations \
+PODOFO_LIB_DIR=%{_libdir} LIBAVIF_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py translations \
 	--path-to-isocodes %{S:3}
-PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py gui
+PODOFO_LIB_DIR=%{_libdir} LIBAVIF_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py gui
 # Official tarball already ships compiled editor.js/viewer.js/index-generated.html.
 # Recompiling them needs Qt WebEngine in the chroot and currently fails with
 # TypeError: (intermediate value) is not iterable in the RapydScript VFS
 # (WebChannel QVariant list from getmtime/read_file).
 sed -i -e "s/, 'rapydscript'//" setup/resources.py
-PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py resources \
+PODOFO_LIB_DIR=%{_libdir} LIBAVIF_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py resources \
 	--path-to-piper_voices %{S:6} \
 	--path-to-liberation_fonts %{_datadir}/fonts/TTF/liberation \
 	--system-liberation_fonts \
@@ -271,7 +271,7 @@ PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py resources \
 #	--path-to-mathjax %{_libdir}/javascript/mathjax
 # FIXME man pages currently fail to build, but aren't 100% required,
 # so commenting out the attempt to build them is better than nothing...
-#PODOFO_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py man_pages
+#PODOFO_LIB_DIR=%{_libdir} LIBAVIF_LIB_DIR=%{_libdir} CXX=clang++ CC=clang python setup.py man_pages
 
 %install
 mkdir -p %{buildroot}%{_datadir}
