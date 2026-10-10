@@ -88,6 +88,7 @@ BuildRequires:	pkgconfig(hunspell)
 BuildRequires:	libstemmer-devel
 BuildRequires:	pkgconfig(xkbcommon)
 BuildRequires:	pkgconfig(espeak-ng)
+BuildRequires:	pkgconfig(libavif)
 
 Requires:	fonts-ttf-liberation
 Requires:	imagemagick
