@@ -145,6 +145,8 @@ calibre-9.13.0-isocodes-path.patch
 calibre-9.15.0-podofo-outline.patch
 calibre-9.15.0-podofo-impose-outlines.patch
 calibre-9.15.0-podofo-flate.patch
+# onnxruntime 1.20 dropped the C++ execution-provider option wrappers
+calibre-9.16.0-onnxruntime-1.20.patch
 
 %description
 Calibre is meant to be a complete e-library solution. It includes library

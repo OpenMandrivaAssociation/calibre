@@ -1,0 +1,24 @@
+--- a/src/calibre/utils/tts/piper.cpp
++++ b/src/calibre/utils/tts/piper.cpp
+@@ -153,15 +153,15 @@
+ static void
+ append_execution_provider(Ort::SessionOptions &opts, const std::string &name) {
+     if (name == "CUDAExecutionProvider") {
+-        Ort::CUDAProviderOptions o;
+-        opts.AppendExecutionProvider_CUDA_V2(*o);
++        // onnxruntime 1.20 dropped the Ort::CUDAProviderOptions V2 wrapper.
++        OrtCUDAProviderOptions o;
++        opts.AppendExecutionProvider_CUDA(o);
+     } else if (name == "TensorRTExecutionProvider") {
+-        Ort::TensorRTProviderOptions o;
+-        opts.AppendExecutionProvider_TensorRT_V2(*o);
++        OrtTensorRTProviderOptions o{};
++        opts.AppendExecutionProvider_TensorRT(o);
+     } else if (name == "MIGraphXExecutionProvider") {
+-        // This struct has no constructor, so set the documented defaults
++        // migraphx_mem_limit is gone; the library default applies.
+         OrtMIGraphXProviderOptions o{};
+-        o.migraphx_mem_limit = SIZE_MAX;
+         opts.AppendExecutionProvider_MIGraphX(o);
+     } else if (name == "ROCMExecutionProvider") {
+         OrtROCMProviderOptions o;
