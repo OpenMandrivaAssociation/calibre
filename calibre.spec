@@ -4,7 +4,7 @@
 Name:		calibre
 Version:	9.16.0
 %define MathJax_version 3.2.2
-Release:	1
+Release:	2
 Summary:	E-book converter and library management
 Group:		Office
 License:	GPLv3
@@ -146,8 +146,10 @@ calibre-9.13.0-isocodes-path.patch
 calibre-9.15.0-podofo-outline.patch
 calibre-9.15.0-podofo-impose-outlines.patch
 calibre-9.15.0-podofo-flate.patch
-# onnxruntime 1.20 dropped the C++ execution-provider option wrappers
-calibre-9.16.0-onnxruntime-1.20.patch
+# dropped: calibre-9.16.0-onnxruntime-1.20.patch
+# onnxruntime 1.28 restored Ort::CUDAProviderOptions / TensorRTProviderOptions
+# and OrtMIGraphXProviderOptions.migraphx_mem_limit. The 1.20 workaround
+# zero-initialized that field, which is a 0-byte MIGraphX limit.
 
 %description
 Calibre is meant to be a complete e-library solution. It includes library
