@@ -88,6 +88,9 @@ BuildRequires:	libstemmer-devel
 BuildRequires:	pkgconfig(xkbcommon)
 BuildRequires:	pkgconfig(espeak-ng)
 BuildRequires:	pkgconfig(libavif)
+BuildRequires:	pkgconfig(libjxl)
+BuildRequires:	pkgconfig(libjxl_cms)
+BuildRequires:	pkgconfig(libjxl_threads)
 
 Requires:	fonts-ttf-liberation
 Requires:	imagemagick
