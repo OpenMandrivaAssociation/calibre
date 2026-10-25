@@ -4,7 +4,7 @@
 Name:		calibre
 Version:	9.17.0
 %define MathJax_version 3.2.2
-Release:	1
+Release:	2
 Summary:	E-book converter and library management
 Group:		Office
 License:	GPLv3
@@ -144,10 +144,11 @@ Requires:	python%{pyver}dist(dnspython)
 #calibre-qt-6.10.patch
 calibre-IID-compile.patch
 calibre-9.13.0-isocodes-path.patch
-# 9.15.0 outline.cpp regressed to the pre-PoDoFo-1.0 CreateDestination API
-calibre-9.15.0-podofo-outline.patch
-calibre-9.15.0-podofo-impose-outlines.patch
-calibre-9.15.0-podofo-flate.patch
+# dropped: calibre-9.15.0-podofo-outline.patch
+# dropped: calibre-9.15.0-podofo-impose-outlines.patch
+# dropped: calibre-9.15.0-podofo-flate.patch
+# 9.17.0 already uses the PoDoFo 1.x API. Those patches retarget it at 0.10
+# and do not compile against PoDoFo 1.1.
 # dropped: calibre-9.16.0-onnxruntime-1.20.patch
 # onnxruntime 1.28 restored Ort::CUDAProviderOptions / TensorRTProviderOptions
 # and OrtMIGraphXProviderOptions.migraphx_mem_limit. The 1.20 workaround
