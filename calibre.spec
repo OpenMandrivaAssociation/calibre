@@ -2,9 +2,9 @@
 %define _disable_lto 1
 
 Name:		calibre
-Version:	9.18.0
+Version:	9.19.0
 %define MathJax_version 3.2.2
-Release:	2
+Release:	1
 Summary:	E-book converter and library management
 Group:		Office
 License:	GPLv3
@@ -15,8 +15,6 @@ Source1:	https://github.com/LibreOffice/dictionaries/archive/master/hyphenation-
 Source2:	https://github.com/mathjax/MathJax/archive/%{MathJax_version}/MathJax-%{MathJax_version}.tar.gz
 Source3:	https://salsa.debian.org/iso-codes-team/iso-codes/-/archive/main/iso-codes-main.zip
 Source4:	calibre-mount-helper
-# (tpg) looks like this is missing
-Source5:	user-agent-data.json
 Source6:	https://huggingface.co/rhasspy/piper-voices/raw/main/voices.json
 BuildRequires:	make
 BuildRequires:	atomic-devel
@@ -133,6 +131,10 @@ Requires:	fonts-ttf-liberation
 # E-mail functionality requires this package
 # see https://bugs.launchpad.net/calibre/+bug/739073
 Requires:	python%{pyver}dist(dnspython)
+# Editor grammar checking imports langtool lazily and tells the user
+# if it is missing. The project name is kovidgoyal-langtool. Language
+# data is downloaded on first use.
+Recommends:	python%{pyver}dist(kovidgoyal-langtool)
 
 %patchlist
 # dropped (no longer applies): calibre-2.9.0-fdo-no_update.patch
@@ -246,7 +248,8 @@ chmod -x src/calibre/*/*.py
 chmod -x src/calibre/*.py
 chmod -x recipes/*.recipe
 
-cp %{SOURCE5} resources/
+# 9.19 ships resources/user-agent-data.json (Chrome 148+). The old
+# Source5 overwrote it with a 2022 dump. Leave the upstream file.
 
 %build
 tar xf %{S:1}
